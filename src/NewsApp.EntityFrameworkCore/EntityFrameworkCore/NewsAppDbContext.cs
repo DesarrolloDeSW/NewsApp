@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NewsApp.Noticias;
+using System.Security.Cryptography.X509Certificates;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -53,6 +56,10 @@ public class NewsAppDbContext :
 
     #endregion
 
+    #region Entidades de dominio
+    public DbSet<Noticia> Noticias { get; set; }
+    #endregion
+
     public NewsAppDbContext(DbContextOptions<NewsAppDbContext> options)
         : base(options)
     {
@@ -74,13 +81,27 @@ public class NewsAppDbContext :
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
 
-        /* Configure your own tables/entities inside here */
+        
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(NewsAppConsts.DbTablePrefix + "YourEntities", NewsAppConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
-    }
+    /* Configure your own tables/entities inside here */
+
+
+
+    //builder.Entity<YourEntity>(b =>
+    //{
+    //    b.ToTable(NewsAppConsts.DbTablePrefix + "YourEntities", NewsAppConsts.DbSchema);
+    //    b.ConfigureByConvention(); //auto configure for the base class props
+    //    //...
+    //});
+
+    // Entidad Noticia
+
+    builder.Entity<Noticia>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "Noticias", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
+        b.Property(x => x.Titulo).IsRequired().HasMaxLength(128);
+        b.Property(x => x.Autor).IsRequired().HasMaxLength(128);
+});
+}
 }
