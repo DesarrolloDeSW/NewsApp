@@ -58,6 +58,8 @@ public class NewsAppDbContext :
 
     #region Entidades de dominio
     public DbSet<Noticia> Noticias { get; set; }
+
+    public DbSet<Fuente> Fuentes { get; set; }
     #endregion
 
     public NewsAppDbContext(DbContextOptions<NewsAppDbContext> options)
@@ -94,6 +96,13 @@ public class NewsAppDbContext :
     //    //...
     //});
 
+    // Entidad Fuente
+    builder.Entity<Fuente>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "Fuentes", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
+    });
+
     // Entidad Noticia
 
     builder.Entity<Noticia>(b =>
@@ -102,6 +111,7 @@ public class NewsAppDbContext :
         b.ConfigureByConvention(); //auto configure for the base class props
         b.Property(x => x.Titulo).IsRequired().HasMaxLength(128);
         b.Property(x => x.Autor).IsRequired().HasMaxLength(128);
-});
+    }
+    );
 }
 }
