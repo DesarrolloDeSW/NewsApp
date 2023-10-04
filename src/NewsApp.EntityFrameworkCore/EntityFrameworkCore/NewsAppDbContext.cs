@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewsApp.Noticias;
+using NewsApp.Listas;
 using System.Security.Cryptography.X509Certificates;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -58,8 +59,10 @@ public class NewsAppDbContext :
 
     #region Entidades de dominio
     public DbSet<Noticia> Noticias { get; set; }
-
     public DbSet<Fuente> Fuentes { get; set; }
+    public DbSet<Lista> Listas { get; set; }
+    public DbSet<Etiqueta> Etiquetas { get; set; }
+
     #endregion
 
     public NewsAppDbContext(DbContextOptions<NewsAppDbContext> options)
@@ -113,5 +116,23 @@ public class NewsAppDbContext :
         b.Property(x => x.Autor).IsRequired().HasMaxLength(128);
     }
     );
-}
+
+    // Entidad Etiqueta
+    builder.Entity<Etiqueta>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "Etiquetas", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
+        b.Property(x => x.CadenaClave).IsRequired().HasMaxLength(128);
+    });
+
+    // Entidad Lista
+
+    builder.Entity<Lista>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "Listas", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
+        b.Property(x => x.Nombre).IsRequired().HasMaxLength(128);
+    }
+    );
+    }
 }
