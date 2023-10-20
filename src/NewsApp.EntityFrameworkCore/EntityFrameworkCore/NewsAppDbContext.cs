@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewsApp.Noticias;
 using NewsApp.Listas;
+using NewsApp.Usuarios;
 using System.Security.Cryptography.X509Certificates;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -62,6 +63,10 @@ public class NewsAppDbContext :
     public DbSet<Fuente> Fuentes { get; set; }
     public DbSet<Lista> Listas { get; set; }
     public DbSet<Etiqueta> Etiquetas { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Pais> Paises { get; set; }
+    public DbSet<IdiomaPreferencia> IdiomasPreferencia { get; set; }
+    public DbSet<UltimaVisita> UltimasVisitas { get; set; }
 
     #endregion
 
@@ -132,7 +137,46 @@ public class NewsAppDbContext :
         b.ToTable(NewsAppConsts.DbTablePrefix + "Listas", NewsAppConsts.DbSchema);
         b.ConfigureByConvention(); //auto configure for the base class props
         b.Property(x => x.Nombre).IsRequired().HasMaxLength(128);
-    }
-    );
+    });
+
+    // Entidad Pais
+
+    builder.Entity<Pais>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "Paises", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
+        b.Property(x => x.Codigo).IsRequired().HasMaxLength(2);
+    });
+
+    // Entidad IdiomaPrefencia
+
+    builder.Entity<IdiomaPreferencia>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "IdiomasPreferencia", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
+        b.Property(x => x.Idioma).IsRequired().HasMaxLength(2);
+    });
+
+    // Entidad Usuario
+
+        builder.Entity<Usuario>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "Usuarios", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
+        b.Property(x => x.NombreUsuario).IsRequired().HasMaxLength(128);
+        b.Property(x => x.Email).IsRequired().HasMaxLength(128);
+    });
+
+    // Entidad UltimaVisita
+
+    builder.Entity<UltimaVisita>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "UltimasVisitas", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
+        b.Property(x => x.NombreUsuario).IsRequired().HasMaxLength(128);
+        b.Property(x => x.UrlNoticia).IsRequired().HasMaxLength(128);
+        b.Property(x => x.Fecha).IsRequired();
+    });
+
     }
 }
