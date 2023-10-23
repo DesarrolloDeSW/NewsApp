@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace NewsApp.Listas
+namespace NewsApp.Usuarios
 {
-    public class EtiquetaAppService : CrudAppService<Etiqueta, EtiquetaDto, int>, IEtiquetaAppService
+    public class IdiomaAppService : CrudAppService<Idioma, IdiomaDto, int>, IIdiomaAppService
     {
-        public EtiquetaAppService(IRepository<Etiqueta, int> repository) : base(repository)
+        public IdiomaAppService(IRepository<Idioma, int> repository) : base(repository)
         { }
     }
 }

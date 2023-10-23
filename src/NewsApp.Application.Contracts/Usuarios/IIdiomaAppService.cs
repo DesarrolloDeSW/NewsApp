@@ -5,7 +5,7 @@ using Volo.Abp.Application.Services;
 
 namespace NewsApp.Usuarios
 {
-    public interface IIdiomaPreferenciaAppService : ICrudAppService<IdiomaPreferenciaDto, int>
+    public interface IIdiomaAppService : ICrudAppService<IdiomaDto, int>
     {
     }
 }

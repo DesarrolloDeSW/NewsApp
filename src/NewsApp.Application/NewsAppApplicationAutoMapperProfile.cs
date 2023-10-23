@@ -11,10 +11,9 @@ public class NewsAppApplicationAutoMapperProfile : Profile
     {
         CreateMap<Fuente,FuenteDto>();
         CreateMap<Noticia,NoticiaDto>();
-        CreateMap<Etiqueta, EtiquetaDto>();
         CreateMap<Lista, ListaDto>();
         CreateMap<Pais, PaisDto>();
-        CreateMap<IdiomaPreferencia, IdiomaPreferenciaDto>();
+        CreateMap<Idioma, IdiomaDto>();
 
     }
 }
