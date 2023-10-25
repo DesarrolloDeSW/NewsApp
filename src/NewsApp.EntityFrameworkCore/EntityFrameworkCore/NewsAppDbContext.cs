@@ -167,7 +167,7 @@ public class NewsAppDbContext :
     {
         b.ToTable(NewsAppConsts.DbTablePrefix + "Idiomas", NewsAppConsts.DbSchema);
         b.ConfigureByConvention(); //auto configure for the base class props
-        b.Property(x => x.Nombre).IsRequired().HasMaxLength(2);
+        b.Property(x => x.Codigo).IsRequired().HasMaxLength(2);
     });
 
     // Entidad Usuario

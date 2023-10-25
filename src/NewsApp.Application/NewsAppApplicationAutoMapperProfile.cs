@@ -17,7 +17,8 @@ public class NewsAppApplicationAutoMapperProfile : Profile
         CreateMap<Pais, PaisDto>();
         CreateMap<Idioma, IdiomaDto>();
         CreateMap<Alerta, AlertaDto>();
-        CreateMap<Notificacion, NotificacionDto>();
+        CreateMap<Notificacion, NotificacionDto>()
+            .ForMember(dest => dest.UsuarioDestinatarioId, opt => opt.MapFrom(src => src.UsuarioDestinatario.Id));
         CreateMap<Usuario, UsuarioDto>();
         CreateMap<UltimaVisita, UltimaVisitaDto>();
 

@@ -24,8 +24,8 @@ namespace NewsApp.Usuarios
 
         public ICollection<UltimaVisitaDto> UltimasVisitas { get; set; }
 
-        public int PaisId { get; set; }
+        public PaisDto PaisId { get; set; }
 
-        public int IdiomaId { get; set; }
+        public IdiomaDto IdiomaId { get; set; }
     }
 }
