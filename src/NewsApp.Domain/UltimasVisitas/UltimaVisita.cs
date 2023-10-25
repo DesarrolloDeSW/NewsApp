@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NewsApp.Noticias;
 using Volo.Abp.Domain.Entities;
 
+
 namespace NewsApp.Usuarios
 {
     public class UltimaVisita : Entity<int>

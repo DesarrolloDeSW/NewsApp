@@ -2,6 +2,8 @@
 using NewsApp.Listas;
 using NewsApp.Noticias;
 using NewsApp.Usuarios;
+using NewsApp.Alertas;
+using NewsApp.UltimasVisitas;
 
 namespace NewsApp;
 
@@ -14,6 +16,10 @@ public class NewsAppApplicationAutoMapperProfile : Profile
         CreateMap<Lista, ListaDto>();
         CreateMap<Pais, PaisDto>();
         CreateMap<Idioma, IdiomaDto>();
+        CreateMap<Alerta, AlertaDto>();
+        CreateMap<Notificacion, NotificacionDto>();
+        CreateMap<Usuario, UsuarioDto>();
+        CreateMap<UltimaVisita, UltimaVisitaDto>();
 
     }
 }
