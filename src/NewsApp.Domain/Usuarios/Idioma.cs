@@ -7,9 +7,10 @@ using Volo.Abp.Domain.Entities;
 
 namespace NewsApp.Usuarios
 {
-    public class IdiomaPreferencia : Entity<int>
+    public class Idioma : Entity<int>
     {
-        public Idioma Idioma { get; set; }
-        public int Prioridad { get; set; }
+        public string Nombre { get; set; }
+        public string Codigo { get; set; }
     }
+
 }

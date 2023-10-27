@@ -8,9 +8,10 @@ using Volo.Abp.Domain.Repositories;
 
 namespace NewsApp.Usuarios
 {
-    public class IdiomaPreferenciaAppService : CrudAppService<IdiomaPreferencia, IdiomaPreferenciaDto, int>, IIdiomaPreferenciaAppService
+    public class UsuarioAppService : CrudAppService<Usuario, UsuarioDto, int>, IUsuarioAppService
     {
-        public IdiomaPreferenciaAppService(IRepository<IdiomaPreferencia, int> repository) : base(repository)
+        public UsuarioAppService(IRepository<Usuario, int> repository):base(repository)
+
         { }
     }
 }

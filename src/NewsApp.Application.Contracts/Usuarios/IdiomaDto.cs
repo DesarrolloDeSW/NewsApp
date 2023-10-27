@@ -5,9 +5,9 @@ using Volo.Abp.Application.Dtos;
 
 namespace NewsApp.Usuarios
 {
-    public class IdiomaPreferenciaDto : EntityDto<int>
+    public class IdiomaDto : EntityDto<int>
     {
-        public Idioma Idioma { get; set; }
-        public int Prioridad  { get; set; }
+        public string Nombre { get; set; }
+        public string Codigo  { get; set; }
     }
 }

@@ -2,12 +2,15 @@
 using NewsApp.Noticias;
 using NewsApp.Listas;
 using NewsApp.Usuarios;
+using NewsApp.Alertas;
+using System;
 using System.Security.Cryptography.X509Certificates;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
@@ -17,6 +20,11 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace NewsApp.EntityFrameworkCore;
 
@@ -62,11 +70,12 @@ public class NewsAppDbContext :
     public DbSet<Noticia> Noticias { get; set; }
     public DbSet<Fuente> Fuentes { get; set; }
     public DbSet<Lista> Listas { get; set; }
-    public DbSet<Etiqueta> Etiquetas { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Pais> Paises { get; set; }
-    public DbSet<IdiomaPreferencia> IdiomasPreferencia { get; set; }
+    public DbSet<Idioma> Idiomas { get; set; }
     public DbSet<UltimaVisita> UltimasVisitas { get; set; }
+    public DbSet<Alerta> Alertas { get; set; }
+    public DbSet<Notificacion> Notificaciones { get; set; }
 
     #endregion
 
@@ -91,21 +100,30 @@ public class NewsAppDbContext :
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
 
-        
 
-    /* Configure your own tables/entities inside here */
+        // MANEJO DE COLECCIONES DE string
+        var stringListConverter = new ValueConverter<ICollection<string>, string>(
+            v => string.Join(',', v),
+            v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
+
+        var stringListComparer = new ValueComparer<ICollection<string>>(
+           (c1, c2) => c1.SequenceEqual(c2),
+           c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+           c => (ICollection<string>)c.ToList());
+
+        /* Configure your own tables/entities inside here */
 
 
 
-    //builder.Entity<YourEntity>(b =>
-    //{
-    //    b.ToTable(NewsAppConsts.DbTablePrefix + "YourEntities", NewsAppConsts.DbSchema);
-    //    b.ConfigureByConvention(); //auto configure for the base class props
-    //    //...
-    //});
+        //builder.Entity<YourEntity>(b =>
+        //{
+        //    b.ToTable(NewsAppConsts.DbTablePrefix + "YourEntities", NewsAppConsts.DbSchema);
+        //    b.ConfigureByConvention(); //auto configure for the base class props
+        //    //...
+        //});
 
-    // Entidad Fuente
-    builder.Entity<Fuente>(b =>
+        // Entidad Fuente
+        builder.Entity<Fuente>(b =>
     {
         b.ToTable(NewsAppConsts.DbTablePrefix + "Fuentes", NewsAppConsts.DbSchema);
         b.ConfigureByConvention(); //auto configure for the base class props
@@ -122,14 +140,6 @@ public class NewsAppDbContext :
     }
     );
 
-    // Entidad Etiqueta
-    builder.Entity<Etiqueta>(b =>
-    {
-        b.ToTable(NewsAppConsts.DbTablePrefix + "Etiquetas", NewsAppConsts.DbSchema);
-        b.ConfigureByConvention(); //auto configure for the base class props
-        b.Property(x => x.CadenaClave).IsRequired().HasMaxLength(128);
-    });
-
     // Entidad Lista
 
     builder.Entity<Lista>(b =>
@@ -137,6 +147,9 @@ public class NewsAppDbContext :
         b.ToTable(NewsAppConsts.DbTablePrefix + "Listas", NewsAppConsts.DbSchema);
         b.ConfigureByConvention(); //auto configure for the base class props
         b.Property(x => x.Nombre).IsRequired().HasMaxLength(128);
+        b.Property(e => e.Etiquetas)
+        .HasConversion(stringListConverter)
+        .Metadata.SetValueComparer(stringListComparer);
     });
 
     // Entidad Pais
@@ -150,11 +163,11 @@ public class NewsAppDbContext :
 
     // Entidad IdiomaPrefencia
 
-    builder.Entity<IdiomaPreferencia>(b =>
+    builder.Entity<Idioma>(b =>
     {
-        b.ToTable(NewsAppConsts.DbTablePrefix + "IdiomasPreferencia", NewsAppConsts.DbSchema);
+        b.ToTable(NewsAppConsts.DbTablePrefix + "Idiomas", NewsAppConsts.DbSchema);
         b.ConfigureByConvention(); //auto configure for the base class props
-        b.Property(x => x.Idioma).IsRequired().HasMaxLength(2);
+        b.Property(x => x.Codigo).IsRequired().HasMaxLength(2);
     });
 
     // Entidad Usuario
@@ -173,9 +186,24 @@ public class NewsAppDbContext :
     {
         b.ToTable(NewsAppConsts.DbTablePrefix + "UltimasVisitas", NewsAppConsts.DbSchema);
         b.ConfigureByConvention(); //auto configure for the base class props
-        b.Property(x => x.NombreUsuario).IsRequired().HasMaxLength(128);
-        b.Property(x => x.UrlNoticia).IsRequired().HasMaxLength(128);
         b.Property(x => x.Fecha).IsRequired();
+    });
+
+    // Entidad Alerta
+    builder.Entity<Alerta>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "Alertas", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention();
+        b.Property(e => e.Etiquetas)
+        .HasConversion(stringListConverter)
+        .Metadata.SetValueComparer(stringListComparer);
+    });
+
+    // Entidad Notificación
+    builder.Entity<Notificacion>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "Notificaciones", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
     });
 
     }
