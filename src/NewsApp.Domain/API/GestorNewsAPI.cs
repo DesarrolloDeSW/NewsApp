@@ -34,7 +34,12 @@ namespace NewsApp.API
 
             if (articlesResponse.Status == Statuses.Ok)
             {
-                return JsonSerializer.Serialize(articlesResponse.Articles);
+                var jsonOptions = new JsonSerializerOptions
+                {
+                    WriteIndented = true, // Esto agrega sangría (indentación) al JSON
+                };
+
+                return JsonSerializer.Serialize(articlesResponse.Articles, jsonOptions);
             }
 
             throw new Exception("Error: " + articlesResponse.Status);
