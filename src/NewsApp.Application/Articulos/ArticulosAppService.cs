@@ -20,17 +20,20 @@ namespace NewsApp.Articulos
             return articulos;
         }
 
-        public ICollection<ArticuloDto> GetArticulosNuestros(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor, string? url1, string? url2, string? url3)
+        public ICollection<ArticuloDto> GetArticulosNuestros(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor, string? urls)
         {
             // Llama a GetArticulos para obtener el JSON de artículos
             string jsonArticulos = GetArticulos(cadena, idioma, ordenarPor);
 
             // Deserializa el JSON en una lista de objetos ArticuloJson
             var articulosJson = JsonSerializer.Deserialize<List<Articulo>>(jsonArticulos);
-            
-            var conjuntoUrls = new HashSet<string> { url1, url2, url3 }; // Define el conjunto de URLs
 
-            MarcarArticulosComoVistos(conjuntoUrls, articulosJson); // Marca los artículos como "Vistos"
+            if (urls != null)
+            {
+                var conjuntoUrls = SepararYAgregarAHashSet(urls);
+
+                MarcarArticulosComoVistos(conjuntoUrls, articulosJson); // Marca los artículos como "Vistos"
+            }
 
             // Mapea los objetos ArticuloJson a ArticuloDto utilizando AutoMapper
             var articulosDto = ObjectMapper.Map<ICollection<Articulo>, ICollection<ArticuloDto>>(articulosJson);
@@ -48,6 +51,23 @@ namespace NewsApp.Articulos
                 }
             }
         }
+
+        public static HashSet<string> SepararYAgregarAHashSet(string input)
+        {
+            HashSet<string> conjunto = new HashSet<string>();
+
+            // Dividir la cadena en elementos usando comas como delimitadores
+            string[] elementos = input.Split(',');
+
+            foreach (string elemento in elementos)
+            {
+                // Agregar cada elemento al conjunto
+                conjunto.Add(elemento);
+            }
+
+            return conjunto;
+        }
+
 
 
     }
