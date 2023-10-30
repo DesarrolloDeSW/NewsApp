@@ -68,7 +68,5 @@ namespace NewsApp.Articulos
             return conjunto;
         }
 
-
-
     }
 }
