@@ -16,5 +16,10 @@ namespace NewsApp.Articulos
             string articulos = _gestorNewsAPI.GetNoticias(cadena, idioma, ordenarPor);
             return articulos;
         }
+
+        public ICollection<ArticuloDto> GetArticulosNuestros(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
+        {
+
+        }
     }
 }
