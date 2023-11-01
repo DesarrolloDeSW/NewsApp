@@ -13,7 +13,7 @@ namespace NewsApp.Articulos
 {
     public class ArticulosAppService : NewsAppAppService, IArticulosAppService
     {
-        public string GetArticulos(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
+        public string GetArticulosApiNews(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
         {
             var _gestorNewsAPI = new GestorNewsAPI();
             string articulos = _gestorNewsAPI.GetNoticias(cadena, idioma, ordenarPor);
@@ -23,7 +23,7 @@ namespace NewsApp.Articulos
         public ICollection<ArticuloDto> GetArticulosNuestros(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor, string? urls)
         {
             // Llama a GetArticulos para obtener el JSON de artículos
-            string jsonArticulos = GetArticulos(cadena, idioma, ordenarPor);
+            string jsonArticulos = GetArticulosApiNews(cadena, idioma, ordenarPor);
 
             // Deserializa el JSON en una lista de objetos ArticuloJson
             var articulosJson = JsonSerializer.Deserialize<List<Articulo>>(jsonArticulos);
