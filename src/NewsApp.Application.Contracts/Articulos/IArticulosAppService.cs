@@ -10,6 +10,6 @@ namespace NewsApp.Articulos
 {
     public interface IArticulosAppService : IApplicationService
     {
-        string GetArticulos(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor);
+        public string GetArticulosApiNews(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor);
     }
 }
