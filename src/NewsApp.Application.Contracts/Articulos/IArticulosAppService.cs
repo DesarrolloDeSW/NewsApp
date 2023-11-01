@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using NewsApp.Articulos;
+using System.Net.NetworkInformation;
 
 namespace NewsApp.Articulos
 {
