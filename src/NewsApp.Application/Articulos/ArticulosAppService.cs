@@ -17,9 +17,5 @@ namespace NewsApp.Articulos
             return articulos;
         }
 
-        public ICollection<ArticuloDto> GetArticulosNuestros(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
-        {
-
-        }
     }
 }
