@@ -4,7 +4,6 @@ using NewsApp.Noticias;
 using NewsApp.Usuarios;
 using NewsApp.Alertas;
 using NewsApp.UltimasVisitas;
-using NewsApp.Articulos;
 
 namespace NewsApp;
 
@@ -22,7 +21,6 @@ public class NewsAppApplicationAutoMapperProfile : Profile
             .ForMember(dest => dest.UsuarioDestinatarioId, opt => opt.MapFrom(src => src.UsuarioDestinatario.Id));
         CreateMap<Usuario, UsuarioDto>();
         CreateMap<UltimaVisita, UltimaVisitaDto>();
-        CreateMap<Articulo, ArticuloDto>();
 
     }
 }

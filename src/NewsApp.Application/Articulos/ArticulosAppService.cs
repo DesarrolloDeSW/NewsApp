@@ -5,9 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NewsApp.Articulos;
-using AutoMapper;
-using System.Text.Json;
-using System.Collections.ObjectModel;
 
 namespace NewsApp.Articulos
 {
