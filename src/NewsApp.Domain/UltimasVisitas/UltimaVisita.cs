@@ -13,6 +13,6 @@ namespace NewsApp.Usuarios
     {
         public DateTime Fecha { get; set; }
         public Usuario Usuario { get; set; }
-        public Noticia Noticia { get; set; }
+        public string UrlNoticia { get; set; } 
     }
 }
