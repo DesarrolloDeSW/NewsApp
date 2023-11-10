@@ -21,6 +21,8 @@ namespace NewsApp.Noticias
 
         public DateTime FechaPublicacion { get; set; }
 
-        public FuenteDto Fuente { get; set; }
+        public string Fuente { get; set; }
+
+        public bool Visto { get; set; }
     }
 }

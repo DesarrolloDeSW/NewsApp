@@ -13,18 +13,13 @@ namespace NewsApp.API
 {
     public class GestorNewsAPI
     {
-        NewsApiClient newsApiClient;
-
-        // Ponemos API key
-        public GestorNewsAPI()
+        public async Task<ICollection<ArticuloDto>> GetNoticiasAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
         {
-            newsApiClient = new NewsApiClient("58548a921ea745e78548a561dacaa277");
-        }
+            ICollection<ArticuloDto> responseList = new List<ArticuloDto>();
 
-        // Método que devuelve string con JSON de noticias dada una cadena
-        public string GetNoticias(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
-        {
-            var articlesResponse = newsApiClient.GetEverything(new EverythingRequest
+            // init with your API key
+            var newsApiClient = new NewsApiClient("8dbe7bd0639844c5b12f46cdcfad503f");
+            var articlesResponse = await newsApiClient.GetEverythingAsync(new EverythingRequest
             {
                 Q = cadena,
                 SortBy = GetOrden(ordenarPor),
@@ -34,17 +29,25 @@ namespace NewsApp.API
 
             if (articlesResponse.Status == Statuses.Ok)
             {
-                var jsonOptions = new JsonSerializerOptions
+                articlesResponse.Articles.ForEach(t => responseList.Add(new ArticuloDto
                 {
-                    WriteIndented = true, // Esto agrega sangría (indentación) al JSON
-                };
+                    Author = t.Author,
+                    Title = t.Title,
+                    Description = t.Description,
+                    Url = t.Url,
+                    PublishedAt = t.PublishedAt,
+                    UrlToImage = t.UrlToImage,
+                    Content=t.Content,
+                    Source=t.Source.Name
 
-                return JsonSerializer.Serialize(articlesResponse.Articles, jsonOptions);
+                })) ;
             }
+            else throw new Exception("Error: " + articlesResponse.Status);
 
-            throw new Exception("Error: " + articlesResponse.Status);
-
+            //TODO: falta registrar los tiempos de acceso de la API
+            return responseList;
         }
+
 
         // Método que da fecha de hace un mes
         private DateTime GetHaceUnMes()

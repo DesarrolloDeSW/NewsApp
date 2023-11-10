@@ -8,46 +8,45 @@ using NewsApp.Articulos;
 using AutoMapper;
 using System.Text.Json;
 using System.Collections.ObjectModel;
+using Volo.Abp.Application.Dtos;
+using NewsApp.Noticias;
 
 namespace NewsApp.Articulos
 {
     public class ArticulosAppService : NewsAppAppService, IArticulosAppService
     {
-        public string GetArticulosApiNews(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
+
+
+        public async Task<ICollection<NoticiaDto>> GetNoticiasApiNewsAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
         {
             var _gestorNewsAPI = new GestorNewsAPI();
-            string articulos = _gestorNewsAPI.GetNoticias(cadena, idioma, ordenarPor);
-            return articulos;
+            var articulos = await _gestorNewsAPI.GetNoticiasAsync(cadena, idioma, ordenarPor);
+            return ObjectMapper.Map<ICollection<ArticuloDto>, ICollection<NoticiaDto>>(articulos);
         }
+        
 
-        public ICollection<ArticuloDto> GetArticulosNuestros(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor, string? urls)
+        public async Task<ICollection<NoticiaDto>> GetArticulosConVistoAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor, string? urls)
         {
-            // Llama a GetArticulos para obtener el JSON de artículos
-            string jsonArticulos = GetArticulosApiNews(cadena, idioma, ordenarPor);
-
-            // Deserializa el JSON en una lista de objetos ArticuloJson
-            var articulosJson = JsonSerializer.Deserialize<List<Articulo>>(jsonArticulos);
+            var noticias= await GetNoticiasApiNewsAsync(cadena, idioma, ordenarPor);
 
             if (urls != null)
             {
                 var conjuntoUrls = SepararYAgregarAHashSet(urls);
-
-                MarcarArticulosComoVistos(conjuntoUrls, articulosJson); // Marca los artículos como "Vistos"
+                
+                MarcarNoticiasComoVistas(conjuntoUrls, noticias); // Marca las noticias como "Vistas"
             }
 
-            // Mapea los objetos ArticuloJson a ArticuloDto utilizando AutoMapper
-            var articulosDto = ObjectMapper.Map<ICollection<Articulo>, ICollection<ArticuloDto>>(articulosJson);
-            return articulosDto;
+            return noticias;
 
         }
 
-        public void MarcarArticulosComoVistos(ICollection<string> urls, ICollection<Articulo> articulos)
+        private void MarcarNoticiasComoVistas(ICollection<string> urls, ICollection<NoticiaDto> noticias)
         {
-            foreach (var articulo in articulos)
+            foreach (var noticia in noticias)
             {
-                if (urls.Contains(articulo.Url))
+                if (urls.Contains(noticia.Url))
                 {
-                    articulo.Visto = true;
+                    noticia.Visto = true;
                 }
             }
         }
