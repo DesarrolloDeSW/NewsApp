@@ -4,6 +4,7 @@ using NewsApp.Noticias;
 using NewsApp.Usuarios;
 using NewsApp.Alertas;
 using NewsApp.UltimasVisitas;
+using NewsApp.Articulos;
 
 namespace NewsApp;
 
@@ -11,8 +12,7 @@ public class NewsAppApplicationAutoMapperProfile : Profile
 {
     public NewsAppApplicationAutoMapperProfile()
     {
-        CreateMap<Fuente,FuenteDto>();
-        CreateMap<Noticia,NoticiaDto>();
+        CreateMap<Noticia, NoticiaDto>().ReverseMap();
         CreateMap<Lista, ListaDto>();
         CreateMap<Pais, PaisDto>();
         CreateMap<Idioma, IdiomaDto>();
@@ -21,6 +21,17 @@ public class NewsAppApplicationAutoMapperProfile : Profile
             .ForMember(dest => dest.UsuarioDestinatarioId, opt => opt.MapFrom(src => src.UsuarioDestinatario.Id));
         CreateMap<Usuario, UsuarioDto>();
         CreateMap<UltimaVisita, UltimaVisitaDto>();
+        CreateMap<Articulo, ArticuloDto>();
+        CreateMap<NoticiaDto, ArticuloDto>().ReverseMap()
+        .ForMember(dest => dest.Titulo, opt => opt.MapFrom(src => src.Title))
+        .ForMember(dest => dest.Autor, opt => opt.MapFrom(src => src.Author))
+        .ForMember(dest => dest.Descripcion, opt => opt.MapFrom(src => src.Description))
+        .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Url))
+        .ForMember(dest => dest.Contenido, opt => opt.MapFrom(src => src.Content))
+        .ForMember(dest => dest.UrlImagen, opt => opt.MapFrom(src => src.UrlToImage))
+        .ForMember(dest => dest.FechaPublicacion, opt => opt.MapFrom(src => src.PublishedAt))
+        .ForMember(dest => dest.Fuente, opt => opt.MapFrom(src => src.Source))
+        .ForMember(dest => dest.Visto, opt => opt.Ignore()); 
 
     }
 }

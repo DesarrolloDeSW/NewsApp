@@ -10,6 +10,6 @@ namespace NewsApp.UltimasVisitas
     {
         public DateTime Fecha { get; set; }
         public int UsuarioId { get; set; }
-        public string UrlNoticia { get; set; } 
+        public string UrlNoticia { get; set; }
     }
 }

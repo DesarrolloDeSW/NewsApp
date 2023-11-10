@@ -23,6 +23,8 @@ public class Noticia : Entity<int>
 
     public DateTime FechaPublicacion { get; set; }
 
-    public Fuente Fuente { get; set; }
+    public string Fuente { get; set; }
+
+    public bool Visto { get; set; }
 
 }

@@ -68,7 +68,6 @@ public class NewsAppDbContext :
 
     #region Entidades de dominio
     public DbSet<Noticia> Noticias { get; set; }
-    public DbSet<Fuente> Fuentes { get; set; }
     public DbSet<Lista> Listas { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Pais> Paises { get; set; }
@@ -122,12 +121,6 @@ public class NewsAppDbContext :
         //    //...
         //});
 
-        // Entidad Fuente
-        builder.Entity<Fuente>(b =>
-    {
-        b.ToTable(NewsAppConsts.DbTablePrefix + "Fuentes", NewsAppConsts.DbSchema);
-        b.ConfigureByConvention(); //auto configure for the base class props
-    });
 
     // Entidad Noticia
 
