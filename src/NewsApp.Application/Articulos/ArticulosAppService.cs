@@ -16,8 +16,8 @@ namespace NewsApp.Articulos
     public class ArticulosAppService : NewsAppAppService, IArticulosAppService
     {
 
-
         public async Task<ICollection<NoticiaDto>> GetNoticiasApiNewsAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
+
         {
             var _gestorNewsAPI = new GestorNewsAPI();
             var articulos = await _gestorNewsAPI.GetNoticiasAsync(cadena, idioma, ordenarPor);
@@ -50,6 +50,7 @@ namespace NewsApp.Articulos
                 }
             }
         }
+
 
         public static HashSet<string> SepararYAgregarAHashSet(string input)
         {
