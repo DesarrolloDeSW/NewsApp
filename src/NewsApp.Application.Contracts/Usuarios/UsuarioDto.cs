@@ -6,24 +6,15 @@ using NewsApp.Listas;
 
 namespace NewsApp.Usuarios
 {
-    public class UsuarioDto : EntityDto<int>
+    public class UsuarioDto :EntityDto<Guid>
     {
-        public string Nombre { get; set; }
+        public string? Nombre { get; set; }
 
-        public string Apellido { get; set; }
+        public string? Apellido { get; set; }
 
-        public string NombreUsuario { get; set; }
+        public string? NombreUsuario { get; set; }
 
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
-        public string Foto { get; set; }
-
-        public ICollection<ListaDto> Listas { get; set; }
-
-        public ICollection<UltimaVisitaDto> UltimasVisitas { get; set; }
-
-        public PaisDto PaisId { get; set; }
-
-        public IdiomaDto IdiomaId { get; set; }
     }
 }

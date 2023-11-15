@@ -1,10 +1,10 @@
-﻿using NewsApp.Usuarios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
+using Volo.Abp.Identity;
 
 namespace NewsApp.Alertas
 {
@@ -16,7 +16,7 @@ namespace NewsApp.Alertas
 
         public ICollection<string> Etiquetas { get; set; }
 
-        public Usuario Usuario { get; set; }
+        public IdentityUser Usuario { get; set; }
 
         public void Activar()
         {

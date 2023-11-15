@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewsApp.Noticias;
 using NewsApp.Listas;
-using NewsApp.Usuarios;
 using NewsApp.Alertas;
 using System;
 using System.Security.Cryptography.X509Certificates;
@@ -69,10 +68,6 @@ public class NewsAppDbContext :
     #region Entidades de dominio
     public DbSet<Noticia> Noticias { get; set; }
     public DbSet<Lista> Listas { get; set; }
-    public DbSet<Usuario> Usuarios { get; set; }
-    public DbSet<Pais> Paises { get; set; }
-    public DbSet<Idioma> Idiomas { get; set; }
-    public DbSet<UltimaVisita> UltimasVisitas { get; set; }
     public DbSet<Alerta> Alertas { get; set; }
     public DbSet<Notificacion> Notificaciones { get; set; }
 
@@ -129,7 +124,6 @@ public class NewsAppDbContext :
         b.ToTable(NewsAppConsts.DbTablePrefix + "Noticias", NewsAppConsts.DbSchema);
         b.ConfigureByConvention(); //auto configure for the base class props
         b.Property(x => x.Titulo).IsRequired().HasMaxLength(128);
-        b.Property(x => x.Autor).IsRequired().HasMaxLength(128);
     }
     );
 
@@ -143,34 +137,6 @@ public class NewsAppDbContext :
         b.Property(e => e.Etiquetas)
         .HasConversion(stringListConverter)
         .Metadata.SetValueComparer(stringListComparer);
-    });
-
-    // Entidad Pais
-
-    builder.Entity<Pais>(b =>
-    {
-        b.ToTable(NewsAppConsts.DbTablePrefix + "Paises", NewsAppConsts.DbSchema);
-        b.ConfigureByConvention(); //auto configure for the base class props
-        b.Property(x => x.Codigo).IsRequired().HasMaxLength(2);
-    });
-
-    // Entidad Idioma
-
-    builder.Entity<Idioma>(b =>
-    {
-        b.ToTable(NewsAppConsts.DbTablePrefix + "Idiomas", NewsAppConsts.DbSchema);
-        b.ConfigureByConvention(); //auto configure for the base class props
-        b.Property(x => x.Codigo).IsRequired().HasMaxLength(2);
-    });
-
-
-    // Entidad UltimaVisita
-
-    builder.Entity<UltimaVisita>(b =>
-    {
-        b.ToTable(NewsAppConsts.DbTablePrefix + "UltimasVisitas", NewsAppConsts.DbSchema);
-        b.ConfigureByConvention(); //auto configure for the base class props
-        b.Property(x => x.Fecha).IsRequired();
     });
 
     // Entidad Alerta
