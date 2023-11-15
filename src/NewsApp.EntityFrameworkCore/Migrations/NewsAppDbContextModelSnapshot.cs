@@ -42,8 +42,8 @@ namespace NewsApp.Migrations
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -107,33 +107,11 @@ namespace NewsApp.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ListaId");
 
-                    b.HasIndex("UsuarioId");
-
                     b.ToTable("AppListas", (string)null);
-                });
-
-            modelBuilder.Entity("NewsApp.Noticias.Fuente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppFuentes", (string)null);
                 });
 
             modelBuilder.Entity("NewsApp.Noticias.Noticia", b =>
@@ -146,8 +124,7 @@ namespace NewsApp.Migrations
 
                     b.Property<string>("Autor")
                         .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Contenido")
                         .IsRequired()
@@ -160,8 +137,9 @@ namespace NewsApp.Migrations
                     b.Property<DateTime>("FechaPublicacion")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FuenteId")
-                        .HasColumnType("int");
+                    b.Property<string>("Fuente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ListaId")
                         .HasColumnType("int");
@@ -179,128 +157,14 @@ namespace NewsApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<bool>("Visto")
+                        .HasColumnType("bit");
 
-                    b.HasIndex("FuenteId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ListaId");
 
                     b.ToTable("AppNoticias", (string)null);
-                });
-
-            modelBuilder.Entity("NewsApp.Usuarios.Idioma", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Codigo")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppIdiomas", (string)null);
-                });
-
-            modelBuilder.Entity("NewsApp.Usuarios.Pais", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Codigo")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppPaises", (string)null);
-                });
-
-            modelBuilder.Entity("NewsApp.Usuarios.UltimaVisita", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("NoticiaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NoticiaId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("AppUltimasVisitas", (string)null);
-                });
-
-            modelBuilder.Entity("NewsApp.Usuarios.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Foto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdiomaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NombreUsuario")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<int>("PaisId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdiomaId");
-
-                    b.HasIndex("PaisId");
-
-                    b.ToTable("AppUsuarios", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -1961,7 +1825,7 @@ namespace NewsApp.Migrations
 
             modelBuilder.Entity("NewsApp.Alertas.Alerta", b =>
                 {
-                    b.HasOne("NewsApp.Usuarios.Usuario", "Usuario")
+                    b.HasOne("Volo.Abp.Identity.IdentityUser", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1986,63 +1850,13 @@ namespace NewsApp.Migrations
                     b.HasOne("NewsApp.Listas.Lista", null)
                         .WithMany("Listas")
                         .HasForeignKey("ListaId");
-
-                    b.HasOne("NewsApp.Usuarios.Usuario", null)
-                        .WithMany("Listas")
-                        .HasForeignKey("UsuarioId");
                 });
 
             modelBuilder.Entity("NewsApp.Noticias.Noticia", b =>
                 {
-                    b.HasOne("NewsApp.Noticias.Fuente", "Fuente")
-                        .WithMany()
-                        .HasForeignKey("FuenteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("NewsApp.Listas.Lista", null)
                         .WithMany("Noticias")
                         .HasForeignKey("ListaId");
-
-                    b.Navigation("Fuente");
-                });
-
-            modelBuilder.Entity("NewsApp.Usuarios.UltimaVisita", b =>
-                {
-                    b.HasOne("NewsApp.Noticias.Noticia", "Noticia")
-                        .WithMany()
-                        .HasForeignKey("NoticiaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NewsApp.Usuarios.Usuario", "Usuario")
-                        .WithMany("UltimasVisitas")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Noticia");
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("NewsApp.Usuarios.Usuario", b =>
-                {
-                    b.HasOne("NewsApp.Usuarios.Idioma", "Idioma")
-                        .WithMany()
-                        .HasForeignKey("IdiomaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NewsApp.Usuarios.Pais", "Pais")
-                        .WithMany()
-                        .HasForeignKey("PaisId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Idioma");
-
-                    b.Navigation("Pais");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
@@ -2192,13 +2006,6 @@ namespace NewsApp.Migrations
                     b.Navigation("Listas");
 
                     b.Navigation("Noticias");
-                });
-
-            modelBuilder.Entity("NewsApp.Usuarios.Usuario", b =>
-                {
-                    b.Navigation("Listas");
-
-                    b.Navigation("UltimasVisitas");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

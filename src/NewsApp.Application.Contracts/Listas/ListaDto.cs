@@ -19,6 +19,6 @@ namespace NewsApp.Listas
 
         public ICollection<NoticiaDto> Noticias { get; set; }
         public ICollection<ListaDto> Listas { get; set; }
-        public ICollection<EtiquetaDto> Etiquetas { get; set; }
+        public ICollection<string> Etiquetas { get; set; }
     }
 }

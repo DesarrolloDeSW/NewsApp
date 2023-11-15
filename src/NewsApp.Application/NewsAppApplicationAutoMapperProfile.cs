@@ -3,7 +3,7 @@ using NewsApp.Listas;
 using NewsApp.Noticias;
 using NewsApp.Usuarios;
 using NewsApp.Alertas;
-using NewsApp.UltimasVisitas;
+using Volo.Abp.Identity;
 using NewsApp.Articulos;
 
 namespace NewsApp;
@@ -14,13 +14,13 @@ public class NewsAppApplicationAutoMapperProfile : Profile
     {
         CreateMap<Noticia, NoticiaDto>().ReverseMap();
         CreateMap<Lista, ListaDto>();
-        CreateMap<Pais, PaisDto>();
-        CreateMap<Idioma, IdiomaDto>();
         CreateMap<Alerta, AlertaDto>();
         CreateMap<Notificacion, NotificacionDto>()
             .ForMember(dest => dest.UsuarioDestinatarioId, opt => opt.MapFrom(src => src.UsuarioDestinatario.Id));
-        CreateMap<Usuario, UsuarioDto>();
-        CreateMap<UltimaVisita, UltimaVisitaDto>();
+        CreateMap<IdentityUser, UsuarioDto>()
+        .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Name))
+        .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Surname))
+        .ForMember(dest => dest.NombreUsuario, opt => opt.MapFrom(src => src.UserName));
         CreateMap<Articulo, ArticuloDto>();
         CreateMap<NoticiaDto, ArticuloDto>().ReverseMap()
         .ForMember(dest => dest.Titulo, opt => opt.MapFrom(src => src.Title))
