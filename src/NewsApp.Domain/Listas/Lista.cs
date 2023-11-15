@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
-using NewsApp.Noticias; 
+using NewsApp.Noticias;
+using Volo.Abp.Identity;
 
 namespace NewsApp.Listas;
 
@@ -23,32 +24,7 @@ public class Lista : Entity<int>
     public ICollection<Lista> Listas { get; set; }
 
     public ICollection<string> Etiquetas { get; set; }
-
-    public void AgregarNoticia(Noticia unaNoticia)
-    {
-        Noticias.Add(unaNoticia);
-    }
-
-    public void EliminarNoticia(Noticia unaNoticia)
-    {
-        if (Noticias.Contains(unaNoticia))
-        {
-            Noticias.Remove(unaNoticia);
-        }
-    }
-
-    public void AgregarEtiqueta(string unaEtiqueta)
-    {
-        Etiquetas.Add(unaEtiqueta);
-    }
-
-    public void EliminarEtiqueta(string unaEtiqueta)
-    {
-        if (Etiquetas.Contains(unaEtiqueta))
-        {
-            Etiquetas.Remove(unaEtiqueta);
-        }
-    }
+    public Guid UsuarioId { get; set; }
 
 }
 

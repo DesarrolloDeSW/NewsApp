@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Application.Dtos;
 using NewsApp.Noticias;
+using NewsApp.Usuarios;
 
 namespace NewsApp.Listas
 {
@@ -20,5 +21,6 @@ namespace NewsApp.Listas
         public ICollection<NoticiaDto> Noticias { get; set; }
         public ICollection<ListaDto> Listas { get; set; }
         public ICollection<string> Etiquetas { get; set; }
+        public Guid UsuarioId { get; set; } 
     }
 }
