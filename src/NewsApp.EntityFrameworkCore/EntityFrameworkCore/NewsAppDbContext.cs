@@ -154,7 +154,7 @@ public class NewsAppDbContext :
         b.Property(x => x.Codigo).IsRequired().HasMaxLength(2);
     });
 
-    // Entidad IdiomaPrefencia
+    // Entidad Idioma
 
     builder.Entity<Idioma>(b =>
     {
@@ -163,15 +163,6 @@ public class NewsAppDbContext :
         b.Property(x => x.Codigo).IsRequired().HasMaxLength(2);
     });
 
-    // Entidad Usuario
-
-        builder.Entity<Usuario>(b =>
-    {
-        b.ToTable(NewsAppConsts.DbTablePrefix + "Usuarios", NewsAppConsts.DbSchema);
-        b.ConfigureByConvention(); //auto configure for the base class props
-        b.Property(x => x.NombreUsuario).IsRequired().HasMaxLength(128);
-        b.Property(x => x.Email).IsRequired().HasMaxLength(128);
-    });
 
     // Entidad UltimaVisita
 

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Application.Dtos;
 using NewsApp.Listas;
-using NewsApp.UltimasVisitas;
-
 
 namespace NewsApp.Usuarios
 {
