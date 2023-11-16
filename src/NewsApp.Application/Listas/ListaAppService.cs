@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,6 +54,13 @@ namespace NewsApp.Listas
             }
 
             var respuesta = await _listaRepository.UpdateAsync(lista);
+            return ObjectMapper.Map<Lista, ListaDto>(respuesta);
+        }
+
+        public async Task<ListaDto> DeleteListaAsync(int id)
+        {
+            var respuesta = await _listaRepository.GetAsync(id);
+            await _listaRepository.DeleteAsync(id);
             return ObjectMapper.Map<Lista, ListaDto>(respuesta);
         }
     }
