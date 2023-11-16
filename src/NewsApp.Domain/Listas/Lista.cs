@@ -26,5 +26,12 @@ public class Lista : Entity<int>
     public ICollection<string> Etiquetas { get; set; }
     public Guid UsuarioId { get; set; }
 
+    public void CambiarNombre(string NombreNuevo)
+    { this.Nombre = NombreNuevo; }
+
+    public void CambiarDescripcion(string DescripcionNueva)
+    { this.Descripcion = DescripcionNueva; }
+
+
 }
 

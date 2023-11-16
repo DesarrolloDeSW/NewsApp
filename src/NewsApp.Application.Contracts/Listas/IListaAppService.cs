@@ -10,5 +10,6 @@ namespace NewsApp.Listas
     {
         Task<ICollection<ListaDto>> GetListasAsync();
         Task<ListaDto> PostListaAsync(string Nombre, string Descripcion, Guid idUsuario);
+        Task<ListaDto> UpdateListaAsync(int id, string? Nombre, string? Descripcion);
     }
 }
