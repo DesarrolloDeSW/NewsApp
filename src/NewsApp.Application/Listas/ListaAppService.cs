@@ -8,9 +8,52 @@ using Volo.Abp.Domain.Repositories;
 
 namespace NewsApp.Listas
 {
-    public class ListaAppService : CrudAppService<Lista, ListaDto, int>, IListaAppService
+    public class ListaAppService : NewsAppAppService, IListaAppService
     {
-        public ListaAppService(IRepository<Lista, int> repository) : base(repository)
-        { }
+        private readonly IListaRepository _listaRepository;
+        private readonly ListaManager _listaManager;
+
+        public ListaAppService(
+            IListaRepository listaRepository,
+            ListaManager listaManager)
+        {
+            _listaRepository = listaRepository;
+            _listaManager = listaManager;
+        }
+
+        public async Task<ICollection<ListaDto>> GetListasAsync()
+        {
+            var listas = await _listaRepository.GetListAsync();
+
+            return ObjectMapper.Map<ICollection<Lista>, ICollection<ListaDto>>(listas);
+        }
+
+        public async Task<ListaDto> PostListaAsync(string Nombre, string Descripcion, Guid idUsuario)
+        {
+            ICollection<string> Etiquetas = new List<string>();
+            Lista ListaNueva= new Lista { Nombre = Nombre, Descripcion=Descripcion, UsuarioId=idUsuario, FechaCreacion=DateTime.Today,Alerta=false, Etiquetas = Etiquetas};
+            var respuesta = await _listaRepository.InsertAsync(ListaNueva);
+            return ObjectMapper.Map<Lista, ListaDto>(respuesta);
+        }
+
+        public async Task<ListaDto> UpdateListaAsync(int id, string? Nombre, string? Descripcion)
+        {
+            var lista = await _listaRepository.GetAsync(id);
+
+            if (Nombre != null)
+            {
+                if (lista.Nombre!= Nombre)
+                { await _listaManager.CambiarNombreAsync(lista, Nombre); }
+            }
+
+            if (Descripcion != null)
+            {
+                if (lista.Descripcion != Descripcion)
+                { await _listaManager.CambiarDescripcionAsync(lista, Descripcion); }
+            }
+
+            var respuesta = await _listaRepository.UpdateAsync(lista);
+            return ObjectMapper.Map<Lista, ListaDto>(respuesta);
+        }
     }
 }
