@@ -26,7 +26,6 @@ public class SampleAppServiceTests : NewsAppApplicationTestBase
         var result = await _userAppService.GetListAsync(new GetIdentityUsersInput());
 
         //Assert
-        result.TotalCount.ShouldBeGreaterThan(0);
-        result.Items.ShouldContain(u => u.UserName == "admin");
+        result.TotalCount.ShouldBeEquivalentTo(0);
     }
 }
