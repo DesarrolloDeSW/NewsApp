@@ -31,7 +31,5 @@ public class Lista : Entity<int>
 
     public void CambiarDescripcion(string DescripcionNueva)
     { this.Descripcion = DescripcionNueva; }
-
-
 }
 
