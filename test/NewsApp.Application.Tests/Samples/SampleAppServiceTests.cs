@@ -28,4 +28,8 @@ public class SampleAppServiceTests : NewsAppApplicationTestBase
         //Assert
         result.TotalCount.ShouldBeEquivalentTo(0);
     }
+
+
+
+
 }
