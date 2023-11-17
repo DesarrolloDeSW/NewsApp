@@ -58,7 +58,7 @@ namespace NewsApp.Listas
             lista1.Nombre.ShouldBe("Primera Lista");
             lista1.Descripcion.ShouldBe("NuevaDesc");
             lista2.Nombre.ShouldBe("Lista 2");
-            lista2.Descripcion.ShouldBeNull();
+            lista2.Descripcion.ShouldBe("Descripción de la segunda lista");
 
         }
 
