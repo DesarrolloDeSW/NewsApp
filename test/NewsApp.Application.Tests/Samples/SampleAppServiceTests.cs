@@ -29,4 +29,5 @@ public class SampleAppServiceTests : NewsAppApplicationTestBase
         result.TotalCount.ShouldBeGreaterThan(0);
         result.Items.ShouldContain(u => u.UserName == "admin");
     }
+
 }
