@@ -19,12 +19,8 @@ public class Noticia : Entity<int>
 
     public string Contenido { get; set; }
 
-    public string UrlImagen { get; set; }
-
     public DateTime FechaPublicacion { get; set; }
 
     public string Fuente { get; set; }
-
-    public bool Visto { get; set; }
 
 }
