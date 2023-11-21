@@ -17,8 +17,6 @@ namespace NewsApp.Noticias
 
         public string Contenido { get; set; }
 
-        public string UrlImagen { get; set; }
-
         public DateTime FechaPublicacion { get; set; }
 
         public string Fuente { get; set; }
