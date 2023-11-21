@@ -9,8 +9,8 @@ namespace NewsApp.Listas
     public interface IListaAppService : IApplicationService
     {
         Task<ICollection<ListaDto>> GetListasAsync();
-        Task<ListaDto> PostListaAsync(string Nombre, string Descripcion, Guid idUsuario);
-        Task<ListaDto> UpdateListaAsync(int id, string? Nombre, string? Descripcion);
+        Task<ListaDto> PostListaAsync(CreateListaDto input);
+        Task<ListaDto> UpdateListaAsync(UpdateListaDto input);
         Task<ListaDto> DeleteListaAsync(int id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Identity;
 
 namespace NewsApp.Listas
 {
@@ -13,13 +15,15 @@ namespace NewsApp.Listas
     {
         private readonly IListaRepository _listaRepository;
         private readonly ListaManager _listaManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
         public ListaAppService(
             IListaRepository listaRepository,
-            ListaManager listaManager)
+            ListaManager listaManager, UserManager<IdentityUser> userManager)
         {
             _listaRepository = listaRepository;
             _listaManager = listaManager;
+            _userManager = userManager;
         }
 
         public async Task<ICollection<ListaDto>> GetListasAsync()
@@ -29,28 +33,29 @@ namespace NewsApp.Listas
             return ObjectMapper.Map<ICollection<Lista>, ICollection<ListaDto>>(listas);
         }
 
-        public async Task<ListaDto> PostListaAsync(string Nombre, string Descripcion, Guid idUsuario)
+        public async Task<ListaDto> PostListaAsync(CreateListaDto input)
         {
-            ICollection<string> Etiquetas = new List<string>();
-            Lista ListaNueva= new Lista { Nombre = Nombre, Descripcion=Descripcion, UsuarioId=idUsuario, FechaCreacion=DateTime.Today,Alerta=false, Etiquetas = Etiquetas};
-            var respuesta = await _listaRepository.InsertAsync(ListaNueva);
+            var userGuid = CurrentUser.Id.GetValueOrDefault();
+            var usuario = await _userManager.FindByIdAsync(userGuid.ToString());
+            var lista = await _listaManager.CreateAsync(input.Nombre, input.Descripcion, input.ParentId, usuario);
+            var respuesta = await _listaRepository.InsertAsync(lista);
             return ObjectMapper.Map<Lista, ListaDto>(respuesta);
         }
 
-        public async Task<ListaDto> UpdateListaAsync(int id, string? Nombre, string? Descripcion)
+        public async Task<ListaDto> UpdateListaAsync(UpdateListaDto input)
         {
-            var lista = await _listaRepository.GetAsync(id);
+            var lista = await _listaRepository.GetAsync(input.Id);
 
-            if (Nombre != null)
+            if (input.Nombre != null)
             {
-                if (lista.Nombre!= Nombre)
-                { await _listaManager.CambiarNombreAsync(lista, Nombre); }
+                if (lista.Nombre!= input.Nombre)
+                { await _listaManager.CambiarNombreAsync(lista, input.Nombre); }
             }
 
-            if (Descripcion != null)
+            if (input.Descripcion != null)
             {
-                if (lista.Descripcion != Descripcion)
-                { await _listaManager.CambiarDescripcionAsync(lista, Descripcion); }
+                if (lista.Descripcion != input.Descripcion)
+                { await _listaManager.CambiarDescripcionAsync(lista, input.Descripcion); }
             }
 
             var respuesta = await _listaRepository.UpdateAsync(lista);

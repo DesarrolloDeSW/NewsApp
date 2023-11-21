@@ -15,7 +15,7 @@ public class Lista : Entity<int>
 
     public DateTime FechaCreacion { get; set; }
 
-    public string Descripcion { get; set; }
+    public string? Descripcion { get; set; }
 
     public bool Alerta { get; set; }
 
@@ -25,6 +25,13 @@ public class Lista : Entity<int>
 
     public ICollection<string> Etiquetas { get; set; }
     public Guid UsuarioId { get; set; }
+
+    public Lista ()
+    {
+        this.Listas = new List<Lista>();
+        this.Etiquetas = new List<string>();
+        this.Noticias = new List<Noticia>();
+    }
 
     public void CambiarNombre(string NombreNuevo)
     { this.Nombre = NombreNuevo; }

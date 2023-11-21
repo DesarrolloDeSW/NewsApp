@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
+using Volo.Abp.Identity;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace NewsApp.Listas;
 
@@ -16,27 +20,27 @@ public class ListaManager : DomainService
         _listaRepository= ListaRepository;
     }
 
-    /*public async Task<Lista> CreateAsync(
-        [NotNull] string Nombre,
-        DateTime birthDate,
-        [CanBeNull] string shortBio = null)
+    public async Task<Lista> CreateAsync(string nombre, string? descripcion, int? parentId, IdentityUser usuario)
     {
-        Check.NotNullOrWhiteSpace(name, nameof(name));
-
-        var existingAuthor = await _authorRepository.FindByNameAsync(name);
-        if (existingAuthor != null)
+        var listaExistente = await _listaRepository.FindByNameAsync(nombre);
+        if (listaExistente != null && listaExistente.UsuarioId == usuario.Id)
         {
-            throw new AuthorAlreadyExistsException(name);
+            throw new ListaYaExiste(nombre);
         }
 
-        return new Author(
-            GuidGenerator.Create(),
-            name,
-            birthDate,
-            shortBio
-        );
+        var lista = new Lista { Nombre = nombre, Descripcion = descripcion, UsuarioId = usuario.Id, FechaCreacion = DateTime.Today, Alerta = false};
+
+        if (parentId is not null)
+        {
+            if (parentId!=0)
+            { 
+                var listaPadre = await _listaRepository.GetAsync(parentId.Value, includeDetails: true);
+                listaPadre.Listas.Add(lista);
+            }
+        }
+
+        return lista;
     }
-    */
 
     public async Task CambiarNombreAsync(
         [NotNull] Lista lista,
