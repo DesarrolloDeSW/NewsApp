@@ -7,6 +7,9 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
 using Volo.Abp.Identity;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Text;
 
 
 namespace NewsApp.Listas;
@@ -22,13 +25,15 @@ public class ListaManager : DomainService
 
     public async Task<Lista> CreateAsync(string nombre, string? descripcion, int? parentId, IdentityUser usuario)
     {
+        Lista lista = null;
+
         var listaExistente = await _listaRepository.FindByNameAsync(nombre);
         if (listaExistente != null && listaExistente.UsuarioId == usuario.Id)
         {
             throw new ListaYaExiste(nombre);
         }
 
-        var lista = new Lista { Nombre = nombre, Descripcion = descripcion, UsuarioId = usuario.Id, FechaCreacion = DateTime.Today, Alerta = false};
+        lista = new Lista { Nombre = nombre, Descripcion = descripcion, UsuarioId = usuario.Id, FechaCreacion = DateTime.Today, Alerta = false};
 
         if (parentId is not null)
         {

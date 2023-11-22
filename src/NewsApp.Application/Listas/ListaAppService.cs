@@ -28,9 +28,20 @@ namespace NewsApp.Listas
 
         public async Task<ICollection<ListaDto>> GetListasAsync()
         {
-            var listas = await _listaRepository.GetListAsync();
+            var listas = await _listaRepository.GetListAsync(includeDetails:true); ;
 
             return ObjectMapper.Map<ICollection<Lista>, ICollection<ListaDto>>(listas);
+        }
+        public async Task<ListaDto> GetListaAsync(int id)
+        {
+            var queryable = await _listaRepository.WithDetailsAsync(x => x.Listas);
+
+            var query = queryable.Where(x => x.Id == id);
+
+            var lista = await AsyncExecuter.FirstOrDefaultAsync(query);
+
+            return ObjectMapper.Map<Lista, ListaDto>(lista);
+
         }
 
         public async Task<ListaDto> PostListaAsync(CreateListaDto input)
@@ -38,7 +49,7 @@ namespace NewsApp.Listas
             var userGuid = CurrentUser.Id.GetValueOrDefault();
             var usuario = await _userManager.FindByIdAsync(userGuid.ToString());
             var lista = await _listaManager.CreateAsync(input.Nombre, input.Descripcion, input.ParentId, usuario);
-            var respuesta = await _listaRepository.InsertAsync(lista);
+            var respuesta = await _listaRepository.InsertAsync(lista, autoSave:true);
             return ObjectMapper.Map<Lista, ListaDto>(respuesta);
         }
 
@@ -58,7 +69,7 @@ namespace NewsApp.Listas
                 { await _listaManager.CambiarDescripcionAsync(lista, input.Descripcion); }
             }
 
-            var respuesta = await _listaRepository.UpdateAsync(lista);
+            var respuesta = await _listaRepository.UpdateAsync(lista, autoSave:true);
             return ObjectMapper.Map<Lista, ListaDto>(respuesta);
         }
 

@@ -15,7 +15,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace NewsApp.Listas
 {
-    public class ThemeManager_Integration_Tests : NewsAppDomainTestBase
+    public class ListaManager_Integration_Tests : NewsAppDomainTestBase
     {
         private readonly ListaManager _listaManager;
         private readonly UserManager<IdentityUser> _userManager;
@@ -23,7 +23,7 @@ namespace NewsApp.Listas
         private readonly ICurrentPrincipalAccessor _currentPrincipalAccessor;
         private readonly IRepository<IdentityUser, Guid> _identityRepository;
 
-        public ThemeManager_Integration_Tests()
+        public ListaManager_Integration_Tests()
         {
             _listaManager = GetRequiredService<ListaManager>();
             _userManager = GetRequiredService<UserManager<IdentityUser>>();
@@ -33,11 +33,12 @@ namespace NewsApp.Listas
         }
 
         [Fact]
-        public async Task Should_Assign_An_Issue_To_A_User()
+        public async Task Should_Create_A_Lista()
         {
             // Arrange
             var nombre = "Lista agregada";
-            var user = await _userManager.FindByIdAsync(_currentUser.Id.GetValueOrDefault().ToString());
+            var userId = _currentUser.Id.GetValueOrDefault();
+            var user = await _userManager.FindByIdAsync(userId.ToString());
             var user2 = await _identityRepository.GetAsync(_currentUser.Id.GetValueOrDefault());
 
             // Act
