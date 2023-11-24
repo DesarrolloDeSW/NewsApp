@@ -23,7 +23,6 @@ namespace NewsApp.Listas
         private readonly ICurrentUser _currentUser;
         private readonly ICurrentPrincipalAccessor _currentPrincipalAccessor;
         private readonly IRepository<IdentityUser, Guid> _identityRepository;
-        private readonly IRepository<Noticia, int> _noticiaRepository;
 
         public ListaManager_Integration_Tests()
         {
