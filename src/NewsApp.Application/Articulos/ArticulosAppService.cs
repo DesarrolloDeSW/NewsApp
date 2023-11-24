@@ -23,7 +23,6 @@ namespace NewsApp.Articulos
             var articulos = await _gestorNewsAPI.GetNoticiasAsync(cadena, idioma, ordenarPor);
             return ObjectMapper.Map<ICollection<ArticuloDto>, ICollection<NoticiaDto>>(articulos);
         }
-        
 
         public async Task<ICollection<NoticiaDto>> GetArticulosConVistoAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor, string? urls)
         {

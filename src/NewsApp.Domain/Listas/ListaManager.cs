@@ -10,6 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Text;
+using NewsApp.Noticias;
 
 
 namespace NewsApp.Listas;
@@ -20,7 +21,7 @@ public class ListaManager : DomainService
 
     public ListaManager(IListaRepository ListaRepository)
     {
-        _listaRepository= ListaRepository;
+        _listaRepository = ListaRepository;
     }
 
     public async Task<Lista> CreateAsync(string nombre, string? descripcion, int? parentId, IdentityUser usuario)
@@ -33,14 +34,14 @@ public class ListaManager : DomainService
             throw new ListaYaExiste(nombre);
         }
 
-        lista = new Lista { Nombre = nombre, Descripcion = descripcion, UsuarioId = usuario.Id, FechaCreacion = DateTime.Today, Alerta = false};
+        lista = new Lista { Nombre = nombre, Descripcion = descripcion, UsuarioId = usuario.Id, FechaCreacion = DateTime.Today, Alerta = false };
 
         if (parentId is not null)
         {
-            if (parentId!=0)
-            { 
+            if (parentId != 0)
+            {
                 var listaPadre = await _listaRepository.GetAsync(parentId.Value, includeDetails: true);
-                listaPadre.Listas.Add(lista);
+                listaPadre.AgregarLista(lista);
             }
         }
 
@@ -63,19 +64,21 @@ public class ListaManager : DomainService
         lista.CambiarNombre(nombreNuevo);
     }
 
-    public async Task CambiarDescripcionAsync(
+    public Task CambiarDescripcion(
         [NotNull] Lista lista,
         [NotNull] string descripcionNueva)
     {
         Check.NotNull(lista, nameof(lista));
         Check.NotNullOrWhiteSpace(descripcionNueva, nameof(descripcionNueva));
 
-        var listaExistente = await _listaRepository.FindByNameAsync(descripcionNueva);
-        if (listaExistente != null && listaExistente.Id != lista.Id)
-        {
-            throw new ListaYaExiste(descripcionNueva);
-        }
-
         lista.CambiarDescripcion(descripcionNueva);
+        return Task.CompletedTask;
     }
+
+    public Task AgregarNoticia(Noticia noticia, Lista lista)
+    {
+        lista.AgregarNoticia(noticia);
+        return Task.CompletedTask;
+    }
+
 }
