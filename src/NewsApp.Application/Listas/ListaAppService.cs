@@ -35,7 +35,8 @@ namespace NewsApp.Listas
         }
         public async Task<ListaDto> GetListaAsync(int id)
         {
-            var queryable = await _listaRepository.WithDetailsAsync(x => x.Listas);
+
+            var queryable = await _listaRepository.WithDetailsAsync(x => x.Listas, x => x.Noticias);
 
             var query = queryable.Where(x => x.Id == id);
 
@@ -94,18 +95,5 @@ namespace NewsApp.Listas
             return ObjectMapper.Map<Lista, ListaDto>(respuesta);
         }
 
-        /*
-        public async Task<ICollection<NoticiaDto>> GetNoticiasAsync (int id)
-        {
-            var queryable = await _listaRepository.WithDetailsAsync(x => x.Listas);
-
-            var query = queryable.Where(x => x.Id == id);
-
-            var lista = await AsyncExecuter.FirstOrDefaultAsync(query);
-
-            var noticias = lista.Noticias;
-
-            return ObjectMapper.Map<ICollection<Noticia>, ICollection<NoticiaDto>>(noticias);
-        }*/
     }
 }
