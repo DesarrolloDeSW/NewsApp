@@ -9,6 +9,9 @@ using NewsApp.Listas;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Uow;
 using NewsApp.EntityFrameworkCore;
+using NewsApp.Noticias;
+using System.Collections;
+using Microsoft.AspNetCore.Identity;
 
 namespace NewsApp.Listas
 {
@@ -112,6 +115,35 @@ namespace NewsApp.Listas
             //Assert
             antes.Count.ShouldBeGreaterThan(despues.Count);
 
+        }
+
+        [Fact]
+        public async Task Should_Agregar_Noticia_A_Lista()
+        {
+            // Arrange 
+            var noticia = new NoticiaDto
+            {
+                Titulo = "\"Te clavo el visto la próxima\": el enfado de Messi con Ibai en directo y tras su octavo Balón de Oro no tiene desperdicio",
+                Autor = "Autor de Pruebas",
+                Descripcion = "Ayer tuvo lugar la celebración de la gala del Balón de Oro, un evento que ha podido significar un déjà vu para muchos al ver como Lionel Messi se llevaba su octavo Balón de Oro. Para los españoles también ha sido todo un orgullo el hecho de que Aitana Bonmatí…",
+                Url = "https://www.genbeta.com/actualidad/te-clavo-visto-proxima-enfado-messi-ibai-directo-su-octavo-balon-oro-no-tiene-desperdicio",
+                Contenido = "Ayer tuvo lugar la celebración de la gala del Balón de Oro, un evento que ha podido significar un déjà vu para muchos al ver como Lionel Messi se llevaba su octavo Balón de Oro. Para los españoles ta… [+2504 chars]",
+                FechaPublicacion = DateTime.Today,
+                Fuente = "Genbeta.com"
+            };
+
+            var lista = await _listaAppService.GetListaAsync(1);
+            var antes = lista.Noticias.Count;
+            var input = new AgregarNoticiaDto { IdLista = 1, Noticia = noticia};
+
+            //Act
+            await _listaAppService.AgregarNoticiaAsync(input);
+            var listaActualizada = await _listaAppService.GetListaAsync(1);
+            var noticias = listaActualizada.Noticias;
+
+            // Assert
+            noticias.Count.ShouldBeGreaterThan(antes);
+            noticias.ShouldContain(n => n.Autor == "Autor de Pruebas");
         }
     }
 }
