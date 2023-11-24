@@ -26,7 +26,7 @@ public class Lista : Entity<int>
     public ICollection<string> Etiquetas { get; set; }
     public Guid UsuarioId { get; set; }
 
-    public Lista ()
+    public Lista()
     {
         this.Listas = new List<Lista>();
         this.Etiquetas = new List<string>();
@@ -38,5 +38,20 @@ public class Lista : Entity<int>
 
     public void CambiarDescripcion(string DescripcionNueva)
     { this.Descripcion = DescripcionNueva; }
+
+    public void AgregarLista(Lista lista) 
+    {
+        this.Listas.Add(lista);
+    }
+
+    public void AgregarNoticia (Noticia noticia) 
+    {
+        this.Noticias.Add(noticia);
+    }
+
+    public ICollection<Noticia> GetNoticias ()
+    {
+        return this.Noticias;
+    }
 }
 

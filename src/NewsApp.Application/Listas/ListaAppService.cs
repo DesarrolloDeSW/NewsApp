@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using NewsApp.Noticias;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,13 +29,14 @@ namespace NewsApp.Listas
 
         public async Task<ICollection<ListaDto>> GetListasAsync()
         {
-            var listas = await _listaRepository.GetListAsync(includeDetails:true); ;
+            var listas = await _listaRepository.GetListAsync(includeDetails:true);
 
             return ObjectMapper.Map<ICollection<Lista>, ICollection<ListaDto>>(listas);
         }
         public async Task<ListaDto> GetListaAsync(int id)
         {
-            var queryable = await _listaRepository.WithDetailsAsync(x => x.Listas);
+
+            var queryable = await _listaRepository.WithDetailsAsync(x => x.Listas, x => x.Noticias);
 
             var query = queryable.Where(x => x.Id == id);
 
@@ -66,7 +68,7 @@ namespace NewsApp.Listas
             if (input.Descripcion != null)
             {
                 if (lista.Descripcion != input.Descripcion)
-                { await _listaManager.CambiarDescripcionAsync(lista, input.Descripcion); }
+                {await _listaManager.CambiarDescripcion(lista, input.Descripcion); }
             }
 
             var respuesta = await _listaRepository.UpdateAsync(lista, autoSave:true);
@@ -79,5 +81,19 @@ namespace NewsApp.Listas
             await _listaRepository.DeleteAsync(id);
             return ObjectMapper.Map<Lista, ListaDto>(respuesta);
         }
+
+        public async Task<ListaDto> AgregarNoticiaAsync(AgregarNoticiaDto input)
+        {
+            var lista = await _listaRepository.GetAsync(input.IdLista);
+            var noticia = ObjectMapper.Map<NoticiaDto, Noticia>(input.Noticia);
+            
+            if (lista != null)
+            {
+                await _listaManager.AgregarNoticia(noticia, lista);
+            }
+            var respuesta = await _listaRepository.UpdateAsync(lista, autoSave: true);
+            return ObjectMapper.Map<Lista, ListaDto>(respuesta);
+        }
+
     }
 }

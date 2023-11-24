@@ -13,5 +13,6 @@ namespace NewsApp.Listas
         Task<ListaDto> PostListaAsync(CreateListaDto input);
         Task<ListaDto> UpdateListaAsync(UpdateListaDto input);
         Task<ListaDto> DeleteListaAsync(int id);
+        Task<ListaDto> AgregarNoticiaAsync(AgregarNoticiaDto input);
     }
 }
