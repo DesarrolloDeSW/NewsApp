@@ -20,7 +20,6 @@ namespace NewsApp.Listas
 
         public ICollection<NoticiaDto> Noticias { get; set; }
         public ICollection<ListaDto> Listas { get; set; }
-        public ICollection<string> Etiquetas { get; set; }
         public Guid UsuarioId { get; set; } 
     }
 }

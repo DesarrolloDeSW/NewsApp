@@ -11,8 +11,8 @@ namespace NewsApp.Alertas
 
         public DateTime FechaEnvio { get; set; }
 
-        public int AlertaId { get; set; }
+        public AlertaDto Alerta { get; set; }
 
-        public int UsuarioDestinatarioId { get; set; }
+        public Guid UsuarioId { get; set; }
     }
 }

@@ -15,8 +15,7 @@ public class NewsAppApplicationAutoMapperProfile : Profile
         CreateMap<Noticia, NoticiaDto>().ReverseMap();
         CreateMap<Lista, ListaDto>();
         CreateMap<Alerta, AlertaDto>();
-        CreateMap<Notificacion, NotificacionDto>()
-            .ForMember(dest => dest.UsuarioDestinatarioId, opt => opt.MapFrom(src => src.UsuarioDestinatario.Id));
+        CreateMap<Notificacion, NotificacionDto>();
         CreateMap<IdentityUser, UsuarioDto>()
         .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Name))
         .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Surname))
