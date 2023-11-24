@@ -1,7 +1,5 @@
 ﻿using NewsApp.Listas;
-using NewsApp.Noticias;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -14,34 +12,26 @@ public class NewsAppTestDataSeedContributor : IDataSeedContributor, ITransientDe
 {
     private readonly IListaRepository _listaRepository;
     private readonly IdentityUserManager _identityUserManager;
-    public NewsAppTestDataSeedContributor(IListaRepository listaRepository, IdentityUserManager identityUserManager)
+    private readonly IIdentityUserRepository _identityUserRepository;
+    public NewsAppTestDataSeedContributor(IListaRepository listaRepository, IdentityUserManager identityUserManager, IIdentityUserRepository identityUserRepository)
     {
         _listaRepository = listaRepository;
         _identityUserManager = identityUserManager;
+        _identityUserRepository = identityUserRepository;
     }
     public async Task SeedAsync(DataSeedContext context)
     {
-        
+
         // Añadir usuarios
-        IdentityUser identityUser1 = new IdentityUser(Guid.NewGuid(), "usuario1", "usuario1@email.com");
-        await _identityUserManager.CreateAsync(identityUser1, "1q2w3E*");
-        await _identityUserManager.AddToRoleAsync(identityUser1, "Admin");
-        IdentityUser identityUser2 = new IdentityUser(Guid.NewGuid(), "usuario2", "usuario2@email.com");
-        await _identityUserManager.CreateAsync(identityUser2, "1q2w3E*");
-        IdentityUser identityUser3 = new IdentityUser(Guid.NewGuid(), "usuario3", "usuario3@email.com");
-        await _identityUserManager.CreateAsync(identityUser3, "1q2w3E*");
+        IdentityUser identityUser = new IdentityUser(Guid.Parse("2e701e62-0953-4dd3-910b-dc6cc93ccb0d"), "admin", "admin@abp.io");
+        await _identityUserManager.CreateAsync(identityUser, "1q2w3E*");
 
-        // Añadir listas
+        var user = await _identityUserRepository.InsertAsync(identityUser);
 
-        // Lista vacía para etiquetas
-        ICollection<string> ListaEtiquetas = new List<string>();
-        ICollection<Noticia> ListaNoticias = new List<Noticia>();
-        ICollection<Lista> ListaListas = new List<Lista>();
-
-        // Listas
-        await _listaRepository.InsertAsync(new Lista {Nombre = "Primera Lista", Descripcion= "Descripción de la primera lista", UsuarioId = identityUser3.Id, Alerta=false, FechaCreacion=DateTime.Today, Etiquetas= ListaEtiquetas, Listas=ListaListas, Noticias=ListaNoticias});
-        await _listaRepository.InsertAsync(new Lista { Nombre = "Segunda Lista", Descripcion = "Descripción de la segunda lista", UsuarioId = identityUser2.Id, Alerta = false, FechaCreacion = DateTime.Today, Etiquetas = ListaEtiquetas, Listas = ListaListas, Noticias = ListaNoticias });
-        await _listaRepository.InsertAsync(new Lista { Nombre = "Tercera Lista", Descripcion = "Descripción de la tercera lista", UsuarioId = identityUser1.Id, Alerta = false, FechaCreacion = DateTime.Today, Etiquetas = ListaEtiquetas, Listas = ListaListas, Noticias = ListaNoticias });
+        // Añadir 
+        await _listaRepository.InsertAsync(new Lista {Nombre = "Primera Lista", Descripcion= "Descripción de la primera lista", UsuarioId = identityUser.Id, Alerta=false, FechaCreacion=DateTime.Today});
+        await _listaRepository.InsertAsync(new Lista { Nombre = "Segunda Lista", Descripcion = "Descripción de la segunda lista", UsuarioId = identityUser.Id, Alerta = false, FechaCreacion = DateTime.Today});
+        await _listaRepository.InsertAsync(new Lista { Nombre = "Tercera Lista", Descripcion = "Descripción de la tercera lista", UsuarioId = identityUser.Id, Alerta = false, FechaCreacion = DateTime.Today});
         
     }
 }

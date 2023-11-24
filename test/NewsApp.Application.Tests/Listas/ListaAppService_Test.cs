@@ -4,21 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Volo.Abp.Identity;
 using Xunit;
 using NewsApp.Listas;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.Uow;
+using NewsApp.EntityFrameworkCore;
 
 namespace NewsApp.Listas
 {
     public class ListaAppService_Test:NewsAppApplicationTestBase
     {
-        private readonly IdentityUserManager _identityUserManager;
         private readonly IListaAppService _listaAppService;
+        private readonly IUnitOfWorkManager _unitOfWorkManager;
+        private readonly IDbContextProvider<NewsAppDbContext> _dbContextProvider;
+
 
         public ListaAppService_Test()
         {
             _listaAppService = GetRequiredService<IListaAppService>();
-            _identityUserManager = GetRequiredService<IdentityUserManager>();
+            _dbContextProvider = GetRequiredService<IDbContextProvider<NewsAppDbContext>>();
+            _unitOfWorkManager = GetRequiredService<IUnitOfWorkManager>();
         }
 
         [Fact]
@@ -35,24 +40,58 @@ namespace NewsApp.Listas
         [Fact]
         public async Task Should_Create_A_Valid_Lista()
         {
+            //Arrange
+            CreateListaDto input = new CreateListaDto { Nombre = "Lista creada" };
+
             //Act
-            var usuario = await _identityUserManager.FindByNameAsync("usuario1");
-            var result = await _listaAppService.PostListaAsync("Lista creada", "Descripcion", usuario.Id);
+            var result = await _listaAppService.PostListaAsync(input);
 
             //Assert
-            result.Nombre.ShouldBe("Lista creada");
-            result.Descripcion.ShouldBe("Descripcion");
-            result.Alerta.ShouldBe(false);
-            result.Etiquetas.Count.ShouldBe(0);
-            result.UsuarioId.ShouldBeEquivalentTo(usuario.Id);
+                // Se verifican los datos devueltos por el servicio
+            result.ShouldNotBeNull();
+            result.Id.ShouldBePositive();
+                // se verifican los datos persistidos por el servicio
+           
+            using (var uow = _unitOfWorkManager.Begin())
+            {
+                var dbContext = await _dbContextProvider.GetDbContextAsync();
+                dbContext.Listas.FirstOrDefault(t => t.Id == result.Id).ShouldNotBeNull();
+                dbContext.Listas.FirstOrDefault(t => t.Id == result.Id).Nombre.ShouldBe(input.Nombre);
+            }
+           
+        }
+        
+        [Fact]
+        public async Task Should_Create_A_Valid_Sublista()
+        {
+            //Arrange
+            var input = new CreateListaDto { Nombre = "Sublista", ParentId = 1};
+            
+            // Act
+            var result = await _listaAppService.PostListaAsync(input);
+
+            //Assert
+                // Se verifican los datos devueltos por el servicio
+            result.ShouldNotBeNull();
+            result.Id.ShouldBePositive();
+            // se verifican los datos persistidos por el servicio
+            using (var uow = _unitOfWorkManager.Begin())
+            {
+                var dbContext = await _dbContextProvider.GetDbContextAsync();
+                dbContext.Listas.FirstOrDefault(t => t.Id == result.Id).ShouldNotBeNull();
+                dbContext.Listas.FirstOrDefault(t => t.Id == result.Id).Nombre.ShouldBe(input.Nombre);
+            }
         }
 
         [Fact]
         public async Task Should_Update_A_Lista()
         {
             //Act
-            var lista1 = await _listaAppService.UpdateListaAsync(1, null,"NuevaDesc");
-            var lista2 = await _listaAppService.UpdateListaAsync(2, "Lista 2", null);
+            var inputU1 = new UpdateListaDto { Id = 1, Nombre=null, Descripcion="NuevaDesc"};
+            var lista1 = await _listaAppService.UpdateListaAsync(inputU1);
+
+            var inputU2 = new UpdateListaDto { Id = 2, Nombre = "Lista 2", Descripcion = null };
+            var lista2 = await _listaAppService.UpdateListaAsync(inputU2);
 
             //Assert
             lista1.Nombre.ShouldBe("Primera Lista");
