@@ -11,9 +11,9 @@ namespace NewsApp.Alertas
 
         public bool Activa { get; set; }
 
-        public ICollection<string> Etiquetas { get; set; }
+        public string CadenaBusqueda { get; set; }
 
-        public int UsuarioId { get; set; }
+        public Guid UsuarioId { get; set; }
 
     }
 }

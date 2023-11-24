@@ -134,9 +134,6 @@ public class NewsAppDbContext :
         b.ToTable(NewsAppConsts.DbTablePrefix + "Listas", NewsAppConsts.DbSchema);
         b.ConfigureByConvention(); //auto configure for the base class props
         b.Property(x => x.Nombre).IsRequired().HasMaxLength(128);
-        b.Property(e => e.Etiquetas)
-        .HasConversion(stringListConverter)
-        .Metadata.SetValueComparer(stringListComparer);
     });
 
     // Entidad Alerta
@@ -144,9 +141,6 @@ public class NewsAppDbContext :
     {
         b.ToTable(NewsAppConsts.DbTablePrefix + "Alertas", NewsAppConsts.DbSchema);
         b.ConfigureByConvention();
-        b.Property(e => e.Etiquetas)
-        .HasConversion(stringListConverter)
-        .Metadata.SetValueComparer(stringListComparer);
     });
 
     // Entidad Notificación

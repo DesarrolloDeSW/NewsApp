@@ -16,10 +16,7 @@ namespace NewsApp.Alertas
 
         public Alerta Alerta { get; set; }
 
-        public IdentityUser UsuarioDestinatario
-        {
-            get { return Alerta.Usuario; }
-        }
+        public Guid UsuarioId { get; set; }
     }
 
 }

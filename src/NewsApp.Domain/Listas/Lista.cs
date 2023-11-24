@@ -23,13 +23,11 @@ public class Lista : Entity<int>
 
     public ICollection<Lista> Listas { get; set; }
 
-    public ICollection<string> Etiquetas { get; set; }
     public Guid UsuarioId { get; set; }
 
     public Lista()
     {
         this.Listas = new List<Lista>();
-        this.Etiquetas = new List<string>();
         this.Noticias = new List<Noticia>();
     }
 
