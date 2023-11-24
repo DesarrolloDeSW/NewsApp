@@ -9,5 +9,7 @@ _Condiciones mínimas de aprobación_
 7. Ejecucion asincrónica que busque los textos de las alertas en la API y persista la información de las notificaciones. Opcional envío de mail.
 8. Obtención información estadística de monitoreo de los accesos a la API.
 
+_Estado actual_: implementados los métodos del 1 al 5 en MAIN. 
+
 Diagrama con Entidades que persisten ![Class Diagram0](https://github.com/DesarrolloDeSW/NewsApp/assets/121949875/000d18ec-5573-4f8f-b76c-549c61c54ec7)
 
