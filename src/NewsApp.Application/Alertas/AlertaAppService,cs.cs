@@ -39,7 +39,7 @@ namespace NewsApp.Alertas
             return ObjectMapper.Map<Alerta, AlertaDto>(respuesta);
         }
 
-        public async Task<NotificacionDto> PostNotificacionDto(int alertaId)
+        public async Task<NotificacionDto> PostNotificacionAsync(int alertaId)
         {
             var alerta = await _alertaRepository.FindAsync(alertaId);
             var notif = await _alertaManager.CreateNotificacionAsync(alerta);

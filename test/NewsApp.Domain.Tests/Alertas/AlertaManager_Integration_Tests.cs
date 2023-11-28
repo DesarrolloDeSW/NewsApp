@@ -22,6 +22,8 @@ namespace NewsApp.Alertas
         private readonly ICurrentUser _currentUser;
         private readonly ICurrentPrincipalAccessor _currentPrincipalAccessor;
         private readonly IRepository<IdentityUser, Guid> _identityRepository;
+        private readonly IAlertaRepository _alertaRepository;
+        private readonly IRepository<Notificacion, int> _notificacionRepository;
 
         public AlertaManager_Integration_Tests()
         {
@@ -30,6 +32,8 @@ namespace NewsApp.Alertas
             _currentUser = GetRequiredService<ICurrentUser>();
             _currentPrincipalAccessor = GetRequiredService<ICurrentPrincipalAccessor>();
             _identityRepository = GetRequiredService<IRepository<IdentityUser, Guid>>();
+            _alertaRepository = GetRequiredService<IAlertaRepository>();
+            _notificacionRepository = GetRequiredService<IRepository<Notificacion,int>>();
         }
 
         [Fact]
@@ -49,5 +53,34 @@ namespace NewsApp.Alertas
             alerta.CadenaBusqueda.ShouldBeEquivalentTo(cadena);
         }
 
+        [Fact]
+        public async Task Should_Create_A_Notificacion()
+        {
+            // Arrange
+            var alerta = await _alertaRepository.FindAsync(1);
+
+            // Act
+            var notif = await _alertaManager.CreateNotificacionAsync(alerta);
+
+            //Assert
+            notif.ShouldNotBeNull();
+            notif.CadenaBusqueda.ShouldBeEquivalentTo(alerta.CadenaBusqueda);
+        }
+
+        [Fact]
+        public async Task Should_MarcarComoLeidas()
+        {
+            // Arrange
+            var notificaciones = await _notificacionRepository.GetListAsync();
+
+            // Act
+            await _alertaManager.MarcarNotificacionesComoLeidas(notificaciones);
+
+            // Assert
+            foreach (var notificacion in notificaciones)
+            {
+                notificacion.Leida.ShouldBeEquivalentTo(true);
+            }
+        }
     }
 }

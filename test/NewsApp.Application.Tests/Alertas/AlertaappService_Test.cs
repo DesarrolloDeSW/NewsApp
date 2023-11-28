@@ -11,6 +11,7 @@ using Volo.Abp.Uow;
 using NewsApp.EntityFrameworkCore;
 using System.Collections;
 using Microsoft.AspNetCore.Identity;
+using Volo.Abp.Users;
 
 namespace NewsApp.Alertas
 {
@@ -33,7 +34,7 @@ namespace NewsApp.Alertas
         public async Task Should_Create_A_Valid_Alerta()
         {
             //Arrange
-            var cadena = "cadena de prueba";
+            var cadena = "Cadena de Prueba";
 
             //Act
             var result = await _alertaAppService.PostAlertaAsync(cadena);
@@ -51,6 +52,55 @@ namespace NewsApp.Alertas
                 dbContext.Alertas.FirstOrDefault(t => t.Id == result.Id).CadenaBusqueda.ShouldBe(cadena);
             }
 
+        }
+
+        [Fact]
+        public async Task Should_Create_A_Valid_Notificacion()
+        {
+            //Arrange
+            var cadena = "Busqueda de Prueba";
+
+            //Act
+            var result = await _alertaAppService.PostNotificacionAsync(1);
+
+            //Assert
+            // Se verifican los datos devueltos por el servicio
+            result.ShouldNotBeNull();
+            result.Id.ShouldBePositive();
+            // se verifican los datos persistidos por el servicio
+
+            using (var uow = _unitOfWorkManager.Begin())
+            {
+                var dbContext = await _dbContextProvider.GetDbContextAsync();
+                dbContext.Notificaciones.FirstOrDefault(t => t.Id == result.Id).ShouldNotBeNull();
+                dbContext.Notificaciones.FirstOrDefault(t => t.Id == result.Id).CadenaBusqueda.ShouldBe(cadena);
+            }
+
+        }
+
+        [Fact]
+        public async Task Should_Get_All_Notificaciones()
+        {
+            //Act
+            var notificaciones = await _alertaAppService.GetNotificacionesAsync();
+
+            //Assert
+            notificaciones.ShouldNotBeNull();
+            notificaciones.Count.ShouldBeGreaterThan(2);
+        }
+
+        [Fact]
+        public async Task Should_MarcarComoLeidas()
+        {
+            //Act
+            await _alertaAppService.MarcarNotificacionesComoLeidas();
+            var notificaciones = await _alertaAppService.GetNotificacionesAsync();
+
+            //Assert
+            foreach (var notificacion in notificaciones)
+            {
+                notificacion.Leida.ShouldBeEquivalentTo(true);
+            }
         }
     }
 }
