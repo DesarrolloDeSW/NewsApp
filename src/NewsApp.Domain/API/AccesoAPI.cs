@@ -10,7 +10,7 @@ namespace NewsApp.API
     public class AccesoAPI : Entity<int>
     {
         public Guid UsuarioId { get; set; }
-        public TimeSpan TiempoTotal { get; set}
+        public TimeSpan TiempoTotal { get; set; }
         public DateTime TiempoInicio { get; set;}
         public DateTime TiempoFin { get; set; }
         public string? Error { get; set; }

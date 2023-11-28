@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Volo.Abp.Identity;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NewsApp.API
 {
@@ -29,6 +31,18 @@ namespace NewsApp.API
                 CodigoHTTP = codigoHTTP };
 
             return acceso;
+        }
+
+        public async Task<TimeSpan> CalcularTiempoPromedio(List<AccesoAPI> accesos)
+        {
+            TimeSpan sumaTiempo = new TimeSpan();
+
+            foreach (var acceso in accesos)
+            {
+                sumaTiempo += acceso.TiempoTotal;
+            }
+
+            return sumaTiempo / accesos.Count;
         }
     }
 }

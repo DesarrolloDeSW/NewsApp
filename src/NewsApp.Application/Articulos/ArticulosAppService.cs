@@ -10,17 +10,37 @@ using System.Text.Json;
 using System.Collections.ObjectModel;
 using Volo.Abp.Application.Dtos;
 using NewsApp.Noticias;
+using Microsoft.AspNetCore.Identity;
+using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Identity;
 
 namespace NewsApp.Articulos
 {
     public class ArticulosAppService : NewsAppAppService, IArticulosAppService
     {
+        private readonly IRepository<AccesoAPI, int> _monitoreoRepository;
+        private readonly MonitoreoAPIManager _monitoreoAPIManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
+        public ArticulosAppService(
+            IRepository<AccesoAPI, int> monitoreoRepository,
+            MonitoreoAPIManager monitoreoAPIManager, UserManager<IdentityUser> userManager)
+        {
+            _monitoreoRepository = monitoreoRepository;
+            _monitoreoAPIManager = monitoreoAPIManager;
+            _userManager = userManager;
+        }
         public async Task<ICollection<NoticiaDto>> GetNoticiasApiNewsAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
 
         {
             var _gestorNewsAPI = new GestorNewsAPI();
+            var inicio = DateTime.Now;
             var articulos = await _gestorNewsAPI.GetNoticiasAsync(cadena, idioma, ordenarPor);
+            var fin = DateTime.Now;
+            var userGuid = CurrentUser.Id.GetValueOrDefault();
+            var usuario = await _userManager.FindByIdAsync(userGuid.ToString());
+            var acceso = await _monitoreoAPIManager.CreateAsync(usuario, inicio, fin, null, 200);
+            await _monitoreoRepository.InsertAsync(acceso, autoSave: true);
             return ObjectMapper.Map<ICollection<ArticuloDto>, ICollection<NoticiaDto>>(articulos);
         }
 
