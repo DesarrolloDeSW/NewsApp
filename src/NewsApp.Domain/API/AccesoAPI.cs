@@ -13,7 +13,7 @@ namespace NewsApp.API
         public TimeSpan TiempoTotal { get; set}
         public DateTime TiempoInicio { get; set;}
         public DateTime TiempoFin { get; set; }
-        public string Error { get; set; }
+        public string? Error { get; set; }
         public int CodigoHTTP { get; set; }
     }
 }
