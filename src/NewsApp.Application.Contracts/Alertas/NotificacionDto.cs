@@ -14,5 +14,7 @@ namespace NewsApp.Alertas
         public AlertaDto Alerta { get; set; }
 
         public Guid UsuarioId { get; set; }
+
+        public bool Leida { get; set; }
     }
 }
