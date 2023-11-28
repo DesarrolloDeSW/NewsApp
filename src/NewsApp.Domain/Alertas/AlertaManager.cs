@@ -38,5 +38,37 @@ namespace NewsApp.Alertas
 
             return alerta;
         }
+
+        public async Task<Notificacion> CreateNotificacionAsync(Alerta alerta)
+        {
+            if (alerta==null)
+            {
+                throw new AlertaNoExiste();
+            }            
+            Notificacion notif = null;
+
+            var idUsuario = alerta.UsuarioId;
+            var cadena = alerta.CadenaBusqueda;
+
+            notif = new Notificacion
+            {
+                FechaEnvio = DateTime.Today,
+                Leida = false,
+                CadenaBusqueda = cadena,
+                UsuarioId = idUsuario
+            };
+
+            return notif;
+        }
+
+        public async Task<List<Notificacion>> MarcarNotificacionesComoLeidas(List<Notificacion> notificaciones)
+        {
+            foreach (var notificacion in notificaciones)
+            {
+                notificacion.MarcarComoLeida();
+            }
+
+            return notificaciones;
+        }
     }
 }

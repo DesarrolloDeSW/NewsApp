@@ -7,11 +7,9 @@ namespace NewsApp.Alertas
 {
     public class NotificacionDto : EntityDto<int>
     {
-        public string Mensaje { get; set; }
-
         public DateTime FechaEnvio { get; set; }
 
-        public AlertaDto Alerta { get; set; }
+        public string CadenaBusqueda { get; set; }
 
         public Guid UsuarioId { get; set; }
 

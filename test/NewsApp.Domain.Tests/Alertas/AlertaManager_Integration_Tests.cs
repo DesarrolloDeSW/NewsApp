@@ -48,5 +48,6 @@ namespace NewsApp.Alertas
             alerta.ShouldNotBeNull();
             alerta.CadenaBusqueda.ShouldBeEquivalentTo(cadena);
         }
+
     }
 }

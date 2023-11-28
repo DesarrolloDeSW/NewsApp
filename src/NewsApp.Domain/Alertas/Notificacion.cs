@@ -10,15 +10,18 @@ namespace NewsApp.Alertas
 {
     public class Notificacion : Entity<int>
     {
-        public string Mensaje { get; set; }
-
         public DateTime FechaEnvio { get; set; }
 
-        public Alerta Alerta { get; set; }
+        public string CadenaBusqueda { get; set; }
 
         public Guid UsuarioId { get; set; }
 
         public bool Leida { get; set; }
+
+        public void MarcarComoLeida()
+        {
+            this.Leida = true;
+        }
     }
 
 }
