@@ -1,4 +1,5 @@
-﻿using NewsApp.Listas;
+﻿using NewsApp.Alertas;
+using NewsApp.Listas;
 using NewsApp.Noticias;
 using System;
 using System.Threading.Tasks;
@@ -15,13 +16,19 @@ public class NewsAppTestDataSeedContributor : IDataSeedContributor, ITransientDe
     private readonly IdentityUserManager _identityUserManager;
     private readonly IIdentityUserRepository _identityUserRepository;
     private readonly IRepository<Noticia, int> _noticiaRepository;
+    private readonly IAlertaRepository _alertaRepository;
+    private readonly IRepository<Notificacion, int> _notificacionRepository;
+
     public NewsAppTestDataSeedContributor(IListaRepository listaRepository, IdentityUserManager identityUserManager, 
-        IIdentityUserRepository identityUserRepository, IRepository<Noticia,int> noticiaRepository)
+        IIdentityUserRepository identityUserRepository, IRepository<Noticia,int> noticiaRepository,
+        IAlertaRepository alertaRepository, IRepository<Notificacion,int> notificacionRepository)
     {
         _listaRepository = listaRepository;
         _identityUserManager = identityUserManager;
         _identityUserRepository = identityUserRepository;
         _noticiaRepository = noticiaRepository;
+        _alertaRepository = alertaRepository;
+        _notificacionRepository = notificacionRepository;
     }
     public async Task SeedAsync(DataSeedContext context)
     {
@@ -46,5 +53,13 @@ public class NewsAppTestDataSeedContributor : IDataSeedContributor, ITransientDe
             Contenido = "Ayer tuvo lugar la celebración de la gala del Balón de Oro, un evento que ha podido significar un déjà vu para muchos al ver como Lionel Messi se llevaba su octavo Balón de Oro. Para los españoles ta… [+2504 chars]",
             FechaPublicacion = DateTime.Today,
             Fuente = "Genbeta.com"});
+
+        // Añadir alertas
+        await _alertaRepository.InsertAsync(new Alerta { Activa = true, CadenaBusqueda = "Busqueda de Prueba", FechaCreacion = DateTime.Today, UsuarioId = identityUser.Id });
+
+        // Añadir notificaciones
+        await _notificacionRepository.InsertAsync(new Notificacion { UsuarioId = identityUser.Id, FechaEnvio = DateTime.Today, CadenaBusqueda = "Busqueda de Prueba 1", Leida = false });
+        await _notificacionRepository.InsertAsync(new Notificacion { UsuarioId = identityUser.Id, FechaEnvio = DateTime.Today, CadenaBusqueda = "Busqueda de Prueba 2", Leida = false });
+        await _notificacionRepository.InsertAsync(new Notificacion { UsuarioId = identityUser.Id, FechaEnvio = DateTime.Today, CadenaBusqueda = "Busqueda de Prueba 3", Leida = false });
     }
 }
