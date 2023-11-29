@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using static OpenIddict.Abstractions.OpenIddictConstants;
+using NewsApp.API;
 
 namespace NewsApp.EntityFrameworkCore;
 
@@ -70,6 +71,7 @@ public class NewsAppDbContext :
     public DbSet<Lista> Listas { get; set; }
     public DbSet<Alerta> Alertas { get; set; }
     public DbSet<Notificacion> Notificaciones { get; set; }
+    public DbSet<AccesoAPI> AccesosAPI { get; set; }
 
     #endregion
 
@@ -150,5 +152,10 @@ public class NewsAppDbContext :
         b.ConfigureByConvention(); //auto configure for the base class props
     });
 
+    builder.Entity<AccesoAPI>(b =>
+    {
+        b.ToTable(NewsAppConsts.DbTablePrefix + "AccesosAPI", NewsAppConsts.DbSchema);
+        b.ConfigureByConvention(); //auto configure for the base class props
+    });
     }
 }
