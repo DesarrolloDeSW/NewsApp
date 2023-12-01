@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
+using NewsApp.Articulos;
 
 namespace NewsApp.API
 {
@@ -13,7 +14,7 @@ namespace NewsApp.API
         public TimeSpan TiempoTotal { get; set; }
         public DateTime TiempoInicio { get; set;}
         public DateTime TiempoFin { get; set; }
-        public string? Error { get; set; }
-        public int CodigoHTTP { get; set; }
+        public ErrorCodes? ErrorCode { get; set; }
+        public string? ErrorMessage { get; set; }
     }
 }

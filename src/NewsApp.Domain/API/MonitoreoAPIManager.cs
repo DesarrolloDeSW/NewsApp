@@ -6,6 +6,7 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using NewsApp.Articulos;
 
 namespace NewsApp.API
 {
@@ -17,7 +18,7 @@ namespace NewsApp.API
         {
             _monitoreoRepository = MonitoreoRepository;
         }
-        public async Task<AccesoAPI> CreateAsync(IdentityUser usuario, DateTime tiempoInicio, DateTime tiempoFin, string? error, int codigoHTTP)
+        public async Task<AccesoAPI> CreateAsync(IdentityUser usuario, DateTime tiempoInicio, DateTime tiempoFin, ErrorCodes? errorCode, string? errorMessage)
         {
             AccesoAPI acceso = null;
             TimeSpan tiempoTotal = tiempoFin - tiempoInicio;
@@ -27,8 +28,8 @@ namespace NewsApp.API
                 TiempoFin = tiempoFin,
                 TiempoTotal = tiempoTotal,
                 UsuarioId = usuario.Id, 
-                Error = error,
-                CodigoHTTP = codigoHTTP };
+                ErrorCode = errorCode,
+                ErrorMessage = errorMessage};
 
             return acceso;
         }
