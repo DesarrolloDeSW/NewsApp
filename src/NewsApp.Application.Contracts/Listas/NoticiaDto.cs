@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Application.Dtos;
 
-namespace NewsApp.Noticias
+namespace NewsApp.Listas
 {
-    public class NoticiaDto:EntityDto<int>
+    public class NoticiaDto : EntityDto<int>
     {
         public string Titulo { get; set; }
 

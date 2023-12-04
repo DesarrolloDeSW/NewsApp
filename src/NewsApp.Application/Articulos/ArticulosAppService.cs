@@ -9,12 +9,12 @@ using AutoMapper;
 using System.Text.Json;
 using System.Collections.ObjectModel;
 using Volo.Abp.Application.Dtos;
-using NewsApp.Noticias;
 using Microsoft.AspNetCore.Identity;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
 using Volo.Abp.ObjectMapping;
 using NewsAPI.Models;
+using NewsApp.Listas;
 
 namespace NewsApp.Articulos
 {
@@ -32,7 +32,7 @@ namespace NewsApp.Articulos
             _monitoreoAPIManager = monitoreoAPIManager;
             _userManager = userManager;
         }
-        public async Task<ICollection<NoticiaDto>> GetNoticiasApiNewsAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
+        public async Task<ICollection<NoticiaDto>> GetBusquedaApiNewsAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
 
         {
             var _gestorNewsAPI = new GestorNewsAPI();
@@ -59,49 +59,6 @@ namespace NewsApp.Articulos
             await _monitoreoRepository.InsertAsync(acceso, autoSave: true);
 
             return ObjectMapper.Map<ICollection<ArticuloDto>, ICollection<NoticiaDto>>(articulos.Item1);
-        }
-
-        public async Task<ICollection<NoticiaDto>> GetArticulosConVistoAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor, string? urls)
-        {
-            var noticias= await GetNoticiasApiNewsAsync(cadena, idioma, ordenarPor);
-
-            if (urls != null)
-            {
-                var conjuntoUrls = SepararYAgregarAHashSet(urls);
-                
-                MarcarNoticiasComoVistas(conjuntoUrls, noticias); // Marca las noticias como "Vistas"
-            }
-
-            return noticias;
-
-        }
-
-        private void MarcarNoticiasComoVistas(ICollection<string> urls, ICollection<NoticiaDto> noticias)
-        {
-            foreach (var noticia in noticias)
-            {
-                if (urls.Contains(noticia.Url))
-                {
-                    noticia.Visto = true;
-                }
-            }
-        }
-
-
-        public static HashSet<string> SepararYAgregarAHashSet(string input)
-        {
-            HashSet<string> conjunto = new HashSet<string>();
-
-            // Dividir la cadena en elementos usando comas como delimitadores
-            string[] elementos = input.Split(',');
-
-            foreach (string elemento in elementos)
-            {
-                // Agregar cada elemento al conjunto
-                conjunto.Add(elemento);
-            }
-
-            return conjunto;
         }
 
         public static ErrorCodes ConvertToNewsAppErrorCode(NewsAPI.Constants.ErrorCodes errorCode)

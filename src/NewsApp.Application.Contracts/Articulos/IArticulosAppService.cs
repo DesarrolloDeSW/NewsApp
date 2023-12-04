@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using NewsApp.Articulos;
 using System.Net.NetworkInformation;
-using NewsApp.Noticias;
-
+using NewsApp.Listas;
 
 namespace NewsApp.Articulos
 {
     public interface IArticulosAppService : IApplicationService
     {
-        Task<ICollection<NoticiaDto>> GetArticulosConVistoAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor, string? urls);
-        Task<ICollection<NoticiaDto>> GetNoticiasApiNewsAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor);
+        Task<ICollection<NoticiaDto>> GetBusquedaApiNewsAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor);
     }
 }

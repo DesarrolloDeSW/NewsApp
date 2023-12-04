@@ -26,7 +26,7 @@ namespace NewsApp.Articulos
             OrdenBusqueda orden = OrdenBusqueda.relevancia;
 
             //Act
-            var articulos = await _articulosAppService.GetArticulosConVistoAsync(cadena, idioma, orden, "");
+            var articulos = await _articulosAppService.GetBusquedaApiNewsAsync(cadena, idioma, orden);
 
             //Assert
             articulos.ShouldNotBeNull();
