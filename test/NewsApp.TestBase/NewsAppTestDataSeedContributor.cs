@@ -1,4 +1,5 @@
 ﻿using NewsApp.Alertas;
+using NewsApp.API;
 using NewsApp.Listas;
 using NewsApp.Noticias;
 using System;
@@ -18,10 +19,11 @@ public class NewsAppTestDataSeedContributor : IDataSeedContributor, ITransientDe
     private readonly IRepository<Noticia, int> _noticiaRepository;
     private readonly IAlertaRepository _alertaRepository;
     private readonly IRepository<Notificacion, int> _notificacionRepository;
+    private readonly IRepository<AccesoAPI, int> _monitoreoRepository;
 
     public NewsAppTestDataSeedContributor(IListaRepository listaRepository, IdentityUserManager identityUserManager, 
         IIdentityUserRepository identityUserRepository, IRepository<Noticia,int> noticiaRepository,
-        IAlertaRepository alertaRepository, IRepository<Notificacion,int> notificacionRepository)
+        IAlertaRepository alertaRepository, IRepository<Notificacion,int> notificacionRepository, IRepository<AccesoAPI,int> monitoreoRepository)
     {
         _listaRepository = listaRepository;
         _identityUserManager = identityUserManager;
@@ -29,6 +31,7 @@ public class NewsAppTestDataSeedContributor : IDataSeedContributor, ITransientDe
         _noticiaRepository = noticiaRepository;
         _alertaRepository = alertaRepository;
         _notificacionRepository = notificacionRepository;
+        _monitoreoRepository = monitoreoRepository;
     }
     public async Task SeedAsync(DataSeedContext context)
     {
@@ -61,5 +64,53 @@ public class NewsAppTestDataSeedContributor : IDataSeedContributor, ITransientDe
         await _notificacionRepository.InsertAsync(new Notificacion { UsuarioId = identityUser.Id, FechaEnvio = DateTime.Today, CadenaBusqueda = "Busqueda de Prueba 1", Leida = false });
         await _notificacionRepository.InsertAsync(new Notificacion { UsuarioId = identityUser.Id, FechaEnvio = DateTime.Today, CadenaBusqueda = "Busqueda de Prueba 2", Leida = false });
         await _notificacionRepository.InsertAsync(new Notificacion { UsuarioId = identityUser.Id, FechaEnvio = DateTime.Today, CadenaBusqueda = "Busqueda de Prueba 3", Leida = false });
+
+        //Añadir accesos
+        DateTime tiempoInicio = new DateTime(2023, 12, 3, 10, 30, 0);
+        DateTime tiempoFin1 = new DateTime(2023, 12, 3, 10, 30, 1);
+        DateTime tiempoFin2 = new DateTime(2023, 12, 3, 10, 30, 2);
+        DateTime tiempoFin3 = new DateTime(2023, 12, 3, 10, 30, 3);
+        DateTime tiempoFin4 = new DateTime(2023, 12, 3, 10, 30, 2);
+
+        await _monitoreoRepository.InsertAsync(new AccesoAPI
+        {
+            UsuarioId = identityUser.Id,
+            TiempoInicio = tiempoInicio,
+            TiempoFin = tiempoFin1,
+            TiempoTotal = tiempoFin1 - tiempoInicio,
+            ErrorCode = Articulos.ErrorCodes.TodoBien,
+            ErrorMessage = null
+        });
+
+        await _monitoreoRepository.InsertAsync(new AccesoAPI
+        {
+            UsuarioId = identityUser.Id,
+            TiempoInicio = tiempoInicio,
+            TiempoFin = tiempoFin2,
+            TiempoTotal = tiempoFin2 - tiempoInicio,
+            ErrorCode = Articulos.ErrorCodes.TodoBien,
+            ErrorMessage = null
+        });
+
+        await _monitoreoRepository.InsertAsync(new AccesoAPI
+        {
+            UsuarioId = identityUser.Id,
+            TiempoInicio = tiempoInicio,
+            TiempoFin = tiempoFin3,
+            TiempoTotal = tiempoFin3 - tiempoInicio,
+            ErrorCode = Articulos.ErrorCodes.TodoBien,
+            ErrorMessage = null
+        });
+
+        await _monitoreoRepository.InsertAsync(new AccesoAPI
+        {
+            UsuarioId = identityUser.Id,
+            TiempoInicio = tiempoInicio,
+            TiempoFin = tiempoFin4,
+            TiempoTotal = tiempoFin4 - tiempoInicio,
+            ErrorCode = Articulos.ErrorCodes.ApiKeyInvalid,
+            ErrorMessage = "La API Key es Inválida"
+        }) ;
+
     }
 }

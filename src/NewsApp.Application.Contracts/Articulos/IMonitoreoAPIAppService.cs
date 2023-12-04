@@ -10,7 +10,7 @@ namespace NewsApp.Articulos
     {
         Task<TimeSpan> GetTiempoPromedioAsync();
         Task<long> GetCantidadTotalAccesosAsync();
-        Task<float> GetPorcentajeExito();
+        Task<float> GetPorcentajeExitoAsync();
         Task<long> GetCantidadAccesosUsuarioAsync(Guid usuarioId);
     }
     

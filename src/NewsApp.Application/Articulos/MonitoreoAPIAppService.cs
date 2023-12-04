@@ -41,7 +41,7 @@ namespace NewsApp.Articulos
             return await _monitoreoRepository.GetCountAsync();
         }
 
-        public async Task<float> GetPorcentajeExito()
+        public async Task<float> GetPorcentajeExitoAsync()
         {
             var accesos = await _monitoreoRepository.GetListAsync();
             return await _monitoreoAPIManager.CalcularPorcentajeExito(accesos);
