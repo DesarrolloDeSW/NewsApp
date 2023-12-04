@@ -11,11 +11,12 @@ using NewsApp.Articulos;
 
 namespace NewsApp.API
 {
-    public class GestorNewsAPI
+    public class GestorNewsAPI:IGestorNewsAPI
     {
-        public async Task<ICollection<ArticuloDto>> GetNoticiasAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
+        public async Task<(ICollection<ArticuloDto> articulos, Error error)> GetNoticiasAsync(string cadena, CodigosIdiomas? idioma, OrdenBusqueda? ordenarPor)
         {
             ICollection<ArticuloDto> responseList = new List<ArticuloDto>();
+            Error? error = null;
 
             // init with your API key
             var newsApiClient = new NewsApiClient("8dbe7bd0639844c5b12f46cdcfad503f");
@@ -42,12 +43,13 @@ namespace NewsApp.API
 
                 })) ;
             }
-            else throw new Exception("Error: " + articlesResponse.Status);
+            else
+            {
+                error = articlesResponse.Error;
+            }
 
-            //TODO: falta registrar los tiempos de acceso de la API
-            return responseList;
+            return (responseList,error);
         }
-
 
         // Método que da fecha de hace un mes
         private DateTime GetHaceUnMes()
