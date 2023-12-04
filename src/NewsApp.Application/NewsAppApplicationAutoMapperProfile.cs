@@ -20,7 +20,6 @@ public class NewsAppApplicationAutoMapperProfile : Profile
         .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Name))
         .ForMember(dest => dest.Apellido, opt => opt.MapFrom(src => src.Surname))
         .ForMember(dest => dest.NombreUsuario, opt => opt.MapFrom(src => src.UserName));
-        CreateMap<Articulo, ArticuloDto>();
         CreateMap<NoticiaDto, ArticuloDto>().ReverseMap()
         .ForMember(dest => dest.Titulo, opt => opt.MapFrom(src => src.Title))
         .ForMember(dest => dest.Autor, opt => opt.MapFrom(src => src.Author))
