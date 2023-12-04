@@ -35,6 +35,24 @@ namespace NewsApp.Articulos
 
             return tiempo;
         }
+
+        public async Task<long> GetCantidadTotalAccesosAsync()
+        {
+            return await _monitoreoRepository.GetCountAsync();
+        }
+
+        public async Task<float> GetPorcentajeExito()
+        {
+            var accesos = await _monitoreoRepository.GetListAsync();
+            return await _monitoreoAPIManager.CalcularPorcentajeExito(accesos);
+        }
+
+        public async Task<long> GetCantidadAccesosUsuarioAsync(Guid usuarioId)
+        {
+            var accesos = await _monitoreoRepository.GetListAsync(acc => acc.UsuarioId == usuarioId);
+            return accesos.Count;
+        }
+
     }
 
 }

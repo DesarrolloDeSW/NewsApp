@@ -9,6 +9,9 @@ namespace NewsApp.Articulos
         public interface IMonitoreoAPIAppService : IApplicationService
     {
         Task<TimeSpan> GetTiempoPromedioAsync();
+        Task<long> GetCantidadTotalAccesosAsync();
+        Task<float> GetPorcentajeExito();
+        Task<long> GetCantidadAccesosUsuarioAsync(Guid usuarioId);
     }
     
 }

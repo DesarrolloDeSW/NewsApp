@@ -45,5 +45,25 @@ namespace NewsApp.API
 
             return sumaTiempo / accesos.Count;
         }
+
+        public async Task<float> CalcularPorcentajeExito(List<AccesoAPI> accesos)
+        {
+            var cant_exito = 0;
+            var cant_total = accesos.Count;
+            float porcentaje = 0;
+            if (cant_total!=0)
+            {
+                foreach (var acceso in accesos)
+                {
+                    if (acceso.ErrorMessage == null)
+                    {
+                        cant_exito += 1;
+                    }
+                }
+                porcentaje = cant_exito * 100 / cant_total;
+            }
+
+            return porcentaje;
+        }
     }
 }
