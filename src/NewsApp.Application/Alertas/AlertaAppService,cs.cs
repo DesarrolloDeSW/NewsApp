@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using NewsApp.Articulos;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,17 +18,22 @@ namespace NewsApp.Alertas
         private readonly IRepository<Notificacion,int> _notificacionRepository;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AlertaManager _alertaManager;
+        private readonly IArticulosAppService _articulosAppService;
 
         public AlertaAppService(
             IAlertaRepository alertaRepository,
             AlertaManager alertaManager,
-            UserManager<IdentityUser> userManager, IRepository<Notificacion,int> notificacionRepository)
+            UserManager<IdentityUser> userManager, 
+            IRepository<Notificacion,int> notificacionRepository,
+            IArticulosAppService articulosAppService
+            )
 
         {
             _alertaRepository = alertaRepository;
             _userManager = userManager;
             _alertaManager = alertaManager;
             _notificacionRepository = notificacionRepository;
+            _articulosAppService = articulosAppService;
         }
 
         public async Task<AlertaDto> PostAlertaAsync(string cadenaBusqueda)
@@ -60,6 +66,18 @@ namespace NewsApp.Alertas
             var userGuid = CurrentUser.Id.GetValueOrDefault();
             var notificaciones = await _notificacionRepository.GetListAsync(not => not.UsuarioId == userGuid, includeDetails: true);
             await _alertaManager.MarcarNotificacionesComoLeidas(notificaciones);
+        }
+
+        public async Task GestionarAlertaAsync(int alertaId)
+        {
+            var alerta = await _alertaRepository.FindAsync(alertaId);
+            var articulos = await _articulosAppService.GetBusquedaApiNewsAsync(alerta.CadenaBusqueda, null, null);
+
+            if (articulos.Count != 0) 
+            {
+                alerta.Desactivar();
+                await PostNotificacionAsync(alertaId);
+            }
         }
 
     }

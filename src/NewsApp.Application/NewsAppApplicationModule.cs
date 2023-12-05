@@ -1,5 +1,9 @@
-﻿using Volo.Abp.Account;
+﻿using NewsApp.BackgroundWorkers;
+using System.Threading.Tasks;
+using Volo.Abp;
+using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
+using Volo.Abp.BackgroundWorkers;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
@@ -28,4 +32,9 @@ public class NewsAppApplicationModule : AbpModule
             options.AddMaps<NewsAppApplicationModule>();
         });
     }
+
+    public override async Task OnApplicationInitializationAsync(
+        ApplicationInitializationContext context) => await context.AddBackgroundWorkerAsync<BusquedaWorker>();
 }
+
+

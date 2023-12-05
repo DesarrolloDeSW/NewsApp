@@ -12,5 +12,6 @@ namespace NewsApp.Alertas
         Task<NotificacionDto> PostNotificacionAsync(int alertaId);
         Task<ICollection<NotificacionDto>> GetNotificacionesAsync();
         Task MarcarNotificacionesComoLeidas();
+        Task GestionarAlertaAsync(int alertaId);
     }
 }
