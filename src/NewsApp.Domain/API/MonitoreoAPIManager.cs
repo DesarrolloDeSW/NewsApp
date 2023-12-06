@@ -22,12 +22,15 @@ namespace NewsApp.API
         {
             AccesoAPI acceso = null;
             TimeSpan tiempoTotal = tiempoFin - tiempoInicio;
+            Guid? idUsuario = null;
+            if (usuario != null)
+            { idUsuario = usuario.Id; }
 
             acceso = new AccesoAPI{ 
                 TiempoInicio = tiempoInicio,
                 TiempoFin = tiempoFin,
                 TiempoTotal = tiempoTotal,
-                UsuarioId = usuario.Id, 
+                UsuarioId = idUsuario, 
                 ErrorCode = errorCode,
                 ErrorMessage = errorMessage};
 
