@@ -59,6 +59,7 @@ public class NewsAppTestDataSeedContributor : IDataSeedContributor, ITransientDe
 
         // Añadir alertas
         await _alertaRepository.InsertAsync(new Alerta { Activa = true, CadenaBusqueda = "Busqueda de Prueba", FechaCreacion = DateTime.Today, UsuarioId = identityUser.Id });
+        await _alertaRepository.InsertAsync(new Alerta { Activa = true, CadenaBusqueda = "Messi", FechaCreacion = DateTime.Today, UsuarioId = identityUser.Id });
 
         // Añadir notificaciones
         await _notificacionRepository.InsertAsync(new Notificacion { UsuarioId = identityUser.Id, FechaEnvio = DateTime.Today, CadenaBusqueda = "Busqueda de Prueba 1", Leida = false });

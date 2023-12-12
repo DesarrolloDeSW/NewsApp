@@ -11,6 +11,8 @@ namespace NewsApp.Alertas
         Task<AlertaDto> PostAlertaAsync(string cadenaBusqueda);
         Task<NotificacionDto> PostNotificacionAsync(int alertaId);
         Task<ICollection<NotificacionDto>> GetNotificacionesAsync();
+        Task<ICollection<AlertaDto>> GetAlertasAsync();
         Task MarcarNotificacionesComoLeidas();
+        Task GestionarAlertaAsync(int alertaId);
     }
 }
