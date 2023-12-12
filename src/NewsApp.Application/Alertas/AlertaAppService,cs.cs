@@ -61,6 +61,14 @@ namespace NewsApp.Alertas
             return ObjectMapper.Map<ICollection<Notificacion>, ICollection<NotificacionDto>>(notificaciones);
         }
 
+        public async Task<ICollection<AlertaDto>> GetAlertasAsync()
+        {
+            var userGuid = CurrentUser.Id.GetValueOrDefault();
+            var alertas = await _alertaRepository.GetListAsync(al => al.UsuarioId == userGuid, includeDetails: true);
+
+            return ObjectMapper.Map<ICollection<Alerta>, ICollection<AlertaDto>>(alertas);
+        }
+
         public async Task MarcarNotificacionesComoLeidas()
         {
             var userGuid = CurrentUser.Id.GetValueOrDefault();

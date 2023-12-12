@@ -90,6 +90,17 @@ namespace NewsApp.Alertas
         }
 
         [Fact]
+        public async Task Should_Get_All_Alertas()
+        {
+            //Act
+            var alertas = await _alertaAppService.GetAlertasAsync();
+
+            //Assert
+            alertas.ShouldNotBeNull();
+            alertas.Count.ShouldBeGreaterThan(0);
+        }
+
+        [Fact]
         public async Task Should_MarcarComoLeidas()
         {
             //Act
@@ -101,6 +112,24 @@ namespace NewsApp.Alertas
             {
                 notificacion.Leida.ShouldBeEquivalentTo(true);
             }
+        }
+
+        [Fact]
+        public async Task Should_Gestionar_Alerta()
+        {
+            //Arrange
+            var idAlerta = 2;
+
+            //Act
+            var notifs_antes = await _alertaAppService.GetNotificacionesAsync();
+            await _alertaAppService.GestionarAlertaAsync(idAlerta);
+            var alertas = await _alertaAppService.GetAlertasAsync();
+            var alerta = alertas.Last();
+            var notifs_despues = await _alertaAppService.GetNotificacionesAsync();
+
+            //Assert
+            alerta.Activa.ShouldBeEquivalentTo(false);
+            notifs_despues.Count.ShouldBeGreaterThan(notifs_antes.Count);
         }
     }
 }
