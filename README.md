@@ -1,4 +1,4 @@
-# NewsApp
+# NewsApp BackEnd
 _Condiciones mínimas de aprobación_
 1. Realizar una búsqueda en NewsApi y devolver los resultados.
 2. Crear y actualizar una lista de lectura        
