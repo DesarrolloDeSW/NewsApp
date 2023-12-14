@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col col-md-6">
+          <h5 class="card-title">
+            {{ '::Menu:Notificaciones' | abpLocalization }}
+          </h5>
+        </div>
+        <div class="text-end col col-md-6"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <ngx-datatable [rows]="notificacion.items" [count]="notificacion.totalCount" [list]="list" default>
+        <ngx-datatable-column [name]="'::FechaEnvio' | abpLocalization" prop="fechaEnvio">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.fechaEnvio | date }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [name]="'::CadenaBusqueda' | abpLocalization" prop="cadenaBusqueda"></ngx-datatable-column>
+        <ngx-datatable-column [name]="'::UsuarioId' | abpLocalization" prop="usuarioId"></ngx-datatable-column>
+        <ngx-datatable-column [name]="'::Leida' | abpLocalization" prop="leida"></ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+  

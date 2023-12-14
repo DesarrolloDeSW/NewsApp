@@ -25,6 +25,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
   },
+  { path: 'notificaciones', loadChildren: () => import('./notificacion/notificacion.module').then(m => m.NotificacionModule) },
 ];
 
 @NgModule({

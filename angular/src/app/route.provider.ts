@@ -5,9 +5,9 @@ export const APP_ROUTE_PROVIDER = [
   { provide: APP_INITIALIZER, useFactory: configureRoutes, deps: [RoutesService], multi: true },
 ];
 
-function configureRoutes(routesService: RoutesService) {
+function configureRoutes(routes: RoutesService) {
   return () => {
-    routesService.add([
+    routes.add([
       {
         path: '/',
         name: '::Menu:Home',
@@ -15,6 +15,14 @@ function configureRoutes(routesService: RoutesService) {
         order: 1,
         layout: eLayoutType.application,
       },
+      {
+        path: '/notificaciones',
+        name: '::Menu:Notificaciones',
+        iconClass: 'fas fa-envelope',
+        order: 2,
+        layout: eLayoutType.application,
+      }
     ]);
   };
 }
+
