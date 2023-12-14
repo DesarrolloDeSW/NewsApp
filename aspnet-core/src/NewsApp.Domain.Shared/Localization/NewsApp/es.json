@@ -1,8 +1,20 @@
 {
-  "culture": "es",
-  "texts": {
+  "Culture": "es",
+  "Texts": {
     "Menu:Home": "Inicio",
     "Welcome": "Bienvenido",
-    "LongWelcomeMessage": "Bienvenido a la aplicación, este es un proyecto base basado en el framework ABP. Para más información, visita abp.io."
+    "LongWelcomeMessage": "Bienvenido a NewsApp, aplicación para la cátedra Desarrollo de Software.",
+    "Menu:NewsApp": "NewsApp",
+    "Menu:Notificaciones": "Notificaciones",
+    "Actions": "Acciones",
+    "Close": "Cerrar",
+    "Delete": "Eliminar",
+    "Edit": "Editar",
+    "Name": "Nombre",
+    "Type": "Tipo",
+    "CreationTime": "Fecha de creación",
+    "AreYouSure": "¿Estás seguro?",
+    "AreYouSureToDelete": "¿Estás seguro de que quieres eliminar este item?"    //"Enum:BookType.0": "Undefined",
+    //"Enum:BookType.1": "Adventure"
   }
 }
