@@ -72,7 +72,7 @@ namespace NewsApp.Alertas
         public async Task MarcarNotificacionesComoLeidas()
         {
             var userGuid = CurrentUser.Id.GetValueOrDefault();
-            var notificaciones = await _notificacionRepository.GetListAsync(not => not.UsuarioId == userGuid, includeDetails: true);
+            var notificaciones = await _notificacionRepository.GetListAsync(not => not.UsuarioId == userGuid);
             await _alertaManager.MarcarNotificacionesComoLeidas(notificaciones);
         }
 
