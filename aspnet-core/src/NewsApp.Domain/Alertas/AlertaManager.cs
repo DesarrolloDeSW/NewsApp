@@ -52,7 +52,7 @@ namespace NewsApp.Alertas
 
             notif = new Notificacion
             {
-                FechaEnvio = DateTime.Today,
+                FechaEnvio = DateTime.Now,
                 Leida = false,
                 CadenaBusqueda = cadena,
                 UsuarioId = idUsuario
