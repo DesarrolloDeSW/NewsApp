@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using NewsApp.Alertas;
 using NewsApp.Noticias;
 using System;
 using System.Collections;
@@ -93,6 +94,14 @@ namespace NewsApp.Listas
             }
             var respuesta = await _listaRepository.UpdateAsync(lista, autoSave: true);
             return ObjectMapper.Map<Lista, ListaDto>(respuesta);
+        }
+
+        public async Task<ICollection<ListaDto>> GetListasUsuarioAsync()
+        {
+            var userGuid = CurrentUser.Id.GetValueOrDefault();
+            var listas = await _listaRepository.GetListAsync(l => l.UsuarioId == userGuid, includeDetails: true);
+
+            return ObjectMapper.Map<ICollection<Lista>, ICollection<ListaDto>>(listas);
         }
 
     }

@@ -42,6 +42,14 @@ export class ListaService {
     { apiName: this.apiName,...config });
   
 
+  getListasUsuario = (config?: Partial<Rest.Config>) =>
+    this.restService.request<any, ListaDto[]>({
+      method: 'GET',
+      url: '/api/app/lista/as-usuario',
+    },
+    { apiName: this.apiName,...config });
+  
+
   postLista = (input: CreateListaDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, ListaDto>({
       method: 'POST',
