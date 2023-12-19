@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
+.notificacion-no-leida {
+  background-color: #ffe6e6; /* Fondo para notificaciones no leídas */
+}
+
+.notificacion-leida {
+  //background-color: #f0f0f0; /* Fondo para notificaciones leídas */
+}
+
+
 @keyframes donut-spin {
   0% {
     transform: rotate(0deg);
