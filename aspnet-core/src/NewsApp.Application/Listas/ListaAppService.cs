@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
+using Volo.Abp.ObjectMapping;
 
 namespace NewsApp.Listas
 {
@@ -104,5 +105,16 @@ namespace NewsApp.Listas
             return ObjectMapper.Map<ICollection<Lista>, ICollection<ListaDto>>(listas);
         }
 
+        public async Task<ICollection<NoticiaDto>> GetNoticiasListaAsync(int id)
+        {
+            var lista = await this.GetListaAsync(id);
+            return lista.Noticias;
+        }
+
+        public async Task<ICollection<ListaDto>> GetSubListasListaAsync(int id)
+        {
+            var lista = await this.GetListaAsync(id);
+            return lista.Listas;
+        }
     }
 }
