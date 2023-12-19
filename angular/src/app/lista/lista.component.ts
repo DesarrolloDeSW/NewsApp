@@ -14,6 +14,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ListaComponent implements OnInit {
   lista = { items: [], totalCount: 0 } as PagedResultDto<ListaDto>;
 
+  selectedLista = {} as ListaDto; // declare selectedLista
+
   form: FormGroup; // add this line
   isModalOpen = false; // add this line
 
@@ -43,28 +45,55 @@ export class ListaComponent implements OnInit {
   }
 
   crearLista() {
+    this.selectedLista = {} as ListaDto; // reset the selected lista
     this.buildForm(); // add this line
     this.isModalOpen = true;
   }
 
+   // Add editarLista method
+   editarLista(id: number) {
+    this.listaService.getLista(id).subscribe((lista) => {
+      this.selectedLista = lista;
+      this.buildForm();
+      this.form.patchValue({
+        Nombre: lista.nombre,
+        Descripcion: lista.descripcion
+      });
+      
+      // Asignar el id al objeto UpdateListaDto
+      this.form.get('Id').setValue(lista.id);
+      
+      this.isModalOpen = true;
+    });
+  }
+  
+  
+  
+
     // add buildForm method
     buildForm() {
       this.form = this.fb.group({
+        Id: [null, Validators.required], // Asegúrate de que este campo esté presente
         Nombre: ['', Validators.required],
         Descripcion: [null]
       });
-    }
+    }    
   
     // add save method
     save() {
       if (this.form.invalid) {
         return;
       }
-  
-        this.listaService.postLista(this.form.value).subscribe(() => {
+      
+      const request = this.selectedLista.id
+      ? this.listaService.updateLista(this.selectedLista.id, this.form.value)
+      : this.listaService.postLista(this.form.value);
+      
+      request.subscribe(() => {
         this.isModalOpen = false;
         this.form.reset();
         this.list.get();
+        
       });
     }
 }
