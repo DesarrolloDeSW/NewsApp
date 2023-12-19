@@ -2,6 +2,7 @@ import { ListService, PagedResultDto } from '@abp/ng.core';
 import { Component, OnInit } from '@angular/core';
 import { ListaService, ListaDto } from '@proxy/listas';
 import { Observable, map } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 
 @Component({
   selector: 'app-lista',
@@ -9,10 +10,18 @@ import { Observable, map } from 'rxjs';
   styleUrls: ['./lista.component.scss'],
   providers: [ListService],
 })
+
 export class ListaComponent implements OnInit {
   lista = { items: [], totalCount: 0 } as PagedResultDto<ListaDto>;
 
-  constructor(public readonly list: ListService, private listaService: ListaService) {}
+  form: FormGroup; // add this line
+  isModalOpen = false; // add this line
+
+  constructor(
+    public readonly list: ListService, 
+    private listaService: ListaService,
+    private fb: FormBuilder // inject FormBuilder
+    ) {}
 
   ngOnInit() {
     const listaStreamCreator = (query) => this.getListasUsuario(query);
@@ -32,6 +41,32 @@ export class ListaComponent implements OnInit {
       })
     );
   }
+
+  crearLista() {
+    this.buildForm(); // add this line
+    this.isModalOpen = true;
+  }
+
+    // add buildForm method
+    buildForm() {
+      this.form = this.fb.group({
+        Nombre: ['', Validators.required],
+        Descripcion: [null]
+      });
+    }
   
+    // add save method
+    save() {
+      if (this.form.invalid) {
+        return;
+      }
+  
+        this.listaService.postLista(this.form.value).subscribe(() => {
+        this.isModalOpen = false;
+        this.form.reset();
+        this.list.get();
+      });
+    }
 }
+
 

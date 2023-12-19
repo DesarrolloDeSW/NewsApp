@@ -16,6 +16,6 @@ namespace NewsApp.Listas
         Task<ListaDto> AgregarNoticiaAsync(AgregarNoticiaDto input);
         Task<ICollection<ListaDto>> GetListasUsuarioAsync();
         Task<ICollection<ListaDto>> GetSubListasListaAsync(int id);
-        Task<ICollection<ListaDto>> GetNoticiasListaAsync(int id);
+        Task<ICollection<NoticiaDto>> GetNoticiasListaAsync(int id);
     }
 }
