@@ -69,7 +69,7 @@ public class ListaManager : DomainService
         [NotNull] string descripcionNueva)
     {
         Check.NotNull(lista, nameof(lista));
-        Check.NotNullOrWhiteSpace(descripcionNueva, nameof(descripcionNueva));
+        //Check.NotNullOrWhiteSpace(descripcionNueva, nameof(descripcionNueva));
 
         lista.CambiarDescripcion(descripcionNueva);
         return Task.CompletedTask;
