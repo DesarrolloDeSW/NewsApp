@@ -1,9 +1,11 @@
 import { ListService, PagedResultDto } from '@abp/ng.core';
 import { Component, OnInit } from '@angular/core';
-import { ListaService, ListaDto } from '@proxy/listas';
+import { ListaService, ListaDto, NoticiaDto } from '@proxy/listas';
 import { Observable, map } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-lista',
@@ -14,8 +16,10 @@ import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
 
 export class ListaComponent implements OnInit {
   lista = { items: [], totalCount: 0 } as PagedResultDto<ListaDto>;
+  noticiasLista = {items: [], totalCount: 0} as PagedResultDto<NoticiaDto>;
 
   selectedLista = {} as ListaDto; // declare selectedLista
+  private modalRef: NgbModalRef; // Agrega una referencia al modal
 
   form: FormGroup; // add this line
   isModalOpen = false; // add this line
@@ -24,7 +28,8 @@ export class ListaComponent implements OnInit {
     public readonly list: ListService, 
     private listaService: ListaService,
     private fb: FormBuilder, // inject FormBuilder
-    private confirmation: ConfirmationService 
+    private confirmation: ConfirmationService, 
+    private modalService: NgbModal
     ) {}
 
   ngOnInit() {
@@ -45,6 +50,34 @@ export class ListaComponent implements OnInit {
       })
     );
   }
+
+  private getNoticiasLista(idLista): Observable<PagedResultDto<NoticiaDto>> {
+    return this.listaService.getNoticiasLista(idLista).pipe(
+      map((noticiaItems: NoticiaDto[]) => {
+        return {
+          items: noticiaItems,
+          totalCount: noticiaItems.length // O ajusta aquí el total de elementos recibidos
+        } as PagedResultDto<NoticiaDto>;
+      })
+    );
+  }
+
+
+ 
+  verNoticiasLista(id: number) {
+    console.log('Ver Noticias - ID:', id); // Agrega este log para verificar si la función se está llamando correctamente
+  
+    this.getNoticiasLista(id).subscribe((pagedResult: PagedResultDto<NoticiaDto>) => {
+      console.log('Noticias Lista:', pagedResult); // Agrega este log para verificar si recibes datos correctamente
+  
+      // Asigna las noticias a la propiedad en tu componente, por ejemplo:
+      this.noticiasLista = pagedResult;
+  
+      // Agrega cualquier lógica adicional que necesites con las noticias aquí.
+    });
+  }
+  
+  
 
   crearLista() {
     this.selectedLista = {} as ListaDto; // reset the selected lista

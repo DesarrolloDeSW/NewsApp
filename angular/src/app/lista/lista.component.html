@@ -40,6 +40,9 @@
                   <button ngbDropdownItem (click)="eliminarLista(row.id)">
                     {{ '::Delete' | abpLocalization }}
                 </button>
+                <button ngbDropdownItem (click)="verNoticiasLista(row.id)">
+                  {{ '::VerNoticias' | abpLocalization }}
+                </button>
                 </div>
               </div>
             </ng-template>
@@ -54,6 +57,32 @@
       </ngx-datatable>
     </div>
 </div>
+<div class="card-body">
+  <ngx-datatable [rows]="noticiasLista.items" [count]="noticiasLista.totalCount" [list]="list" default>
+    <ngx-datatable-column [name]="'::Noticias' | abpLocalization" prop="fechaPublicacion">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <div [ngClass]="{'noticia-container': true}">
+          <div class="noticia-content">
+            <div class="noticia-title">
+              <strong>{{ row.titulo }}</strong>
+            </div>
+            <div class="noticia-details">
+              <div class="noticia-source">
+                {{ '::Fuente' | abpLocalization }}: {{ row.fuente }}
+              </div>
+              <div class="noticia-date">
+                {{ row.fechaPublicacion | date }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+
+
+
 <!-- Add the modal here -->
 <abp-modal [(visible)]="isModalOpen">
   <ng-template #abpHeader>
@@ -84,4 +113,5 @@
               {{ '::Save' | abpLocalization }}
         </button>
     </ng-template>
+    
 </abp-modal> 
