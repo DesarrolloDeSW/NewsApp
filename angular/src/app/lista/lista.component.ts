@@ -5,7 +5,7 @@ import { Observable, map } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -29,7 +29,8 @@ export class ListaComponent implements OnInit {
     private listaService: ListaService,
     private fb: FormBuilder, // inject FormBuilder
     private confirmation: ConfirmationService, 
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
     ) {}
 
   ngOnInit() {
@@ -63,20 +64,9 @@ export class ListaComponent implements OnInit {
   }
 
 
- 
-  verNoticiasLista(id: number) {
-    console.log('Ver Noticias - ID:', id); // Agrega este log para verificar si la función se está llamando correctamente
-  
-    this.getNoticiasLista(id).subscribe((pagedResult: PagedResultDto<NoticiaDto>) => {
-      console.log('Noticias Lista:', pagedResult); // Agrega este log para verificar si recibes datos correctamente
-  
-      // Asigna las noticias a la propiedad en tu componente, por ejemplo:
-      this.noticiasLista = pagedResult;
-  
-      // Agrega cualquier lógica adicional que necesites con las noticias aquí.
-    });
+  verNoticias(idLista:number) {
+    this.router.navigate(['/noticias/', idLista]); 
   }
-  
   
 
   crearLista() {

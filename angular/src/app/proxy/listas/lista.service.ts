@@ -75,13 +75,13 @@ export class ListaService {
     { apiName: this.apiName,...config });
   
 
-  updateLista = (id: number, input: UpdateListaDto, config?: Partial<Rest.Config>) =>
-  this.restService.request<any, ListaDto>({
-    method: 'PUT',
-    url: '/api/app/lista/lista',
-    body: input,
-  },
-  { apiName: this.apiName,...config });
+    updateLista = (id: number, input: UpdateListaDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, ListaDto>({
+      method: 'PUT',
+      url: '/api/app/lista/lista',
+      body: input,
+    },
+    { apiName: this.apiName,...config });
 
   constructor(private restService: RestService) {}
 }
