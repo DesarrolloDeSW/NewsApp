@@ -40,7 +40,8 @@
                   <button ngbDropdownItem (click)="eliminarLista(row.id)">
                     {{ '::Delete' | abpLocalization }}
                 </button>
-                  <button (click)="verNoticias(row.id)">Ver noticias
+                  <button ngbDropdownItem (click)="verNoticias(row.id)">
+                    {{ '::VerNoticias' | abpLocalization }}
                 </button>
                 </div>
               </div>
