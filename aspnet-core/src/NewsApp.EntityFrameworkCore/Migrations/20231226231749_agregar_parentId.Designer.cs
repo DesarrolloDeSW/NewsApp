@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsApp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace NewsApp.Migrations
 {
     [DbContext(typeof(NewsAppDbContext))]
-    partial class NewsAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231226231749_agregar_parentId")]
+    partial class agregar_parentId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,6 +127,9 @@ namespace NewsApp.Migrations
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ListaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(128)
@@ -137,7 +143,7 @@ namespace NewsApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex("ListaId");
 
                     b.ToTable("AppListas", (string)null);
                 });
@@ -1848,7 +1854,7 @@ namespace NewsApp.Migrations
                 {
                     b.HasOne("NewsApp.Listas.Lista", null)
                         .WithMany("Listas")
-                        .HasForeignKey("ParentId");
+                        .HasForeignKey("ListaId");
                 });
 
             modelBuilder.Entity("NewsApp.Noticias.Noticia", b =>

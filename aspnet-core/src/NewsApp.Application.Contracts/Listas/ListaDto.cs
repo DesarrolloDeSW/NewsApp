@@ -17,6 +17,8 @@ namespace NewsApp.Listas
 
         public bool Alerta { get; set; }
 
+        public int? ParentId { get; set; }
+
         public ICollection<NoticiaDto> Noticias { get; set; }
         public ICollection<ListaDto> Listas { get; set; }
         public Guid UsuarioId { get; set; } 

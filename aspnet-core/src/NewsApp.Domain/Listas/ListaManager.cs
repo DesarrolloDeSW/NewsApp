@@ -34,7 +34,7 @@ public class ListaManager : DomainService
             throw new ListaYaExiste(nombre);
         }
 
-        lista = new Lista { Nombre = nombre, Descripcion = descripcion, UsuarioId = usuario.Id, FechaCreacion = DateTime.Today, Alerta = false };
+        lista = new Lista { Nombre = nombre, Descripcion = descripcion, UsuarioId = usuario.Id, FechaCreacion = DateTime.Today, Alerta = false, ParentId=parentId };
 
         if (parentId is not null)
         {

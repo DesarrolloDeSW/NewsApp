@@ -44,14 +44,16 @@ export class ListaComponent implements OnInit {
   private getListasUsuario(query): Observable<PagedResultDto<ListaDto>> {
     return this.listaService.getListasUsuario(query).pipe(
       map((listaItems: ListaDto[]) => {
+        // Filtrar las listas con ParentId = null
+        const filteredListas = listaItems.filter(lista => lista.parentId === null);
+  
         return {
-          items: listaItems,
-          totalCount: listaItems.length // O ajusta aquí el total de elementos recibidos
+          items: filteredListas,
+          totalCount: filteredListas.length // O ajusta aquí el total de elementos filtrados
         } as PagedResultDto<ListaDto>;
       })
     );
   }
-
   private getNoticiasLista(idLista): Observable<PagedResultDto<NoticiaDto>> {
     return this.listaService.getNoticiasLista(idLista).pipe(
       map((noticiaItems: NoticiaDto[]) => {
