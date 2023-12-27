@@ -54,6 +54,35 @@ export class ListaComponent implements OnInit {
       })
     );
   }
+
+  private getSubListas(idLista: number): Observable<PagedResultDto<ListaDto>> {
+    return this.listaService.getSubListasLista(idLista).pipe(
+      map((subListaItems: ListaDto[]) => {
+        return {
+          items: subListaItems,
+          totalCount: subListaItems.length
+        } as PagedResultDto<ListaDto>;
+      })
+    );
+  }
+
+  verSubListas(idLista: number) {
+    this.getSubListas(idLista).subscribe((subLista) => {
+      this.lista = subLista;
+    });
+  }
+
+  volverAListaPrincipal() {
+    // Puedes proporcionar un objeto query vacío o nulo, según tu implementación.
+    const query = {}; // o puedes usar const query = null;
+  
+    this.getListasUsuario(query).subscribe((response) => {
+      this.lista = response;
+    });
+  }
+  
+  
+  /*
   private getNoticiasLista(idLista): Observable<PagedResultDto<NoticiaDto>> {
     return this.listaService.getNoticiasLista(idLista).pipe(
       map((noticiaItems: NoticiaDto[]) => {
@@ -63,7 +92,7 @@ export class ListaComponent implements OnInit {
         } as PagedResultDto<NoticiaDto>;
       })
     );
-  }
+  }*/
 
 
   verNoticias(idLista:number) {

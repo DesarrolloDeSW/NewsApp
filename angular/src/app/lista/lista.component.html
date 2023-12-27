@@ -16,6 +16,9 @@
             </div>
       </div>
     </div>
+    <button class="btn btn-secondary btn-sm" (click)="volverAListaPrincipal()">
+      {{ '::VolverAlInicio' | abpLocalization }}
+    </button>    
     <div class="card-body">
       <ngx-datatable [rows]="lista.items" [count]="lista.totalCount" [list]="list" default>
         <ngx-datatable-column
@@ -43,6 +46,9 @@
                   <button ngbDropdownItem (click)="verNoticias(row.id)">
                     {{ '::VerNoticias' | abpLocalization }}
                 </button>
+                <button ngbDropdownItem (click)="verSubListas(row.id)">
+                  {{ '::VerSublistas' | abpLocalization }}
+              </button>
                 </div>
               </div>
             </ng-template>
