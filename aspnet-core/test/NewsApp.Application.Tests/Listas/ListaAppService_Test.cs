@@ -145,5 +145,67 @@ namespace NewsApp.Listas
             noticias.Count.ShouldBeGreaterThan(antes);
             noticias.ShouldContain(n => n.Autor == "Autor de Pruebas");
         }
+
+        [Fact]
+        public async Task Should_Get_All_SublistasLista()
+        {
+            //Arrange
+            var input = new CreateListaDto { Nombre = "Sublista", ParentId = 1 };
+            await _listaAppService.PostListaAsync(input);
+
+            //Act
+            var sublistas = await _listaAppService.GetSubListasListaAsync(1);
+
+            //Assert
+            sublistas.ShouldNotBeNull();
+            sublistas.Count.ShouldBeGreaterThan(0);
+        }
+
+        [Fact]
+        public async Task Should_Get_All_NoticiasLista()
+        {
+            // Arrange 
+            var noticia = new NoticiaDto
+            {
+                Titulo = "\"Te clavo el visto la próxima\": el enfado de Messi con Ibai en directo y tras su octavo Balón de Oro no tiene desperdicio",
+                Autor = "Autor de Pruebas",
+                Descripcion = "Ayer tuvo lugar la celebración de la gala del Balón de Oro, un evento que ha podido significar un déjà vu para muchos al ver como Lionel Messi se llevaba su octavo Balón de Oro. Para los españoles también ha sido todo un orgullo el hecho de que Aitana Bonmatí…",
+                Url = "https://www.genbeta.com/actualidad/te-clavo-visto-proxima-enfado-messi-ibai-directo-su-octavo-balon-oro-no-tiene-desperdicio",
+                Contenido = "Ayer tuvo lugar la celebración de la gala del Balón de Oro, un evento que ha podido significar un déjà vu para muchos al ver como Lionel Messi se llevaba su octavo Balón de Oro. Para los españoles ta… [+2504 chars]",
+                FechaPublicacion = DateTime.Today,
+                Fuente = "Genbeta.com"
+            };
+            var input = new AgregarNoticiaDto { IdLista = 1, Noticia = noticia };
+            await _listaAppService.AgregarNoticiaAsync(input);
+
+            //Act
+            var noticias = await _listaAppService.GetNoticiasListaAsync(1);
+
+            //Assert
+            noticias.ShouldNotBeNull();
+            noticias.Count.ShouldBeGreaterThan(0);
+        }
+
+        /*
+        public async Task<ICollection<ListaDto>> GetListasUsuarioAsync()
+        {
+            var userGuid = CurrentUser.Id.GetValueOrDefault();
+            var listas = await _listaRepository.GetListAsync(l => l.UsuarioId == userGuid, includeDetails: true);
+
+            return ObjectMapper.Map<ICollection<Lista>, ICollection<ListaDto>>(listas);
+        }
+        */
+
+        [Fact]
+        public async Task Should_Get_All_ListasUsuario()
+        {
+            //Act
+            var listas = await _listaAppService.GetListasUsuarioAsync();
+
+            //Assert
+            listas.ShouldNotBeNull();
+            listas.Count.ShouldBeGreaterThan(0);
+        }
+
     }
 }
