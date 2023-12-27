@@ -4,7 +4,6 @@ import { ListaService, ListaDto, NoticiaDto } from '@proxy/listas';
 import { Observable, map } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,7 +18,6 @@ export class ListaComponent implements OnInit {
   noticiasLista = {items: [], totalCount: 0} as PagedResultDto<NoticiaDto>;
 
   selectedLista = {} as ListaDto; // declare selectedLista
-  private modalRef: NgbModalRef; // Agrega una referencia al modal
 
   form: FormGroup; // add this line
   isModalOpen = false; // add this line
@@ -29,11 +27,12 @@ export class ListaComponent implements OnInit {
     private listaService: ListaService,
     private fb: FormBuilder, // inject FormBuilder
     private confirmation: ConfirmationService, 
-    private modalService: NgbModal,
-    private router: Router
+    private router: Router,
     ) {}
 
   ngOnInit() {
+
+    
     const listaStreamCreator = (query) => this.getListasUsuario(query);
 
     this.list.hookToQuery(listaStreamCreator).subscribe((response) => {
@@ -80,8 +79,16 @@ export class ListaComponent implements OnInit {
       this.lista = response;
     });
   }
-  
-  
+
+
+  crearSublista(idListaPadre: number) {
+    this.selectedLista = { parentId: idListaPadre } as ListaDto;
+    this.buildForm();
+    this.isModalOpen = true;
+  }
+
+
+
   /*
   private getNoticiasLista(idLista): Observable<PagedResultDto<NoticiaDto>> {
     return this.listaService.getNoticiasLista(idLista).pipe(
@@ -140,7 +147,7 @@ export class ListaComponent implements OnInit {
       });
     }    
   
-    // add save method
+    /*
     save() {
       if (this.form.invalid) {
         return;
@@ -157,7 +164,26 @@ export class ListaComponent implements OnInit {
           this.list.get();
         }
       );
+    }*/
+
+    save() {
+      if (this.form.invalid) {
+        return;
+      }
+    
+      const request = this.selectedLista.id
+        ? this.listaService.updateLista(this.selectedLista.id, this.form.value)
+        : this.listaService.postLista({ ...this.form.value, parentId: this.selectedLista.parentId });
+    
+      request.subscribe(
+        () => {
+          this.isModalOpen = false;
+          this.form.reset();
+          this.list.get();
+        }
+      );
     }
+    
     
     
 
