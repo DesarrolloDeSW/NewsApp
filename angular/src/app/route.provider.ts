@@ -28,6 +28,13 @@ function configureRoutes(routes: RoutesService) {
         iconClass: 'fas fa-list',
         order: 3,
         layout: eLayoutType.application,
+      },
+      { 
+        path: '/monitoreos',
+        name: '::Menu:Monitoreo',
+        iconClass: 'fas fa-eye',
+        order: 4,
+        layout: eLayoutType.application,
       }
     ]);
   };

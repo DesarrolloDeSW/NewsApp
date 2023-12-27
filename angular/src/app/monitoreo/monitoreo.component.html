@@ -1,0 +1,22 @@
+<!-- monitoreo.component.html -->
+<div>
+    <h2>Monitoreo de Accesos</h2>
+  
+    <!-- Agrega un campo de entrada para la ID del usuario -->
+    <label for="userId">ID del Usuario:</label>
+    <input type="text" id="userId" [(ngModel)]="userId" />
+  
+    <button (click)="loadMonitoreoData()">Buscar</button>
+  
+    <div *ngIf="userId">
+      <!-- Solo mostrar los resultados si se ha ingresado una ID del usuario -->
+      <p>Cantidad de accesos del usuario: {{ cantidadAccesosUsuario }}</p>
+    </div>
+  
+    <div>
+      <p>Cantidad total de accesos: {{ cantidadTotalAccesos }}</p>
+      <p>Porcentaje de éxito: {{ porcentajeExito }}%</p>
+      <p>Tiempo promedio: {{ tiempoPromedio }}</p>
+    </div>
+  </div>
+  
