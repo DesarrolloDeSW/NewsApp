@@ -5,6 +5,7 @@ using NewsApp.Usuarios;
 using NewsApp.Alertas;
 using Volo.Abp.Identity;
 using NewsApp.Articulos;
+using NewsApp.API;
 
 namespace NewsApp;
 
@@ -15,6 +16,7 @@ public class NewsAppApplicationAutoMapperProfile : Profile
         CreateMap<Noticia, NoticiaDto>().ReverseMap();
         CreateMap<Lista, ListaDto>();
         CreateMap<Alerta, AlertaDto>();
+        CreateMap<AccesoAPI, AccesoAPIDto>();
         CreateMap<Notificacion, NotificacionDto>();
         CreateMap<IdentityUser, UsuarioDto>()
         .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Name))

@@ -12,6 +12,7 @@ namespace NewsApp.Articulos
         Task<long> GetCantidadTotalAccesosAsync();
         Task<float> GetPorcentajeExitoAsync();
         Task<long> GetCantidadAccesosUsuarioAsync(Guid usuarioId);
+        Task<ICollection<AccesoAPIDto>> GetAccesosAPIAsync();
     }
     
 }

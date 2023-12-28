@@ -1,22 +1,70 @@
 <!-- monitoreo.component.html -->
-<div>
-    <h2>Monitoreo de Accesos</h2>
-  
-    <!-- Agrega un campo de entrada para la ID del usuario -->
-    <label for="userId">ID del Usuario:</label>
-    <input type="text" id="userId" [(ngModel)]="userId" />
-  
-    <button (click)="loadMonitoreoData()">Buscar</button>
-  
-    <div *ngIf="userId">
-      <!-- Solo mostrar los resultados si se ha ingresado una ID del usuario -->
-      <p>Cantidad de accesos del usuario: {{ cantidadAccesosUsuario }}</p>
-    </div>
-  
-    <div>
-      <p>Cantidad total de accesos: {{ cantidadTotalAccesos }}</p>
-      <p>Porcentaje de éxito: {{ porcentajeExito }}%</p>
-      <p>Tiempo promedio: {{ tiempoPromedio }}</p>
+<div class="container mt-4">
+  <h2 class="mb-4">Monitoreo de Accesos</h2>
+
+  <!-- Sección para la ID del usuario -->
+  <div class="mb-4">
+    <label for="userId" class="form-label">ID del Usuario:</label>
+    <div class="input-group">
+      <input type="text" id="userId" [(ngModel)]="userId" class="form-control" />
+      <button class="btn btn-primary" (click)="loadMonitoreoData()">Buscar</button>
     </div>
   </div>
-  
+
+  <!-- Sección para mostrar las estadísticas -->
+  <div>
+    <table class="table table-striped">
+      <tr>
+        <th>Estadística</th>
+        <th>Resultado</th>
+      </tr>
+      <!-- Cantidad de accesos del usuario -->
+      <tr *ngIf="loadedCantidadAccesosUsuarioData">
+        <td>Cantidad de accesos del usuario:</td>
+        <td>{{ cantidadAccesosUsuario }}</td>
+      </tr>
+
+      <!-- Cantidad total de accesos -->
+      <tr>
+        <td>Cantidad total de accesos:</td>
+        <td>{{ cantidadTotalAccesos }}</td>
+      </tr>
+
+      <!-- Porcentaje de éxito -->
+      <tr>
+        <td>Porcentaje de éxito:</td>
+        <td>{{ porcentajeExito }}%</td>
+      </tr>
+
+      <!-- Tiempo promedio -->
+      <tr>
+        <td>Tiempo promedio:</td>
+        <td>{{ tiempoPromedio }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Nuevo código para la tabla de accesos API -->
+  <div class="card mt-4">
+    <div class="card-header">
+      <div class="row">
+        <div class="col col-md-6">
+          <h5 class="card-title">
+            {{ '::Menu:AccesosAPI' | abpLocalization }}
+          </h5>
+        </div>
+        <div class="text-end col col-md-6"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <ngx-datatable [rows]="accesosAPI" [count]="accesosAPI.length" [list]="accesosAPI" default>
+        <ngx-datatable-column [name]="'::UsuarioId' | abpLocalization" prop="usuarioId"></ngx-datatable-column>
+      <ngx-datatable-column [name]="'::TiempoTotal' | abpLocalization" prop="tiempoTotal"></ngx-datatable-column>
+      <ngx-datatable-column [name]="'::TiempoInicio' | abpLocalization" prop="tiempoInicio"></ngx-datatable-column>
+      <ngx-datatable-column [name]="'::TiempoFin' | abpLocalization" prop="tiempoFin"></ngx-datatable-column>
+      <ngx-datatable-column [name]="'::ErrorCode' | abpLocalization" prop="errorCode"></ngx-datatable-column>
+      <ngx-datatable-column [name]="'::ErrorMessage' | abpLocalization" prop="errorMessage"></ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</div>

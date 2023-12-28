@@ -1,6 +1,6 @@
 // monitoreo.component.ts
 import { Component, OnInit } from '@angular/core';
-import { MonitoreoAPIService } from '@proxy/articulos';
+import { MonitoreoAPIService, AccesoAPIDto} from '@proxy/articulos';
 
 @Component({
   selector: 'app-monitoreo',
@@ -13,21 +13,28 @@ export class MonitoreoComponent implements OnInit {
   cantidadTotalAccesos: number;
   porcentajeExito: number;
   tiempoPromedio: string;
+  accesosAPI: AccesoAPIDto[] = []; // Agregamos un arreglo para almacenar los accesos API
+
+  // Agregamos una bandera para controlar si se ha cargado la data de accesos del usuario
+  loadedCantidadAccesosUsuarioData = false;
 
   constructor(private monitoreoService: MonitoreoAPIService) {}
 
   ngOnInit(): void {
     this.loadMonitoreoData();
+    this.loadAccesosAPI();
   }
-
+  
   loadMonitoreoData() {
-    // Verificar si se ha ingresado algo en el campo de ID del usuario
     if (this.userId) {
-      // Utiliza la ID ingresada por el usuario
       const usuarioId = this.userId;
 
       this.monitoreoService.getCantidadAccesosUsuario(usuarioId).subscribe(
-        (result) => (this.cantidadAccesosUsuario = result),
+        (result) => {
+          this.cantidadAccesosUsuario = result;
+          // Indicar que la data se ha cargado
+          this.loadedCantidadAccesosUsuarioData = true;
+        },
         (error) => console.error(error)
       );
     }
@@ -45,6 +52,14 @@ export class MonitoreoComponent implements OnInit {
 
     this.monitoreoService.getTiempoPromedio().subscribe(
       (result) => (this.tiempoPromedio = result),
+      (error) => console.error(error)
+    );
+  }
+
+  // Método para cargar la data de accesos API
+  loadAccesosAPI() {
+    this.monitoreoService.getAccesosAPI().subscribe(
+      (result) => (this.accesosAPI = result),
       (error) => console.error(error)
     );
   }
