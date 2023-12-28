@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NoticiaListaComponent } from './noticia-lista/noticia-lista.component';
-import { ListaComponent } from './lista/lista.component';
 
 const routes: Routes = [
   {

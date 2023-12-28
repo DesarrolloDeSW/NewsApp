@@ -35,6 +35,7 @@ function configureRoutes(routes: RoutesService) {
         iconClass: 'fas fa-eye',
         order: 4,
         layout: eLayoutType.application,
+        requiredPolicy: 'NewsApp.Monitoreo',
       }
     ]);
   };

@@ -8,9 +8,9 @@ public class NewsAppPermissionDefinitionProvider : PermissionDefinitionProvider
 {
     public override void Define(IPermissionDefinitionContext context)
     {
-        var myGroup = context.AddGroup(NewsAppPermissions.GroupName);
+        var NewsApp = context.AddGroup(NewsAppPermissions.GroupName);
         //Define your own permissions here. Example:
-        //myGroup.AddPermission(NewsAppPermissions.MyPermission1, L("Permission:MyPermission1"));
+        NewsApp.AddPermission(NewsAppPermissions.Monitoreo.Default, L("Permission:Monitoreo"));
     }
 
     private static LocalizableString L(string name)

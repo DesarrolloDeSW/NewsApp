@@ -22,6 +22,8 @@
     "NewLista": "Nueva Lista",
     "VolverAlInicio": "Volver al inicio",
     "CrearSublista": "Crear sublista",
-    "Menu:Monitoreo": "Monitoreo"
+    "Menu:Monitoreo": "Monitoreo",
+    "Permission:NewsApp": "NewsApp",
+    "Permission:Monitoreo": "Monitoreo de API"
   }
 }
