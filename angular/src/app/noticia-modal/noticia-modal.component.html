@@ -1,0 +1,19 @@
+<!-- noticia-modal.component.html -->
+<div class="modal-header">
+  <h3 class="modal-title" style="font-size: 1.5em;">{{ noticia.titulo }}</h3>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <img src="{{ noticia.urlImagen }}" class="img-fluid mb-3" alt="Noticia Imagen">
+  <p class="lead">{{ noticia.contenido }}</p>
+  <p class="text-muted">Por: {{ noticia.autor }}</p>
+  <p class="text-muted">Fuente: {{ noticia.fuente }}</p>
+  <p class="text-muted">Fecha de Publicación: {{ noticia.fechaPublicacion | date:'medium' }}</p>
+  <p class="text-muted">URL: <a href="{{ noticia.url }}" target="_blank">{{ noticia.url }}</a></p>
+  <!-- Puedes agregar más detalles según sea necesario -->
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cerrar</button>
+</div>

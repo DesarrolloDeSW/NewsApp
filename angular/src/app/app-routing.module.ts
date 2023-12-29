@@ -31,7 +31,8 @@ const routes: Routes = [
   { path: 'noticias/:idLista', component: NoticiaListaComponent },
   { path: 'noticiasLista', loadChildren: () => import('./noticia-lista/noticia-lista.module').then(m => m.NoticiaListaModule) },
   { path: 'monitoreos', loadChildren: () => import('./monitoreo/monitoreo.module').then(m => m.MonitoreoModule) },
-  { path: 'busquedas', loadChildren: () => import('./busqueda/busqueda.module').then(m => m.BusquedaModule) }
+  { path: 'busquedas', loadChildren: () => import('./busqueda/busqueda.module').then(m => m.BusquedaModule) },
+  { path: 'noticia-modal', loadChildren: () => import('./noticia-modal/noticia-modal.module').then(m => m.NoticiaModalModule) }
 ];
 
 @NgModule({

@@ -29,7 +29,8 @@ public class NewsAppApplicationAutoMapperProfile : Profile
         .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Url))
         .ForMember(dest => dest.Contenido, opt => opt.MapFrom(src => src.Content))
         .ForMember(dest => dest.FechaPublicacion, opt => opt.MapFrom(src => src.PublishedAt))
-        .ForMember(dest => dest.Fuente, opt => opt.MapFrom(src => src.Source));
+        .ForMember(dest => dest.Fuente, opt => opt.MapFrom(src => src.Source))
+        .ForMember(dest => dest.UrlImagen, opt => opt.MapFrom(src => src.UrlToImage));
 
     }
 }

@@ -27,6 +27,7 @@ export interface NoticiaDto extends EntityDto<number> {
   autor?: string;
   descripcion?: string;
   url?: string;
+  urlImagen?: string;
   contenido?: string;
   fechaPublicacion?: string;
   fuente?: string;

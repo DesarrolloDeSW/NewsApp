@@ -4,6 +4,8 @@ import { ListaService, ListaDto } from '@proxy/listas';
 import { ArticulosService } from '@proxy/articulos/articulos.service';
 import { NoticiaDto, AgregarNoticiaDto } from '@proxy/listas';
 import { AlertaService } from '@proxy/alertas';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NoticiaModalComponent } from '../noticia-modal/noticia-modal.component'; 
 
 @Component({
   selector: 'app-busqueda',
@@ -18,8 +20,13 @@ export class BusquedaComponent {
   selectedNoticia: NoticiaDto; // Añade esta propiedad al componente
   isModalOpen = false; // add this line
 
-  constructor(  private alertaService: AlertaService, private articulosService: ArticulosService, private fb: FormBuilder, private listaService: ListaService) {}
-
+  constructor(
+    private alertaService: AlertaService,
+    private articulosService: ArticulosService,
+    private fb: FormBuilder,
+    private listaService: ListaService,
+    private modalService: NgbModal // Agrega esta línea
+  ) {}
   // Agrega el método para abrir el modal
   agregarNoticia(row: NoticiaDto) {
     // Recuperar la lista de listas del usuario
@@ -114,6 +121,7 @@ export class BusquedaComponent {
   }
 
   leerNoticia(row: NoticiaDto) {
-    // Lógica para leer la noticia
+    const modalRef = this.modalService.open(NoticiaModalComponent, { size: 'lg' }); // Ajusta el tamaño según sea necesario
+    modalRef.componentInstance.noticia = row;
   }
 }
