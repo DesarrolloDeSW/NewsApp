@@ -1,3 +1,4 @@
+import type { AccesoAPIDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
 
@@ -6,6 +7,14 @@ import { Injectable } from '@angular/core';
 })
 export class MonitoreoAPIService {
   apiName = 'Default';
+  
+
+  getAccesosAPI = (config?: Partial<Rest.Config>) =>
+    this.restService.request<any, AccesoAPIDto[]>({
+      method: 'GET',
+      url: '/api/app/monitoreo-aPI/accesos-aPI',
+    },
+    { apiName: this.apiName,...config });
   
 
   getCantidadAccesosUsuario = (usuarioId: string, config?: Partial<Rest.Config>) =>

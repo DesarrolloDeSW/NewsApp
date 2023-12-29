@@ -10,6 +10,8 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
 using NewsApp.API;
+using NewsApp.Permissions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NewsApp.Articulos
 {
@@ -35,7 +37,6 @@ namespace NewsApp.Articulos
 
             return tiempo;
         }
-
         public async Task<long> GetCantidadTotalAccesosAsync()
         {
             return await _monitoreoRepository.GetCountAsync();
@@ -53,6 +54,12 @@ namespace NewsApp.Articulos
             return accesos.Count;
         }
 
+        public async Task<ICollection<AccesoAPIDto>> GetAccesosAPIAsync()
+        {
+            var listas = await _monitoreoRepository.GetListAsync(includeDetails: true);
+
+            return ObjectMapper.Map<ICollection<AccesoAPI>, ICollection<AccesoAPIDto>>(listas);
+        }
     }
 
 }

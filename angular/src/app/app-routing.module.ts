@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NoticiaListaComponent } from './noticia-lista/noticia-lista.component';
-import { ListaComponent } from './lista/lista.component';
 
 const routes: Routes = [
   {
@@ -30,7 +29,8 @@ const routes: Routes = [
   { path: 'notificaciones', loadChildren: () => import('./notificacion/notificacion.module').then(m => m.NotificacionModule) },
   { path: 'listas', loadChildren: () => import('./lista/lista.module').then(m => m.ListaModule) },
   { path: 'noticias/:idLista', component: NoticiaListaComponent },
-  { path: 'noticiasLista', loadChildren: () => import('./noticia-lista/noticia-lista.module').then(m => m.NoticiaListaModule) }
+  { path: 'noticiasLista', loadChildren: () => import('./noticia-lista/noticia-lista.module').then(m => m.NoticiaListaModule) },
+  { path: 'monitoreos', loadChildren: () => import('./monitoreo/monitoreo.module').then(m => m.MonitoreoModule) }
 ];
 
 @NgModule({
