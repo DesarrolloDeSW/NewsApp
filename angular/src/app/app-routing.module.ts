@@ -30,7 +30,8 @@ const routes: Routes = [
   { path: 'listas', loadChildren: () => import('./lista/lista.module').then(m => m.ListaModule) },
   { path: 'noticias/:idLista', component: NoticiaListaComponent },
   { path: 'noticiasLista', loadChildren: () => import('./noticia-lista/noticia-lista.module').then(m => m.NoticiaListaModule) },
-  { path: 'monitoreos', loadChildren: () => import('./monitoreo/monitoreo.module').then(m => m.MonitoreoModule) }
+  { path: 'monitoreos', loadChildren: () => import('./monitoreo/monitoreo.module').then(m => m.MonitoreoModule) },
+  { path: 'busquedas', loadChildren: () => import('./busqueda/busqueda.module').then(m => m.BusquedaModule) }
 ];
 
 @NgModule({

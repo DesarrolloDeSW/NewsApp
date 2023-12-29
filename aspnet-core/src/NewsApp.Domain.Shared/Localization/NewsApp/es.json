@@ -24,6 +24,9 @@
     "CrearSublista": "Crear sublista",
     "Menu:Monitoreo": "Monitoreo",
     "Permission:NewsApp": "NewsApp",
-    "Permission:Monitoreo": "Monitoreo de API"
+    "Permission:Monitoreo": "Monitoreo de API",
+    "Menu:Busquedas": "Buscar",
+    "SelectList": "Seleccione una lista",
+    "AddToPlaylist": "Agregar noticia a una lista"
   }
 }

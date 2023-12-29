@@ -15,10 +15,10 @@ function configureRoutes(routes: RoutesService) {
         order: 1,
         layout: eLayoutType.application,
       },
-      {
-        path: '/notificaciones',
-        name: '::Menu:Notificaciones',
-        iconClass: 'fas fa-envelope',
+      { 
+        path: '/busquedas',
+        name: '::Menu:Busquedas',
+        iconClass: 'fas fa-pen',
         order: 2,
         layout: eLayoutType.application,
       },
@@ -29,11 +29,20 @@ function configureRoutes(routes: RoutesService) {
         order: 3,
         layout: eLayoutType.application,
       },
+
+      {
+        path: '/notificaciones',
+        name: '::Menu:Notificaciones',
+        iconClass: 'fas fa-envelope',
+        order: 4,
+        layout: eLayoutType.application,
+      },
+
       { 
         path: '/monitoreos',
         name: '::Menu:Monitoreo',
         iconClass: 'fas fa-eye',
-        order: 4,
+        order: 5,
         layout: eLayoutType.application,
         requiredPolicy: 'NewsApp.Monitoreo',
       }
