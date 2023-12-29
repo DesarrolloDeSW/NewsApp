@@ -54,7 +54,6 @@ namespace NewsApp.Articulos
             return accesos.Count;
         }
 
-        [Authorize(NewsAppPermissions.Monitoreo.Default)]
         public async Task<ICollection<AccesoAPIDto>> GetAccesosAPIAsync()
         {
             var listas = await _monitoreoRepository.GetListAsync(includeDetails: true);
