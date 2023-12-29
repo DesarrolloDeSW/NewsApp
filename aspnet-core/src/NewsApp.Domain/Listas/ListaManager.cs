@@ -34,7 +34,7 @@ public class ListaManager : DomainService
             throw new ListaYaExiste(nombre);
         }
 
-        lista = new Lista { Nombre = nombre, Descripcion = descripcion, UsuarioId = usuario.Id, FechaCreacion = DateTime.Today, Alerta = false };
+        lista = new Lista { Nombre = nombre, Descripcion = descripcion, UsuarioId = usuario.Id, FechaCreacion = DateTime.Today, Alerta = false, ParentId=parentId };
 
         if (parentId is not null)
         {
@@ -69,7 +69,7 @@ public class ListaManager : DomainService
         [NotNull] string descripcionNueva)
     {
         Check.NotNull(lista, nameof(lista));
-        Check.NotNullOrWhiteSpace(descripcionNueva, nameof(descripcionNueva));
+        //Check.NotNullOrWhiteSpace(descripcionNueva, nameof(descripcionNueva));
 
         lista.CambiarDescripcion(descripcionNueva);
         return Task.CompletedTask;

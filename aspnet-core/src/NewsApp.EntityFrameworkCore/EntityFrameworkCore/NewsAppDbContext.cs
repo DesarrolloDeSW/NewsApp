@@ -136,6 +136,9 @@ public class NewsAppDbContext :
         b.ToTable(NewsAppConsts.DbTablePrefix + "Listas", NewsAppConsts.DbSchema);
         b.ConfigureByConvention(); //auto configure for the base class props
         b.Property(x => x.Nombre).IsRequired().HasMaxLength(128);
+        b.HasMany(l => l.Listas)
+            .WithOne()
+            .HasForeignKey(l => l.ParentId);
     });
 
     // Entidad Alerta

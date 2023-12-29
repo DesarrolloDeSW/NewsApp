@@ -22,6 +22,8 @@ public class Lista : Entity<int>
     public ICollection<Noticia> Noticias { get; set; }
 
     public ICollection<Lista> Listas { get; set; }
+    
+    public int? ParentId {  get; set; }
 
     public Guid UsuarioId { get; set; }
 

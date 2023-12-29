@@ -1,0 +1,23 @@
+<div class="card-body">
+    <ngx-datatable [rows]="noticias" [count]="noticias.length" default>
+      <ngx-datatable-column [name]="'::Noticias'">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div [ngClass]="{'noticia-container': true}">
+            <div class="noticia-content">
+              <div class="noticia-title">
+                <strong>{{ row.titulo }}</strong>
+              </div>
+              <div class="noticia-details">
+                <div class="noticia-source">
+                  {{ '::Fuente' | abpLocalization }}: {{ row.fuente }}
+                </div>
+                <div class="noticia-date">
+                  {{ row.fechaPublicacion | date }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>

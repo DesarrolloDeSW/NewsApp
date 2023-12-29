@@ -16,6 +16,7 @@ export interface ListaDto extends EntityDto<number> {
   fechaCreacion?: string;
   descripcion?: string;
   alerta: boolean;
+  parentId?: number;
   noticias: NoticiaDto[];
   listas: ListaDto[];
   usuarioId?: string;

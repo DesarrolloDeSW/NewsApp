@@ -6,15 +6,21 @@
     "LongWelcomeMessage": "Bienvenido a NewsApp, aplicación para la cátedra Desarrollo de Software.",
     "Menu:NewsApp": "NewsApp",
     "Menu:Notificaciones": "Notificaciones",
+    "Menu:Listas": "Listas",
+    "Menu:Noticias": "Noticias",
     "Actions": "Acciones",
     "Close": "Cerrar",
+    "Save": "Guardar",
     "Delete": "Eliminar",
     "Edit": "Editar",
     "Name": "Nombre",
     "Type": "Tipo",
+    "VerNoticias": "Ver Noticias",
     "CreationTime": "Fecha de creación",
     "AreYouSure": "¿Estás seguro?",
-    "AreYouSureToDelete": "¿Estás seguro de que quieres eliminar este item?"    //"Enum:BookType.0": "Undefined",
-    //"Enum:BookType.1": "Adventure"
+    "AreYouSureToDelete": "¿Estás seguro de que quieres eliminar este item?",
+    "NewLista": "Nueva Lista",
+    "VolverAlInicio": "Volver al inicio",
+    "CrearSublista": "Crear sublista"
   }
 }
