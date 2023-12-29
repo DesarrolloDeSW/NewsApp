@@ -1,24 +1,30 @@
+// noticia-lista.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ListaService, NoticiaDto } from '@proxy/listas';  // Ajusta la ruta según la ubicación real de tu servicio
-import { ListService, PagedResultDto } from '@abp/ng.core';
+import { ListaService, NoticiaDto } from '@proxy/listas';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NoticiaModalComponent } from '../noticia-modal/noticia-modal.component';
 
 @Component({
   selector: 'app-noticia-lista',
   templateUrl: './noticia-lista.component.html',
-  styleUrls: ['./noticia-lista.component.scss'],
-  providers: [ListService]
+  styleUrls: ['./noticia-lista.component.scss']
 })
 
 export class NoticiaListaComponent implements OnInit {
-  noticias: NoticiaDto[] = []; // Inicializa como un array de NoticiaDto
+  noticias: NoticiaDto[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private listaService: ListaService
+    private listaService: ListaService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
+    this.obtenerNoticiasLista();
+  }
+
+  obtenerNoticiasLista() {
     const idListaString = this.route.snapshot.paramMap.get('idLista');
     const idLista = parseInt(idListaString, 10);
 
@@ -30,5 +36,15 @@ export class NoticiaListaComponent implements OnInit {
         console.error('Error al obtener las noticias:', error);
       }
     );
+  }
+
+  leerNoticia(noticia: NoticiaDto) {
+    const modalRef = this.modalService.open(NoticiaModalComponent, { size: 'lg' }); // Ajusta el tamaño según tus necesidades
+    modalRef.componentInstance.noticia = noticia;
+  }
+
+  eliminarNoticiaDeLista(noticia: NoticiaDto) {
+    // Lógica para eliminar la noticia de la lista
+    // Puedes utilizar el servicio listaService para realizar la eliminación
   }
 }
