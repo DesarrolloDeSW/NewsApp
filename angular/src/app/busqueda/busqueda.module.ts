@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { SharedModule } from '../shared/shared.module';
 import { BusquedaRoutingModule } from './busqueda-routing.module';
 import { BusquedaComponent } from './busqueda.component';
 
@@ -10,7 +9,7 @@ import { BusquedaComponent } from './busqueda.component';
     BusquedaComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     BusquedaRoutingModule
   ]
 })

@@ -1,1 +1,89 @@
-<p>busqueda works!</p>
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 mb-3">
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Buscar noticias...">
+          <button class="btn btn-primary" (click)="buscarNoticias()">Buscar</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Acciones y tabla de noticias -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                <h5 class="card-title">Noticias</h5>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <ngx-datatable [rows]="noticias" [count]="noticias.length" default>
+              <ngx-datatable-column [name]="'::Noticias'">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <div [ngClass]="{'noticia-container': true}">
+                    <div class="noticia-content">
+                      <div class="noticia-title">
+                        <strong>{{ row.titulo }}</strong>
+                      </div>
+                      <div class="noticia-details">
+                        <div class="noticia-source">
+                          {{ '::Fuente' | abpLocalization }}: {{ row.fuente }}
+                        </div>
+                        <div class="noticia-date">
+                          {{ row.fechaPublicacion | date }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+                <ngx-datatable-column [name]="'::Actions'" [maxWidth]="250">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div class="text-end">
+                        <!-- Botones de acciones para cada noticia -->
+                        <div class="d-flex flex-column align-items-end">
+                        <button class="btn btn-secondary mb-2 w-100" (click)="leerNoticia(row)">
+                            <i class="fa fa-newspaper-o me-1"></i>Leer Noticia
+                        </button>
+                        <button class="btn btn-secondary w-100" (click)="agregarNoticia(row)">
+                            <i class="fa fa-list me-1"></i>Agregar a Lista
+                        </button>
+                        </div>
+                    </div>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal para agregar noticia a lista -->
+<abp-modal [(visible)]="isModalOpen">
+    <ng-template #abpHeader>
+      <h3>{{ '::AddToPlaylist' | abpLocalization }}</h3>
+    </ng-template>
+    <ng-template #abpBody>
+      <form [formGroup]="form" (ngSubmit)="saveNoticiaToPlaylist()">
+        <div class="mt-2">
+          <label for="lista-nombre">{{ '::SelectList' | abpLocalization }}</label><span> * </span>
+          <select id="lista-nombre" class="form-control" formControlName="ListaId" autofocus>
+            <option *ngFor="let lista of listasUsuario" [value]="lista.id">{{ lista.nombre }}</option>
+          </select>
+        </div>
+      </form>
+    </ng-template>
+    <ng-template #abpFooter>
+      <button type="button" class="btn btn-secondary" abpClose>
+        {{ '::Close' | abpLocalization }}
+      </button>
+      <button class="btn btn-primary" (click)="saveNoticiaToPlaylist()" [disabled]="form.invalid">
+        <i class="fa fa-check mr-1"></i>{{ '::Save' | abpLocalization }}
+      </button>
+    </ng-template>
+  </abp-modal>
+  
