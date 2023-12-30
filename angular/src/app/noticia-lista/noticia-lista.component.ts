@@ -44,7 +44,18 @@ export class NoticiaListaComponent implements OnInit {
   }
 
   eliminarNoticiaDeLista(noticia: NoticiaDto) {
-    // Lógica para eliminar la noticia de la lista
-    // Puedes utilizar el servicio listaService para realizar la eliminación
+    const idListaString = this.route.snapshot.paramMap.get('idLista');
+    const idLista = parseInt(idListaString, 10);
+
+    this.listaService.deleteNoticia(noticia.id)
+      .subscribe(
+        () => {
+          // Actualizar la lista de noticias después de eliminar
+          this.obtenerNoticiasLista();
+        },
+        (error) => {
+          console.error('Error al eliminar la noticia:', error);
+        }
+      );
   }
 }

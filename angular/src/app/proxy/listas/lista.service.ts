@@ -26,6 +26,14 @@ export class ListaService {
     { apiName: this.apiName,...config });
   
 
+  deleteNoticia = (id: number, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, NoticiaDto>({
+      method: 'DELETE',
+      url: `/api/app/lista/${id}/noticia`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   getLista = (id: number, config?: Partial<Rest.Config>) =>
     this.restService.request<any, ListaDto>({
       method: 'GET',

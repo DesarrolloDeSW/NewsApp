@@ -19,14 +19,18 @@ namespace NewsApp.Listas
         private readonly IListaRepository _listaRepository;
         private readonly ListaManager _listaManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IRepository<Noticia, int> _noticiaRepository;
 
         public ListaAppService(
             IListaRepository listaRepository,
-            ListaManager listaManager, UserManager<IdentityUser> userManager)
+            ListaManager listaManager, 
+            UserManager<IdentityUser> userManager,
+            IRepository<Noticia, int> noticiaRepository)
         {
             _listaRepository = listaRepository;
             _listaManager = listaManager;
             _userManager = userManager;
+            _noticiaRepository = noticiaRepository;
         }
 
         public async Task<ICollection<ListaDto>> GetListasAsync()
@@ -115,6 +119,12 @@ namespace NewsApp.Listas
         {
             var lista = await this.GetListaAsync(id);
             return lista.Listas;
+        }
+        public async Task<NoticiaDto> DeleteNoticiaAsync(int id)
+        {
+            var respuesta = await _noticiaRepository.GetAsync(id);
+            await _noticiaRepository.DeleteAsync(id);
+            return ObjectMapper.Map<Noticia, NoticiaDto>(respuesta);
         }
     }
 }
