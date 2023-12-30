@@ -15,7 +15,7 @@ namespace NewsApp.Listas
 
         public string Url { get; set; }
 
-        public string UrlImagen { get; set; }
+        public string? UrlImagen { get; set; }
 
         public string Contenido { get; set; }
 
