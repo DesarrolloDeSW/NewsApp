@@ -17,5 +17,6 @@ namespace NewsApp.Listas
         Task<ICollection<ListaDto>> GetListasUsuarioAsync();
         Task<ICollection<ListaDto>> GetSubListasListaAsync(int id);
         Task<ICollection<NoticiaDto>> GetNoticiasListaAsync(int id);
+        Task<NoticiaDto> DeleteNoticiaAsync(int id);
     }
 }

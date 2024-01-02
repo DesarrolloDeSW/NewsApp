@@ -3,6 +3,222 @@
     "app"
   ],
   "modules": {
+    "permissionManagement": {
+      "rootPath": "permissionManagement",
+      "remoteServiceName": "AbpPermissionManagement",
+      "controllers": {
+        "Volo.Abp.PermissionManagement.PermissionsController": {
+          "controllerName": "Permissions",
+          "controllerGroupName": "Permissions",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Volo.Abp.PermissionManagement.PermissionsController",
+          "interfaces": [
+            {
+              "type": "Volo.Abp.PermissionManagement.IPermissionAppService",
+              "name": "IPermissionAppService",
+              "methods": [
+                {
+                  "name": "GetAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "providerName",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "providerKey",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.PermissionManagement.GetPermissionListResultDto",
+                    "typeSimple": "Volo.Abp.PermissionManagement.GetPermissionListResultDto"
+                  }
+                },
+                {
+                  "name": "UpdateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "providerName",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "providerKey",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "input",
+                      "typeAsString": "Volo.Abp.PermissionManagement.UpdatePermissionsDto, Volo.Abp.PermissionManagement.Application.Contracts",
+                      "type": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
+                      "typeSimple": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "GetAsyncByProviderNameAndProviderKey": {
+              "uniqueName": "GetAsyncByProviderNameAndProviderKey",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/permission-management/permissions",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "providerName",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "providerKey",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "providerName",
+                  "name": "providerName",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "providerKey",
+                  "name": "providerKey",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.PermissionManagement.GetPermissionListResultDto",
+                "typeSimple": "Volo.Abp.PermissionManagement.GetPermissionListResultDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.PermissionManagement.IPermissionAppService"
+            },
+            "UpdateAsyncByProviderNameAndProviderKeyAndInput": {
+              "uniqueName": "UpdateAsyncByProviderNameAndProviderKeyAndInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/permission-management/permissions",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "providerName",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "providerKey",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Volo.Abp.PermissionManagement.UpdatePermissionsDto, Volo.Abp.PermissionManagement.Application.Contracts",
+                  "type": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
+                  "typeSimple": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "providerName",
+                  "name": "providerName",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "providerKey",
+                  "name": "providerKey",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
+                  "typeSimple": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.PermissionManagement.IPermissionAppService"
+            }
+          }
+        }
+      }
+    },
     "featureManagement": {
       "rootPath": "featureManagement",
       "remoteServiceName": "AbpFeatureManagement",
@@ -296,6 +512,497 @@
               },
               "allowAnonymous": null,
               "implementFrom": "Volo.Abp.FeatureManagement.IFeatureAppService"
+            }
+          }
+        }
+      }
+    },
+    "abp": {
+      "rootPath": "abp",
+      "remoteServiceName": "abp",
+      "controllers": {
+        "Pages.Abp.MultiTenancy.AbpTenantController": {
+          "controllerName": "AbpTenant",
+          "controllerGroupName": "AbpTenant",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Pages.Abp.MultiTenancy.AbpTenantController",
+          "interfaces": [
+            {
+              "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.IAbpTenantAppService",
+              "name": "IAbpTenantAppService",
+              "methods": [
+                {
+                  "name": "FindTenantByNameAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "name",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
+                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
+                  }
+                },
+                {
+                  "name": "FindTenantByIdAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
+                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "FindTenantByNameAsyncByName": {
+              "uniqueName": "FindTenantByNameAsyncByName",
+              "name": "FindTenantByNameAsync",
+              "httpMethod": "GET",
+              "url": "api/abp/multi-tenancy/tenants/by-name/{name}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "name",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "name",
+                  "name": "name",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
+                "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.IAbpTenantAppService"
+            },
+            "FindTenantByIdAsyncById": {
+              "uniqueName": "FindTenantByIdAsyncById",
+              "name": "FindTenantByIdAsync",
+              "httpMethod": "GET",
+              "url": "api/abp/multi-tenancy/tenants/by-id/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
+                "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.IAbpTenantAppService"
+            }
+          }
+        },
+        "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController": {
+          "controllerName": "AbpApplicationConfiguration",
+          "controllerGroupName": "AbpApplicationConfiguration",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController",
+          "interfaces": [
+            {
+              "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.IAbpApplicationConfigurationAppService",
+              "name": "IAbpApplicationConfigurationAppService",
+              "methods": [
+                {
+                  "name": "GetAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "options",
+                      "typeAsString": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions, Volo.Abp.AspNetCore.Mvc.Contracts",
+                      "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions",
+                      "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto",
+                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "GetAsyncByOptions": {
+              "uniqueName": "GetAsyncByOptions",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/abp/application-configuration",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "options",
+                  "typeAsString": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions, Volo.Abp.AspNetCore.Mvc.Contracts",
+                  "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions",
+                  "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "options",
+                  "name": "IncludeLocalizationResources",
+                  "jsonName": null,
+                  "type": "System.Boolean",
+                  "typeSimple": "boolean",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "options"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto",
+                "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.IAbpApplicationConfigurationAppService"
+            }
+          }
+        },
+        "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController": {
+          "controllerName": "AbpApplicationLocalization",
+          "controllerGroupName": "AbpApplicationLocalization",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController",
+          "interfaces": [
+            {
+              "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.IAbpApplicationLocalizationAppService",
+              "name": "IAbpApplicationLocalizationAppService",
+              "methods": [
+                {
+                  "name": "GetAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto, Volo.Abp.AspNetCore.Mvc.Contracts",
+                      "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto",
+                      "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto",
+                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "GetAsyncByInput": {
+              "uniqueName": "GetAsyncByInput",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/abp/application-localization",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto, Volo.Abp.AspNetCore.Mvc.Contracts",
+                  "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto",
+                  "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "CultureName",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "OnlyDynamics",
+                  "jsonName": null,
+                  "type": "System.Boolean",
+                  "typeSimple": "boolean",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto",
+                "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.IAbpApplicationLocalizationAppService"
+            }
+          }
+        },
+        "Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController": {
+          "controllerName": "AbpApiDefinition",
+          "controllerGroupName": "AbpApiDefinition",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController",
+          "interfaces": [],
+          "actions": {
+            "GetByModel": {
+              "uniqueName": "GetByModel",
+              "name": "Get",
+              "httpMethod": "GET",
+              "url": "api/abp/api-definition",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "model",
+                  "typeAsString": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto, Volo.Abp.Http",
+                  "type": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto",
+                  "typeSimple": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "model",
+                  "name": "IncludeTypes",
+                  "jsonName": null,
+                  "type": "System.Boolean",
+                  "typeSimple": "boolean",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "model"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel",
+                "typeSimple": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController"
+            }
+          }
+        }
+      }
+    },
+    "settingManagement": {
+      "rootPath": "settingManagement",
+      "remoteServiceName": "SettingManagement",
+      "controllers": {
+        "Volo.Abp.SettingManagement.EmailSettingsController": {
+          "controllerName": "EmailSettings",
+          "controllerGroupName": "EmailSettings",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Volo.Abp.SettingManagement.EmailSettingsController",
+          "interfaces": [
+            {
+              "type": "Volo.Abp.SettingManagement.IEmailSettingsAppService",
+              "name": "IEmailSettingsAppService",
+              "methods": [
+                {
+                  "name": "GetAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "Volo.Abp.SettingManagement.EmailSettingsDto",
+                    "typeSimple": "Volo.Abp.SettingManagement.EmailSettingsDto"
+                  }
+                },
+                {
+                  "name": "UpdateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto, Volo.Abp.SettingManagement.Application.Contracts",
+                      "type": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
+                      "typeSimple": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                },
+                {
+                  "name": "SendTestEmailAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "Volo.Abp.SettingManagement.SendTestEmailInput, Volo.Abp.SettingManagement.Application.Contracts",
+                      "type": "Volo.Abp.SettingManagement.SendTestEmailInput",
+                      "typeSimple": "Volo.Abp.SettingManagement.SendTestEmailInput",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "GetAsync": {
+              "uniqueName": "GetAsync",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/setting-management/emailing",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "Volo.Abp.SettingManagement.EmailSettingsDto",
+                "typeSimple": "Volo.Abp.SettingManagement.EmailSettingsDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.SettingManagement.IEmailSettingsAppService"
+            },
+            "UpdateAsyncByInput": {
+              "uniqueName": "UpdateAsyncByInput",
+              "name": "UpdateAsync",
+              "httpMethod": "POST",
+              "url": "api/setting-management/emailing",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto, Volo.Abp.SettingManagement.Application.Contracts",
+                  "type": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
+                  "typeSimple": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
+                  "typeSimple": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.SettingManagement.IEmailSettingsAppService"
+            },
+            "SendTestEmailAsyncByInput": {
+              "uniqueName": "SendTestEmailAsyncByInput",
+              "name": "SendTestEmailAsync",
+              "httpMethod": "POST",
+              "url": "api/setting-management/emailing/send-test-email",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Volo.Abp.SettingManagement.SendTestEmailInput, Volo.Abp.SettingManagement.Application.Contracts",
+                  "type": "Volo.Abp.SettingManagement.SendTestEmailInput",
+                  "typeSimple": "Volo.Abp.SettingManagement.SendTestEmailInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Volo.Abp.SettingManagement.SendTestEmailInput",
+                  "typeSimple": "Volo.Abp.SettingManagement.SendTestEmailInput",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.SettingManagement.IEmailSettingsAppService"
             }
           }
         }
@@ -785,1331 +1492,6 @@
               },
               "allowAnonymous": null,
               "implementFrom": "Volo.Abp.Account.IProfileAppService"
-            }
-          }
-        }
-      }
-    },
-    "abp": {
-      "rootPath": "abp",
-      "remoteServiceName": "abp",
-      "controllers": {
-        "Pages.Abp.MultiTenancy.AbpTenantController": {
-          "controllerName": "AbpTenant",
-          "controllerGroupName": "AbpTenant",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "Pages.Abp.MultiTenancy.AbpTenantController",
-          "interfaces": [
-            {
-              "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.IAbpTenantAppService",
-              "name": "IAbpTenantAppService",
-              "methods": [
-                {
-                  "name": "FindTenantByNameAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "name",
-                      "typeAsString": "System.String, System.Private.CoreLib",
-                      "type": "System.String",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
-                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
-                  }
-                },
-                {
-                  "name": "FindTenantByIdAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "id",
-                      "typeAsString": "System.Guid, System.Private.CoreLib",
-                      "type": "System.Guid",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
-                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
-                  }
-                }
-              ]
-            }
-          ],
-          "actions": {
-            "FindTenantByNameAsyncByName": {
-              "uniqueName": "FindTenantByNameAsyncByName",
-              "name": "FindTenantByNameAsync",
-              "httpMethod": "GET",
-              "url": "api/abp/multi-tenancy/tenants/by-name/{name}",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "name",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "name",
-                  "name": "name",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
-                "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.IAbpTenantAppService"
-            },
-            "FindTenantByIdAsyncById": {
-              "uniqueName": "FindTenantByIdAsyncById",
-              "name": "FindTenantByIdAsync",
-              "httpMethod": "GET",
-              "url": "api/abp/multi-tenancy/tenants/by-id/{id}",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
-                "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.IAbpTenantAppService"
-            }
-          }
-        },
-        "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController": {
-          "controllerName": "AbpApplicationConfiguration",
-          "controllerGroupName": "AbpApplicationConfiguration",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController",
-          "interfaces": [
-            {
-              "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.IAbpApplicationConfigurationAppService",
-              "name": "IAbpApplicationConfigurationAppService",
-              "methods": [
-                {
-                  "name": "GetAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "options",
-                      "typeAsString": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions, Volo.Abp.AspNetCore.Mvc.Contracts",
-                      "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions",
-                      "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto",
-                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto"
-                  }
-                }
-              ]
-            }
-          ],
-          "actions": {
-            "GetAsyncByOptions": {
-              "uniqueName": "GetAsyncByOptions",
-              "name": "GetAsync",
-              "httpMethod": "GET",
-              "url": "api/abp/application-configuration",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "options",
-                  "typeAsString": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions, Volo.Abp.AspNetCore.Mvc.Contracts",
-                  "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions",
-                  "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "options",
-                  "name": "IncludeLocalizationResources",
-                  "jsonName": null,
-                  "type": "System.Boolean",
-                  "typeSimple": "boolean",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "options"
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto",
-                "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.IAbpApplicationConfigurationAppService"
-            }
-          }
-        },
-        "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController": {
-          "controllerName": "AbpApplicationLocalization",
-          "controllerGroupName": "AbpApplicationLocalization",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController",
-          "interfaces": [
-            {
-              "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.IAbpApplicationLocalizationAppService",
-              "name": "IAbpApplicationLocalizationAppService",
-              "methods": [
-                {
-                  "name": "GetAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "input",
-                      "typeAsString": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto, Volo.Abp.AspNetCore.Mvc.Contracts",
-                      "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto",
-                      "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto",
-                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto"
-                  }
-                }
-              ]
-            }
-          ],
-          "actions": {
-            "GetAsyncByInput": {
-              "uniqueName": "GetAsyncByInput",
-              "name": "GetAsync",
-              "httpMethod": "GET",
-              "url": "api/abp/application-localization",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto, Volo.Abp.AspNetCore.Mvc.Contracts",
-                  "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto",
-                  "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "CultureName",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "OnlyDynamics",
-                  "jsonName": null,
-                  "type": "System.Boolean",
-                  "typeSimple": "boolean",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto",
-                "typeSimple": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.IAbpApplicationLocalizationAppService"
-            }
-          }
-        },
-        "Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController": {
-          "controllerName": "AbpApiDefinition",
-          "controllerGroupName": "AbpApiDefinition",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController",
-          "interfaces": [],
-          "actions": {
-            "GetByModel": {
-              "uniqueName": "GetByModel",
-              "name": "Get",
-              "httpMethod": "GET",
-              "url": "api/abp/api-definition",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "model",
-                  "typeAsString": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto, Volo.Abp.Http",
-                  "type": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto",
-                  "typeSimple": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "model",
-                  "name": "IncludeTypes",
-                  "jsonName": null,
-                  "type": "System.Boolean",
-                  "typeSimple": "boolean",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "model"
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel",
-                "typeSimple": "Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController"
-            }
-          }
-        }
-      }
-    },
-    "app": {
-      "rootPath": "app",
-      "remoteServiceName": "Default",
-      "controllers": {
-        "NewsApp.Listas.ListaAppService": {
-          "controllerName": "Lista",
-          "controllerGroupName": "Lista",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "NewsApp.Listas.ListaAppService",
-          "interfaces": [
-            {
-              "type": "NewsApp.Listas.IListaAppService",
-              "name": "IListaAppService",
-              "methods": [
-                {
-                  "name": "GetListasAsync",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
-                    "typeSimple": "[NewsApp.Listas.ListaDto]"
-                  }
-                },
-                {
-                  "name": "GetListaAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "id",
-                      "typeAsString": "System.Int32, System.Private.CoreLib",
-                      "type": "System.Int32",
-                      "typeSimple": "number",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "NewsApp.Listas.ListaDto",
-                    "typeSimple": "NewsApp.Listas.ListaDto"
-                  }
-                },
-                {
-                  "name": "PostListaAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "input",
-                      "typeAsString": "NewsApp.Listas.CreateListaDto, NewsApp.Application.Contracts",
-                      "type": "NewsApp.Listas.CreateListaDto",
-                      "typeSimple": "NewsApp.Listas.CreateListaDto",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "NewsApp.Listas.ListaDto",
-                    "typeSimple": "NewsApp.Listas.ListaDto"
-                  }
-                },
-                {
-                  "name": "UpdateListaAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "input",
-                      "typeAsString": "NewsApp.Listas.UpdateListaDto, NewsApp.Application.Contracts",
-                      "type": "NewsApp.Listas.UpdateListaDto",
-                      "typeSimple": "NewsApp.Listas.UpdateListaDto",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "NewsApp.Listas.ListaDto",
-                    "typeSimple": "NewsApp.Listas.ListaDto"
-                  }
-                },
-                {
-                  "name": "DeleteListaAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "id",
-                      "typeAsString": "System.Int32, System.Private.CoreLib",
-                      "type": "System.Int32",
-                      "typeSimple": "number",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "NewsApp.Listas.ListaDto",
-                    "typeSimple": "NewsApp.Listas.ListaDto"
-                  }
-                },
-                {
-                  "name": "AgregarNoticiaAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "input",
-                      "typeAsString": "NewsApp.Listas.AgregarNoticiaDto, NewsApp.Application.Contracts",
-                      "type": "NewsApp.Listas.AgregarNoticiaDto",
-                      "typeSimple": "NewsApp.Listas.AgregarNoticiaDto",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "NewsApp.Listas.ListaDto",
-                    "typeSimple": "NewsApp.Listas.ListaDto"
-                  }
-                },
-                {
-                  "name": "GetListasUsuarioAsync",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
-                    "typeSimple": "[NewsApp.Listas.ListaDto]"
-                  }
-                },
-                {
-                  "name": "GetSubListasListaAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "id",
-                      "typeAsString": "System.Int32, System.Private.CoreLib",
-                      "type": "System.Int32",
-                      "typeSimple": "number",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
-                    "typeSimple": "[NewsApp.Listas.ListaDto]"
-                  }
-                },
-                {
-                  "name": "GetNoticiasListaAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "id",
-                      "typeAsString": "System.Int32, System.Private.CoreLib",
-                      "type": "System.Int32",
-                      "typeSimple": "number",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.NoticiaDto>",
-                    "typeSimple": "[NewsApp.Listas.NoticiaDto]"
-                  }
-                }
-              ]
-            }
-          ],
-          "actions": {
-            "GetListasAsync": {
-              "uniqueName": "GetListasAsync",
-              "name": "GetListasAsync",
-              "httpMethod": "GET",
-              "url": "api/app/lista/as",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
-                "typeSimple": "[NewsApp.Listas.ListaDto]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Listas.IListaAppService"
-            },
-            "GetListaAsyncById": {
-              "uniqueName": "GetListaAsyncById",
-              "name": "GetListaAsync",
-              "httpMethod": "GET",
-              "url": "api/app/lista/{id}/a",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Int32, System.Private.CoreLib",
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "NewsApp.Listas.ListaDto",
-                "typeSimple": "NewsApp.Listas.ListaDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Listas.IListaAppService"
-            },
-            "PostListaAsyncByInput": {
-              "uniqueName": "PostListaAsyncByInput",
-              "name": "PostListaAsync",
-              "httpMethod": "POST",
-              "url": "api/app/lista/lista",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "NewsApp.Listas.CreateListaDto, NewsApp.Application.Contracts",
-                  "type": "NewsApp.Listas.CreateListaDto",
-                  "typeSimple": "NewsApp.Listas.CreateListaDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "NewsApp.Listas.CreateListaDto",
-                  "typeSimple": "NewsApp.Listas.CreateListaDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "NewsApp.Listas.ListaDto",
-                "typeSimple": "NewsApp.Listas.ListaDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Listas.IListaAppService"
-            },
-            "UpdateListaAsyncByInput": {
-              "uniqueName": "UpdateListaAsyncByInput",
-              "name": "UpdateListaAsync",
-              "httpMethod": "PUT",
-              "url": "api/app/lista/lista",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "NewsApp.Listas.UpdateListaDto, NewsApp.Application.Contracts",
-                  "type": "NewsApp.Listas.UpdateListaDto",
-                  "typeSimple": "NewsApp.Listas.UpdateListaDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "NewsApp.Listas.UpdateListaDto",
-                  "typeSimple": "NewsApp.Listas.UpdateListaDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "NewsApp.Listas.ListaDto",
-                "typeSimple": "NewsApp.Listas.ListaDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Listas.IListaAppService"
-            },
-            "DeleteListaAsyncById": {
-              "uniqueName": "DeleteListaAsyncById",
-              "name": "DeleteListaAsync",
-              "httpMethod": "DELETE",
-              "url": "api/app/lista/{id}/lista",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Int32, System.Private.CoreLib",
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "NewsApp.Listas.ListaDto",
-                "typeSimple": "NewsApp.Listas.ListaDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Listas.IListaAppService"
-            },
-            "AgregarNoticiaAsyncByInput": {
-              "uniqueName": "AgregarNoticiaAsyncByInput",
-              "name": "AgregarNoticiaAsync",
-              "httpMethod": "POST",
-              "url": "api/app/lista/agregar-noticia",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "NewsApp.Listas.AgregarNoticiaDto, NewsApp.Application.Contracts",
-                  "type": "NewsApp.Listas.AgregarNoticiaDto",
-                  "typeSimple": "NewsApp.Listas.AgregarNoticiaDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "NewsApp.Listas.AgregarNoticiaDto",
-                  "typeSimple": "NewsApp.Listas.AgregarNoticiaDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "NewsApp.Listas.ListaDto",
-                "typeSimple": "NewsApp.Listas.ListaDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Listas.IListaAppService"
-            },
-            "GetListasUsuarioAsync": {
-              "uniqueName": "GetListasUsuarioAsync",
-              "name": "GetListasUsuarioAsync",
-              "httpMethod": "GET",
-              "url": "api/app/lista/as-usuario",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
-                "typeSimple": "[NewsApp.Listas.ListaDto]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Listas.IListaAppService"
-            },
-            "GetNoticiasListaAsyncById": {
-              "uniqueName": "GetNoticiasListaAsyncById",
-              "name": "GetNoticiasListaAsync",
-              "httpMethod": "GET",
-              "url": "api/app/lista/{id}/noticias-lista",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Int32, System.Private.CoreLib",
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.NoticiaDto>",
-                "typeSimple": "[NewsApp.Listas.NoticiaDto]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Listas.IListaAppService"
-            },
-            "GetSubListasListaAsyncById": {
-              "uniqueName": "GetSubListasListaAsyncById",
-              "name": "GetSubListasListaAsync",
-              "httpMethod": "GET",
-              "url": "api/app/lista/{id}/sub-listas-lista",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Int32, System.Private.CoreLib",
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
-                "typeSimple": "[NewsApp.Listas.ListaDto]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Listas.IListaAppService"
-            }
-          }
-        },
-        "NewsApp.Articulos.ArticulosAppService": {
-          "controllerName": "Articulos",
-          "controllerGroupName": "Articulos",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "NewsApp.Articulos.ArticulosAppService",
-          "interfaces": [
-            {
-              "type": "NewsApp.Articulos.IArticulosAppService",
-              "name": "IArticulosAppService",
-              "methods": [
-                {
-                  "name": "GetBusquedaApiNewsAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "cadena",
-                      "typeAsString": "System.String, System.Private.CoreLib",
-                      "type": "System.String",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    },
-                    {
-                      "name": "idioma",
-                      "typeAsString": "System.Nullable`1[[NewsApp.Articulos.CodigosIdiomas, NewsApp.Domain.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib",
-                      "type": "NewsApp.Articulos.CodigosIdiomas?",
-                      "typeSimple": "NewsApp.Articulos.CodigosIdiomas?",
-                      "isOptional": false,
-                      "defaultValue": null
-                    },
-                    {
-                      "name": "ordenarPor",
-                      "typeAsString": "System.Nullable`1[[NewsApp.Articulos.OrdenBusqueda, NewsApp.Domain.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib",
-                      "type": "NewsApp.Articulos.OrdenBusqueda?",
-                      "typeSimple": "NewsApp.Articulos.OrdenBusqueda?",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.NoticiaDto>",
-                    "typeSimple": "[NewsApp.Listas.NoticiaDto]"
-                  }
-                }
-              ]
-            }
-          ],
-          "actions": {
-            "GetBusquedaApiNewsAsyncByCadenaAndIdiomaAndOrdenarPor": {
-              "uniqueName": "GetBusquedaApiNewsAsyncByCadenaAndIdiomaAndOrdenarPor",
-              "name": "GetBusquedaApiNewsAsync",
-              "httpMethod": "GET",
-              "url": "api/app/articulos/busqueda-api-news",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "cadena",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                },
-                {
-                  "name": "idioma",
-                  "typeAsString": "System.Nullable`1[[NewsApp.Articulos.CodigosIdiomas, NewsApp.Domain.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib",
-                  "type": "NewsApp.Articulos.CodigosIdiomas?",
-                  "typeSimple": "NewsApp.Articulos.CodigosIdiomas?",
-                  "isOptional": false,
-                  "defaultValue": null
-                },
-                {
-                  "name": "ordenarPor",
-                  "typeAsString": "System.Nullable`1[[NewsApp.Articulos.OrdenBusqueda, NewsApp.Domain.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib",
-                  "type": "NewsApp.Articulos.OrdenBusqueda?",
-                  "typeSimple": "NewsApp.Articulos.OrdenBusqueda?",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "cadena",
-                  "name": "cadena",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                },
-                {
-                  "nameOnMethod": "idioma",
-                  "name": "idioma",
-                  "jsonName": null,
-                  "type": "NewsApp.Articulos.CodigosIdiomas?",
-                  "typeSimple": "NewsApp.Articulos.CodigosIdiomas?",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                },
-                {
-                  "nameOnMethod": "ordenarPor",
-                  "name": "ordenarPor",
-                  "jsonName": null,
-                  "type": "NewsApp.Articulos.OrdenBusqueda?",
-                  "typeSimple": "NewsApp.Articulos.OrdenBusqueda?",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.NoticiaDto>",
-                "typeSimple": "[NewsApp.Listas.NoticiaDto]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Articulos.IArticulosAppService"
-            }
-          }
-        },
-        "NewsApp.Articulos.MonitoreoAPIAppService": {
-          "controllerName": "MonitoreoAPI",
-          "controllerGroupName": "MonitoreoAPI",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "NewsApp.Articulos.MonitoreoAPIAppService",
-          "interfaces": [
-            {
-              "type": "NewsApp.Articulos.IMonitoreoAPIAppService",
-              "name": "IMonitoreoAPIAppService",
-              "methods": [
-                {
-                  "name": "GetTiempoPromedioAsync",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "System.TimeSpan",
-                    "typeSimple": "string"
-                  }
-                },
-                {
-                  "name": "GetCantidadTotalAccesosAsync",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "System.Int64",
-                    "typeSimple": "number"
-                  }
-                },
-                {
-                  "name": "GetPorcentajeExitoAsync",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "System.Single",
-                    "typeSimple": "number"
-                  }
-                },
-                {
-                  "name": "GetCantidadAccesosUsuarioAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "usuarioId",
-                      "typeAsString": "System.Guid, System.Private.CoreLib",
-                      "type": "System.Guid",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "System.Int64",
-                    "typeSimple": "number"
-                  }
-                },
-                {
-                  "name": "GetAccesosAPIAsync",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "System.Collections.Generic.ICollection<NewsApp.Articulos.AccesoAPIDto>",
-                    "typeSimple": "[NewsApp.Articulos.AccesoAPIDto]"
-                  }
-                }
-              ]
-            }
-          ],
-          "actions": {
-            "GetTiempoPromedioAsync": {
-              "uniqueName": "GetTiempoPromedioAsync",
-              "name": "GetTiempoPromedioAsync",
-              "httpMethod": "GET",
-              "url": "api/app/monitoreo-aPI/tiempo-promedio",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.TimeSpan",
-                "typeSimple": "string"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
-            },
-            "GetCantidadTotalAccesosAsync": {
-              "uniqueName": "GetCantidadTotalAccesosAsync",
-              "name": "GetCantidadTotalAccesosAsync",
-              "httpMethod": "GET",
-              "url": "api/app/monitoreo-aPI/cantidad-total-accesos",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.Int64",
-                "typeSimple": "number"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
-            },
-            "GetPorcentajeExitoAsync": {
-              "uniqueName": "GetPorcentajeExitoAsync",
-              "name": "GetPorcentajeExitoAsync",
-              "httpMethod": "GET",
-              "url": "api/app/monitoreo-aPI/porcentaje-exito",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.Single",
-                "typeSimple": "number"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
-            },
-            "GetCantidadAccesosUsuarioAsyncByUsuarioId": {
-              "uniqueName": "GetCantidadAccesosUsuarioAsyncByUsuarioId",
-              "name": "GetCantidadAccesosUsuarioAsync",
-              "httpMethod": "GET",
-              "url": "api/app/monitoreo-aPI/cantidad-accesos-usuario/{usuarioId}",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "usuarioId",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "usuarioId",
-                  "name": "usuarioId",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Int64",
-                "typeSimple": "number"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
-            },
-            "GetAccesosAPIAsync": {
-              "uniqueName": "GetAccesosAPIAsync",
-              "name": "GetAccesosAPIAsync",
-              "httpMethod": "GET",
-              "url": "api/app/monitoreo-aPI/accesos-aPI",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.Collections.Generic.ICollection<NewsApp.Articulos.AccesoAPIDto>",
-                "typeSimple": "[NewsApp.Articulos.AccesoAPIDto]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
-            }
-          }
-        },
-        "NewsApp.Alertas.AlertaAppService": {
-          "controllerName": "Alerta",
-          "controllerGroupName": "Alerta",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "NewsApp.Alertas.AlertaAppService",
-          "interfaces": [
-            {
-              "type": "NewsApp.Alertas.IAlertaAppService",
-              "name": "IAlertaAppService",
-              "methods": [
-                {
-                  "name": "PostAlertaAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "cadenaBusqueda",
-                      "typeAsString": "System.String, System.Private.CoreLib",
-                      "type": "System.String",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "NewsApp.Alertas.AlertaDto",
-                    "typeSimple": "NewsApp.Alertas.AlertaDto"
-                  }
-                },
-                {
-                  "name": "PostNotificacionAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "alertaId",
-                      "typeAsString": "System.Int32, System.Private.CoreLib",
-                      "type": "System.Int32",
-                      "typeSimple": "number",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "NewsApp.Alertas.NotificacionDto",
-                    "typeSimple": "NewsApp.Alertas.NotificacionDto"
-                  }
-                },
-                {
-                  "name": "GetNotificacionesAsync",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "System.Collections.Generic.ICollection<NewsApp.Alertas.NotificacionDto>",
-                    "typeSimple": "[NewsApp.Alertas.NotificacionDto]"
-                  }
-                },
-                {
-                  "name": "GetAlertasAsync",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "System.Collections.Generic.ICollection<NewsApp.Alertas.AlertaDto>",
-                    "typeSimple": "[NewsApp.Alertas.AlertaDto]"
-                  }
-                },
-                {
-                  "name": "MarcarNotificacionesComoLeidas",
-                  "parametersOnMethod": [],
-                  "returnValue": {
-                    "type": "System.Void",
-                    "typeSimple": "System.Void"
-                  }
-                },
-                {
-                  "name": "GestionarAlertaAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "alertaId",
-                      "typeAsString": "System.Int32, System.Private.CoreLib",
-                      "type": "System.Int32",
-                      "typeSimple": "number",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "System.Void",
-                    "typeSimple": "System.Void"
-                  }
-                }
-              ]
-            }
-          ],
-          "actions": {
-            "PostAlertaAsyncByCadenaBusqueda": {
-              "uniqueName": "PostAlertaAsyncByCadenaBusqueda",
-              "name": "PostAlertaAsync",
-              "httpMethod": "POST",
-              "url": "api/app/alerta/alerta",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "cadenaBusqueda",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "cadenaBusqueda",
-                  "name": "cadenaBusqueda",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "NewsApp.Alertas.AlertaDto",
-                "typeSimple": "NewsApp.Alertas.AlertaDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
-            },
-            "PostNotificacionAsyncByAlertaId": {
-              "uniqueName": "PostNotificacionAsyncByAlertaId",
-              "name": "PostNotificacionAsync",
-              "httpMethod": "POST",
-              "url": "api/app/alerta/notificacion/{alertaId}",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "alertaId",
-                  "typeAsString": "System.Int32, System.Private.CoreLib",
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "alertaId",
-                  "name": "alertaId",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "NewsApp.Alertas.NotificacionDto",
-                "typeSimple": "NewsApp.Alertas.NotificacionDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
-            },
-            "GetNotificacionesAsync": {
-              "uniqueName": "GetNotificacionesAsync",
-              "name": "GetNotificacionesAsync",
-              "httpMethod": "GET",
-              "url": "api/app/alerta/notificaciones",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.Collections.Generic.ICollection<NewsApp.Alertas.NotificacionDto>",
-                "typeSimple": "[NewsApp.Alertas.NotificacionDto]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
-            },
-            "GetAlertasAsync": {
-              "uniqueName": "GetAlertasAsync",
-              "name": "GetAlertasAsync",
-              "httpMethod": "GET",
-              "url": "api/app/alerta/alertas",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.Collections.Generic.ICollection<NewsApp.Alertas.AlertaDto>",
-                "typeSimple": "[NewsApp.Alertas.AlertaDto]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
-            },
-            "MarcarNotificacionesComoLeidas": {
-              "uniqueName": "MarcarNotificacionesComoLeidas",
-              "name": "MarcarNotificacionesComoLeidas",
-              "httpMethod": "POST",
-              "url": "api/app/alerta/marcar-notificaciones-como-leidas",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
-            },
-            "GestionarAlertaAsyncByAlertaId": {
-              "uniqueName": "GestionarAlertaAsyncByAlertaId",
-              "name": "GestionarAlertaAsync",
-              "httpMethod": "POST",
-              "url": "api/app/alerta/gestionar-alerta/{alertaId}",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "alertaId",
-                  "typeAsString": "System.Int32, System.Private.CoreLib",
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "alertaId",
-                  "name": "alertaId",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
             }
           }
         }
@@ -2663,311 +2045,242 @@
         }
       }
     },
-    "permissionManagement": {
-      "rootPath": "permissionManagement",
-      "remoteServiceName": "AbpPermissionManagement",
+    "app": {
+      "rootPath": "app",
+      "remoteServiceName": "Default",
       "controllers": {
-        "Volo.Abp.PermissionManagement.PermissionsController": {
-          "controllerName": "Permissions",
-          "controllerGroupName": "Permissions",
+        "NewsApp.Listas.ListaAppService": {
+          "controllerName": "Lista",
+          "controllerGroupName": "Lista",
           "isRemoteService": true,
           "isIntegrationService": false,
           "apiVersion": null,
-          "type": "Volo.Abp.PermissionManagement.PermissionsController",
+          "type": "NewsApp.Listas.ListaAppService",
           "interfaces": [
             {
-              "type": "Volo.Abp.PermissionManagement.IPermissionAppService",
-              "name": "IPermissionAppService",
+              "type": "NewsApp.Listas.IListaAppService",
+              "name": "IListaAppService",
               "methods": [
                 {
-                  "name": "GetAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "providerName",
-                      "typeAsString": "System.String, System.Private.CoreLib",
-                      "type": "System.String",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    },
-                    {
-                      "name": "providerKey",
-                      "typeAsString": "System.String, System.Private.CoreLib",
-                      "type": "System.String",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "Volo.Abp.PermissionManagement.GetPermissionListResultDto",
-                    "typeSimple": "Volo.Abp.PermissionManagement.GetPermissionListResultDto"
-                  }
-                },
-                {
-                  "name": "UpdateAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "providerName",
-                      "typeAsString": "System.String, System.Private.CoreLib",
-                      "type": "System.String",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    },
-                    {
-                      "name": "providerKey",
-                      "typeAsString": "System.String, System.Private.CoreLib",
-                      "type": "System.String",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    },
-                    {
-                      "name": "input",
-                      "typeAsString": "Volo.Abp.PermissionManagement.UpdatePermissionsDto, Volo.Abp.PermissionManagement.Application.Contracts",
-                      "type": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
-                      "typeSimple": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "System.Void",
-                    "typeSimple": "System.Void"
-                  }
-                }
-              ]
-            }
-          ],
-          "actions": {
-            "GetAsyncByProviderNameAndProviderKey": {
-              "uniqueName": "GetAsyncByProviderNameAndProviderKey",
-              "name": "GetAsync",
-              "httpMethod": "GET",
-              "url": "api/permission-management/permissions",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "providerName",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                },
-                {
-                  "name": "providerKey",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "providerName",
-                  "name": "providerName",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                },
-                {
-                  "nameOnMethod": "providerKey",
-                  "name": "providerKey",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.PermissionManagement.GetPermissionListResultDto",
-                "typeSimple": "Volo.Abp.PermissionManagement.GetPermissionListResultDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.PermissionManagement.IPermissionAppService"
-            },
-            "UpdateAsyncByProviderNameAndProviderKeyAndInput": {
-              "uniqueName": "UpdateAsyncByProviderNameAndProviderKeyAndInput",
-              "name": "UpdateAsync",
-              "httpMethod": "PUT",
-              "url": "api/permission-management/permissions",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "providerName",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                },
-                {
-                  "name": "providerKey",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                },
-                {
-                  "name": "input",
-                  "typeAsString": "Volo.Abp.PermissionManagement.UpdatePermissionsDto, Volo.Abp.PermissionManagement.Application.Contracts",
-                  "type": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
-                  "typeSimple": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "providerName",
-                  "name": "providerName",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                },
-                {
-                  "nameOnMethod": "providerKey",
-                  "name": "providerKey",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
-                  "typeSimple": "Volo.Abp.PermissionManagement.UpdatePermissionsDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.PermissionManagement.IPermissionAppService"
-            }
-          }
-        }
-      }
-    },
-    "settingManagement": {
-      "rootPath": "settingManagement",
-      "remoteServiceName": "SettingManagement",
-      "controllers": {
-        "Volo.Abp.SettingManagement.EmailSettingsController": {
-          "controllerName": "EmailSettings",
-          "controllerGroupName": "EmailSettings",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "Volo.Abp.SettingManagement.EmailSettingsController",
-          "interfaces": [
-            {
-              "type": "Volo.Abp.SettingManagement.IEmailSettingsAppService",
-              "name": "IEmailSettingsAppService",
-              "methods": [
-                {
-                  "name": "GetAsync",
+                  "name": "GetListasAsync",
                   "parametersOnMethod": [],
                   "returnValue": {
-                    "type": "Volo.Abp.SettingManagement.EmailSettingsDto",
-                    "typeSimple": "Volo.Abp.SettingManagement.EmailSettingsDto"
+                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
+                    "typeSimple": "[NewsApp.Listas.ListaDto]"
                   }
                 },
                 {
-                  "name": "UpdateAsync",
+                  "name": "GetListaAsync",
                   "parametersOnMethod": [
                     {
-                      "name": "input",
-                      "typeAsString": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto, Volo.Abp.SettingManagement.Application.Contracts",
-                      "type": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
-                      "typeSimple": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
+                      "name": "id",
+                      "typeAsString": "System.Int32, System.Private.CoreLib",
+                      "type": "System.Int32",
+                      "typeSimple": "number",
                       "isOptional": false,
                       "defaultValue": null
                     }
                   ],
                   "returnValue": {
-                    "type": "System.Void",
-                    "typeSimple": "System.Void"
+                    "type": "NewsApp.Listas.ListaDto",
+                    "typeSimple": "NewsApp.Listas.ListaDto"
                   }
                 },
                 {
-                  "name": "SendTestEmailAsync",
+                  "name": "PostListaAsync",
                   "parametersOnMethod": [
                     {
                       "name": "input",
-                      "typeAsString": "Volo.Abp.SettingManagement.SendTestEmailInput, Volo.Abp.SettingManagement.Application.Contracts",
-                      "type": "Volo.Abp.SettingManagement.SendTestEmailInput",
-                      "typeSimple": "Volo.Abp.SettingManagement.SendTestEmailInput",
+                      "typeAsString": "NewsApp.Listas.CreateListaDto, NewsApp.Application.Contracts",
+                      "type": "NewsApp.Listas.CreateListaDto",
+                      "typeSimple": "NewsApp.Listas.CreateListaDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
                   ],
                   "returnValue": {
-                    "type": "System.Void",
-                    "typeSimple": "System.Void"
+                    "type": "NewsApp.Listas.ListaDto",
+                    "typeSimple": "NewsApp.Listas.ListaDto"
+                  }
+                },
+                {
+                  "name": "UpdateListaAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "NewsApp.Listas.UpdateListaDto, NewsApp.Application.Contracts",
+                      "type": "NewsApp.Listas.UpdateListaDto",
+                      "typeSimple": "NewsApp.Listas.UpdateListaDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "NewsApp.Listas.ListaDto",
+                    "typeSimple": "NewsApp.Listas.ListaDto"
+                  }
+                },
+                {
+                  "name": "DeleteListaAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Int32, System.Private.CoreLib",
+                      "type": "System.Int32",
+                      "typeSimple": "number",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "NewsApp.Listas.ListaDto",
+                    "typeSimple": "NewsApp.Listas.ListaDto"
+                  }
+                },
+                {
+                  "name": "AgregarNoticiaAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "NewsApp.Listas.AgregarNoticiaDto, NewsApp.Application.Contracts",
+                      "type": "NewsApp.Listas.AgregarNoticiaDto",
+                      "typeSimple": "NewsApp.Listas.AgregarNoticiaDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "NewsApp.Listas.ListaDto",
+                    "typeSimple": "NewsApp.Listas.ListaDto"
+                  }
+                },
+                {
+                  "name": "GetListasUsuarioAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
+                    "typeSimple": "[NewsApp.Listas.ListaDto]"
+                  }
+                },
+                {
+                  "name": "GetSubListasListaAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Int32, System.Private.CoreLib",
+                      "type": "System.Int32",
+                      "typeSimple": "number",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
+                    "typeSimple": "[NewsApp.Listas.ListaDto]"
+                  }
+                },
+                {
+                  "name": "GetNoticiasListaAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Int32, System.Private.CoreLib",
+                      "type": "System.Int32",
+                      "typeSimple": "number",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.NoticiaDto>",
+                    "typeSimple": "[NewsApp.Listas.NoticiaDto]"
+                  }
+                },
+                {
+                  "name": "DeleteNoticiaAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Int32, System.Private.CoreLib",
+                      "type": "System.Int32",
+                      "typeSimple": "number",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "NewsApp.Listas.NoticiaDto",
+                    "typeSimple": "NewsApp.Listas.NoticiaDto"
                   }
                 }
               ]
             }
           ],
           "actions": {
-            "GetAsync": {
-              "uniqueName": "GetAsync",
-              "name": "GetAsync",
+            "GetListasAsync": {
+              "uniqueName": "GetListasAsync",
+              "name": "GetListasAsync",
               "httpMethod": "GET",
-              "url": "api/setting-management/emailing",
+              "url": "api/app/lista/as",
               "supportedVersions": [],
               "parametersOnMethod": [],
               "parameters": [],
               "returnValue": {
-                "type": "Volo.Abp.SettingManagement.EmailSettingsDto",
-                "typeSimple": "Volo.Abp.SettingManagement.EmailSettingsDto"
+                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
+                "typeSimple": "[NewsApp.Listas.ListaDto]"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.SettingManagement.IEmailSettingsAppService"
+              "implementFrom": "NewsApp.Listas.IListaAppService"
             },
-            "UpdateAsyncByInput": {
-              "uniqueName": "UpdateAsyncByInput",
-              "name": "UpdateAsync",
+            "GetListaAsyncById": {
+              "uniqueName": "GetListaAsyncById",
+              "name": "GetListaAsync",
+              "httpMethod": "GET",
+              "url": "api/app/lista/{id}/a",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "NewsApp.Listas.ListaDto",
+                "typeSimple": "NewsApp.Listas.ListaDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Listas.IListaAppService"
+            },
+            "PostListaAsyncByInput": {
+              "uniqueName": "PostListaAsyncByInput",
+              "name": "PostListaAsync",
               "httpMethod": "POST",
-              "url": "api/setting-management/emailing",
+              "url": "api/app/lista/lista",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto, Volo.Abp.SettingManagement.Application.Contracts",
-                  "type": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
-                  "typeSimple": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
+                  "typeAsString": "NewsApp.Listas.CreateListaDto, NewsApp.Application.Contracts",
+                  "type": "NewsApp.Listas.CreateListaDto",
+                  "typeSimple": "NewsApp.Listas.CreateListaDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -2977,8 +2290,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
-                  "typeSimple": "Volo.Abp.SettingManagement.UpdateEmailSettingsDto",
+                  "type": "NewsApp.Listas.CreateListaDto",
+                  "typeSimple": "NewsApp.Listas.CreateListaDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -2987,24 +2300,24 @@
                 }
               ],
               "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
+                "type": "NewsApp.Listas.ListaDto",
+                "typeSimple": "NewsApp.Listas.ListaDto"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.SettingManagement.IEmailSettingsAppService"
+              "implementFrom": "NewsApp.Listas.IListaAppService"
             },
-            "SendTestEmailAsyncByInput": {
-              "uniqueName": "SendTestEmailAsyncByInput",
-              "name": "SendTestEmailAsync",
-              "httpMethod": "POST",
-              "url": "api/setting-management/emailing/send-test-email",
+            "UpdateListaAsyncByInput": {
+              "uniqueName": "UpdateListaAsyncByInput",
+              "name": "UpdateListaAsync",
+              "httpMethod": "PUT",
+              "url": "api/app/lista/lista",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "Volo.Abp.SettingManagement.SendTestEmailInput, Volo.Abp.SettingManagement.Application.Contracts",
-                  "type": "Volo.Abp.SettingManagement.SendTestEmailInput",
-                  "typeSimple": "Volo.Abp.SettingManagement.SendTestEmailInput",
+                  "typeAsString": "NewsApp.Listas.UpdateListaDto, NewsApp.Application.Contracts",
+                  "type": "NewsApp.Listas.UpdateListaDto",
+                  "typeSimple": "NewsApp.Listas.UpdateListaDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -3014,8 +2327,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "Volo.Abp.SettingManagement.SendTestEmailInput",
-                  "typeSimple": "Volo.Abp.SettingManagement.SendTestEmailInput",
+                  "type": "NewsApp.Listas.UpdateListaDto",
+                  "typeSimple": "NewsApp.Listas.UpdateListaDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -3024,11 +2337,752 @@
                 }
               ],
               "returnValue": {
+                "type": "NewsApp.Listas.ListaDto",
+                "typeSimple": "NewsApp.Listas.ListaDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Listas.IListaAppService"
+            },
+            "DeleteListaAsyncById": {
+              "uniqueName": "DeleteListaAsyncById",
+              "name": "DeleteListaAsync",
+              "httpMethod": "DELETE",
+              "url": "api/app/lista/{id}/lista",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "NewsApp.Listas.ListaDto",
+                "typeSimple": "NewsApp.Listas.ListaDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Listas.IListaAppService"
+            },
+            "AgregarNoticiaAsyncByInput": {
+              "uniqueName": "AgregarNoticiaAsyncByInput",
+              "name": "AgregarNoticiaAsync",
+              "httpMethod": "POST",
+              "url": "api/app/lista/agregar-noticia",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "NewsApp.Listas.AgregarNoticiaDto, NewsApp.Application.Contracts",
+                  "type": "NewsApp.Listas.AgregarNoticiaDto",
+                  "typeSimple": "NewsApp.Listas.AgregarNoticiaDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "NewsApp.Listas.AgregarNoticiaDto",
+                  "typeSimple": "NewsApp.Listas.AgregarNoticiaDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "NewsApp.Listas.ListaDto",
+                "typeSimple": "NewsApp.Listas.ListaDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Listas.IListaAppService"
+            },
+            "GetListasUsuarioAsync": {
+              "uniqueName": "GetListasUsuarioAsync",
+              "name": "GetListasUsuarioAsync",
+              "httpMethod": "GET",
+              "url": "api/app/lista/as-usuario",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
+                "typeSimple": "[NewsApp.Listas.ListaDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Listas.IListaAppService"
+            },
+            "GetNoticiasListaAsyncById": {
+              "uniqueName": "GetNoticiasListaAsyncById",
+              "name": "GetNoticiasListaAsync",
+              "httpMethod": "GET",
+              "url": "api/app/lista/{id}/noticias-lista",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.NoticiaDto>",
+                "typeSimple": "[NewsApp.Listas.NoticiaDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Listas.IListaAppService"
+            },
+            "GetSubListasListaAsyncById": {
+              "uniqueName": "GetSubListasListaAsyncById",
+              "name": "GetSubListasListaAsync",
+              "httpMethod": "GET",
+              "url": "api/app/lista/{id}/sub-listas-lista",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.ListaDto>",
+                "typeSimple": "[NewsApp.Listas.ListaDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Listas.IListaAppService"
+            },
+            "DeleteNoticiaAsyncById": {
+              "uniqueName": "DeleteNoticiaAsyncById",
+              "name": "DeleteNoticiaAsync",
+              "httpMethod": "DELETE",
+              "url": "api/app/lista/{id}/noticia",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "NewsApp.Listas.NoticiaDto",
+                "typeSimple": "NewsApp.Listas.NoticiaDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Listas.IListaAppService"
+            }
+          }
+        },
+        "NewsApp.Articulos.ArticulosAppService": {
+          "controllerName": "Articulos",
+          "controllerGroupName": "Articulos",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "NewsApp.Articulos.ArticulosAppService",
+          "interfaces": [
+            {
+              "type": "NewsApp.Articulos.IArticulosAppService",
+              "name": "IArticulosAppService",
+              "methods": [
+                {
+                  "name": "GetBusquedaApiNewsAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "cadena",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "idioma",
+                      "typeAsString": "System.Nullable`1[[NewsApp.Articulos.CodigosIdiomas, NewsApp.Domain.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib",
+                      "type": "NewsApp.Articulos.CodigosIdiomas?",
+                      "typeSimple": "NewsApp.Articulos.CodigosIdiomas?",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "ordenarPor",
+                      "typeAsString": "System.Nullable`1[[NewsApp.Articulos.OrdenBusqueda, NewsApp.Domain.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib",
+                      "type": "NewsApp.Articulos.OrdenBusqueda?",
+                      "typeSimple": "NewsApp.Articulos.OrdenBusqueda?",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.ICollection<NewsApp.Listas.NoticiaDto>",
+                    "typeSimple": "[NewsApp.Listas.NoticiaDto]"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "GetBusquedaApiNewsAsyncByCadenaAndIdiomaAndOrdenarPor": {
+              "uniqueName": "GetBusquedaApiNewsAsyncByCadenaAndIdiomaAndOrdenarPor",
+              "name": "GetBusquedaApiNewsAsync",
+              "httpMethod": "GET",
+              "url": "api/app/articulos/busqueda-api-news",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "cadena",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "idioma",
+                  "typeAsString": "System.Nullable`1[[NewsApp.Articulos.CodigosIdiomas, NewsApp.Domain.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib",
+                  "type": "NewsApp.Articulos.CodigosIdiomas?",
+                  "typeSimple": "NewsApp.Articulos.CodigosIdiomas?",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "ordenarPor",
+                  "typeAsString": "System.Nullable`1[[NewsApp.Articulos.OrdenBusqueda, NewsApp.Domain.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib",
+                  "type": "NewsApp.Articulos.OrdenBusqueda?",
+                  "typeSimple": "NewsApp.Articulos.OrdenBusqueda?",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "cadena",
+                  "name": "cadena",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "idioma",
+                  "name": "idioma",
+                  "jsonName": null,
+                  "type": "NewsApp.Articulos.CodigosIdiomas?",
+                  "typeSimple": "NewsApp.Articulos.CodigosIdiomas?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "ordenarPor",
+                  "name": "ordenarPor",
+                  "jsonName": null,
+                  "type": "NewsApp.Articulos.OrdenBusqueda?",
+                  "typeSimple": "NewsApp.Articulos.OrdenBusqueda?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.ICollection<NewsApp.Listas.NoticiaDto>",
+                "typeSimple": "[NewsApp.Listas.NoticiaDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Articulos.IArticulosAppService"
+            }
+          }
+        },
+        "NewsApp.Articulos.MonitoreoAPIAppService": {
+          "controllerName": "MonitoreoAPI",
+          "controllerGroupName": "MonitoreoAPI",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "NewsApp.Articulos.MonitoreoAPIAppService",
+          "interfaces": [
+            {
+              "type": "NewsApp.Articulos.IMonitoreoAPIAppService",
+              "name": "IMonitoreoAPIAppService",
+              "methods": [
+                {
+                  "name": "GetTiempoPromedioAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.TimeSpan",
+                    "typeSimple": "string"
+                  }
+                },
+                {
+                  "name": "GetCantidadTotalAccesosAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Int64",
+                    "typeSimple": "number"
+                  }
+                },
+                {
+                  "name": "GetPorcentajeExitoAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Single",
+                    "typeSimple": "number"
+                  }
+                },
+                {
+                  "name": "GetCantidadAccesosUsuarioAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "usuarioId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Int64",
+                    "typeSimple": "number"
+                  }
+                },
+                {
+                  "name": "GetAccesosAPIAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.ICollection<NewsApp.Articulos.AccesoAPIDto>",
+                    "typeSimple": "[NewsApp.Articulos.AccesoAPIDto]"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "GetTiempoPromedioAsync": {
+              "uniqueName": "GetTiempoPromedioAsync",
+              "name": "GetTiempoPromedioAsync",
+              "httpMethod": "GET",
+              "url": "api/app/monitoreo-aPI/tiempo-promedio",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.TimeSpan",
+                "typeSimple": "string"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
+            },
+            "GetCantidadTotalAccesosAsync": {
+              "uniqueName": "GetCantidadTotalAccesosAsync",
+              "name": "GetCantidadTotalAccesosAsync",
+              "httpMethod": "GET",
+              "url": "api/app/monitoreo-aPI/cantidad-total-accesos",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Int64",
+                "typeSimple": "number"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
+            },
+            "GetPorcentajeExitoAsync": {
+              "uniqueName": "GetPorcentajeExitoAsync",
+              "name": "GetPorcentajeExitoAsync",
+              "httpMethod": "GET",
+              "url": "api/app/monitoreo-aPI/porcentaje-exito",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Single",
+                "typeSimple": "number"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
+            },
+            "GetCantidadAccesosUsuarioAsyncByUsuarioId": {
+              "uniqueName": "GetCantidadAccesosUsuarioAsyncByUsuarioId",
+              "name": "GetCantidadAccesosUsuarioAsync",
+              "httpMethod": "GET",
+              "url": "api/app/monitoreo-aPI/cantidad-accesos-usuario/{usuarioId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "usuarioId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "usuarioId",
+                  "name": "usuarioId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Int64",
+                "typeSimple": "number"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
+            },
+            "GetAccesosAPIAsync": {
+              "uniqueName": "GetAccesosAPIAsync",
+              "name": "GetAccesosAPIAsync",
+              "httpMethod": "GET",
+              "url": "api/app/monitoreo-aPI/accesos-aPI",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.ICollection<NewsApp.Articulos.AccesoAPIDto>",
+                "typeSimple": "[NewsApp.Articulos.AccesoAPIDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Articulos.IMonitoreoAPIAppService"
+            }
+          }
+        },
+        "NewsApp.Alertas.AlertaAppService": {
+          "controllerName": "Alerta",
+          "controllerGroupName": "Alerta",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "NewsApp.Alertas.AlertaAppService",
+          "interfaces": [
+            {
+              "type": "NewsApp.Alertas.IAlertaAppService",
+              "name": "IAlertaAppService",
+              "methods": [
+                {
+                  "name": "PostAlertaAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "cadenaBusqueda",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "NewsApp.Alertas.AlertaDto",
+                    "typeSimple": "NewsApp.Alertas.AlertaDto"
+                  }
+                },
+                {
+                  "name": "PostNotificacionAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "alertaId",
+                      "typeAsString": "System.Int32, System.Private.CoreLib",
+                      "type": "System.Int32",
+                      "typeSimple": "number",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "NewsApp.Alertas.NotificacionDto",
+                    "typeSimple": "NewsApp.Alertas.NotificacionDto"
+                  }
+                },
+                {
+                  "name": "GetNotificacionesAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.ICollection<NewsApp.Alertas.NotificacionDto>",
+                    "typeSimple": "[NewsApp.Alertas.NotificacionDto]"
+                  }
+                },
+                {
+                  "name": "GetAlertasAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.ICollection<NewsApp.Alertas.AlertaDto>",
+                    "typeSimple": "[NewsApp.Alertas.AlertaDto]"
+                  }
+                },
+                {
+                  "name": "MarcarNotificacionesComoLeidas",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                },
+                {
+                  "name": "GestionarAlertaAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "alertaId",
+                      "typeAsString": "System.Int32, System.Private.CoreLib",
+                      "type": "System.Int32",
+                      "typeSimple": "number",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "PostAlertaAsyncByCadenaBusqueda": {
+              "uniqueName": "PostAlertaAsyncByCadenaBusqueda",
+              "name": "PostAlertaAsync",
+              "httpMethod": "POST",
+              "url": "api/app/alerta/alerta",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "cadenaBusqueda",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "cadenaBusqueda",
+                  "name": "cadenaBusqueda",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "NewsApp.Alertas.AlertaDto",
+                "typeSimple": "NewsApp.Alertas.AlertaDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
+            },
+            "PostNotificacionAsyncByAlertaId": {
+              "uniqueName": "PostNotificacionAsyncByAlertaId",
+              "name": "PostNotificacionAsync",
+              "httpMethod": "POST",
+              "url": "api/app/alerta/notificacion/{alertaId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "alertaId",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "alertaId",
+                  "name": "alertaId",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "NewsApp.Alertas.NotificacionDto",
+                "typeSimple": "NewsApp.Alertas.NotificacionDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
+            },
+            "GetNotificacionesAsync": {
+              "uniqueName": "GetNotificacionesAsync",
+              "name": "GetNotificacionesAsync",
+              "httpMethod": "GET",
+              "url": "api/app/alerta/notificaciones",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.ICollection<NewsApp.Alertas.NotificacionDto>",
+                "typeSimple": "[NewsApp.Alertas.NotificacionDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
+            },
+            "GetAlertasAsync": {
+              "uniqueName": "GetAlertasAsync",
+              "name": "GetAlertasAsync",
+              "httpMethod": "GET",
+              "url": "api/app/alerta/alertas",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.ICollection<NewsApp.Alertas.AlertaDto>",
+                "typeSimple": "[NewsApp.Alertas.AlertaDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
+            },
+            "MarcarNotificacionesComoLeidas": {
+              "uniqueName": "MarcarNotificacionesComoLeidas",
+              "name": "MarcarNotificacionesComoLeidas",
+              "httpMethod": "POST",
+              "url": "api/app/alerta/marcar-notificaciones-como-leidas",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.SettingManagement.IEmailSettingsAppService"
+              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
+            },
+            "GestionarAlertaAsyncByAlertaId": {
+              "uniqueName": "GestionarAlertaAsyncByAlertaId",
+              "name": "GestionarAlertaAsync",
+              "httpMethod": "POST",
+              "url": "api/app/alerta/gestionar-alerta/{alertaId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "alertaId",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "alertaId",
+                  "name": "alertaId",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "NewsApp.Alertas.IAlertaAppService"
             }
           }
         }

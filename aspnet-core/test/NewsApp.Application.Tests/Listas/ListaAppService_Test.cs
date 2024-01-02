@@ -12,6 +12,8 @@ using NewsApp.EntityFrameworkCore;
 using NewsApp.Noticias;
 using System.Collections;
 using Microsoft.AspNetCore.Identity;
+using AutoMapper.Internal.Mappers;
+using AutoMapper;
 
 namespace NewsApp.Listas
 {
@@ -186,16 +188,6 @@ namespace NewsApp.Listas
             noticias.Count.ShouldBeGreaterThan(0);
         }
 
-        /*
-        public async Task<ICollection<ListaDto>> GetListasUsuarioAsync()
-        {
-            var userGuid = CurrentUser.Id.GetValueOrDefault();
-            var listas = await _listaRepository.GetListAsync(l => l.UsuarioId == userGuid, includeDetails: true);
-
-            return ObjectMapper.Map<ICollection<Lista>, ICollection<ListaDto>>(listas);
-        }
-        */
-
         [Fact]
         public async Task Should_Get_All_ListasUsuario()
         {
@@ -205,6 +197,49 @@ namespace NewsApp.Listas
             //Assert
             listas.ShouldNotBeNull();
             listas.Count.ShouldBeGreaterThan(0);
+        }
+
+        [Fact]
+        public async Task Should_Delete_A_Noticia()
+        {
+            //Arrange
+            var inputLista = new CreateListaDto
+            {
+                Nombre = "Nueva Lista",
+                Descripcion = "Lista para probar"
+            };
+
+            var lista = await _listaAppService.PostListaAsync(inputLista);
+
+            var noticia = new NoticiaDto
+            {
+                Titulo = "\"Te clavo el visto la próxima\": el enfado de Messi con Ibai en directo y tras su octavo Balón de Oro no tiene desperdicio",
+                Autor = "Antonio Vallejo",
+                Descripcion = "Ayer tuvo lugar la celebración de la gala del Balón de Oro, un evento que ha podido significar un déjà vu para muchos al ver como Lionel Messi se llevaba su octavo Balón de Oro. Para los españoles también ha sido todo un orgullo el hecho de que Aitana Bonmatí…",
+                Url = "https://www.genbeta.com/actualidad/te-clavo-visto-proxima-enfado-messi-ibai-directo-su-octavo-balon-oro-no-tiene-desperdicio",
+                Contenido = "Ayer tuvo lugar la celebración de la gala del Balón de Oro, un evento que ha podido significar un déjà vu para muchos al ver como Lionel Messi se llevaba su octavo Balón de Oro. Para los españoles ta… [+2504 chars]",
+                FechaPublicacion = DateTime.Today,
+                Fuente = "Genbeta.com"
+            };
+
+            var inputNoticia = new AgregarNoticiaDto
+            {
+                IdLista = lista.Id,
+                Noticia = noticia
+            };
+
+            await _listaAppService.AgregarNoticiaAsync(inputNoticia);
+            var noticias1 = await _listaAppService.GetNoticiasListaAsync(lista.Id);
+
+            //Act
+
+            await _listaAppService.DeleteNoticiaAsync(2);
+            var noticias2 = await _listaAppService.GetNoticiasListaAsync(lista.Id);
+
+            //Assert
+            
+            noticias1.Count.ShouldBeEquivalentTo(1);
+            noticias2.Count.ShouldBeEquivalentTo(0);
         }
 
     }
