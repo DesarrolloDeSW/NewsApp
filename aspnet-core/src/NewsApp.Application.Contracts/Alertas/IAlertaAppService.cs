@@ -14,5 +14,6 @@ namespace NewsApp.Alertas
         Task<ICollection<AlertaDto>> GetAlertasAsync();
         Task MarcarNotificacionesComoLeidas();
         Task GestionarAlertaAsync(int alertaId);
+        Task EnviarMailAsync(Guid usuarioId, string cadenaBusqueda);
     }
 }
