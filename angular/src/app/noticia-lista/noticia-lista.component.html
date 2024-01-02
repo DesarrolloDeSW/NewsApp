@@ -1,23 +1,42 @@
+<!-- noticia-lista.component.html -->
 <div class="card-body">
-    <ngx-datatable [rows]="noticias" [count]="noticias.length" default>
-      <ngx-datatable-column [name]="'::Noticias'">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <div [ngClass]="{'noticia-container': true}">
-            <div class="noticia-content">
-              <div class="noticia-title">
-                <strong>{{ row.titulo }}</strong>
+  <ngx-datatable [rows]="noticias" [count]="noticias.length" default>
+    <!-- Columna para mostrar los detalles de la noticia -->
+    <ngx-datatable-column [name]="'::Noticias'">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <div [ngClass]="{'noticia-container': true}">
+          <div class="noticia-content">
+            <div class="noticia-title">
+              <strong>{{ row.titulo }}</strong>
+            </div>
+            <div class="noticia-details">
+              <div class="noticia-source">
+                {{ '::Fuente' | abpLocalization }}: {{ row.fuente }}
               </div>
-              <div class="noticia-details">
-                <div class="noticia-source">
-                  {{ '::Fuente' | abpLocalization }}: {{ row.fuente }}
-                </div>
-                <div class="noticia-date">
-                  {{ row.fechaPublicacion | date }}
-                </div>
+              <div class="noticia-date">
+                {{ row.fechaPublicacion | date }}
               </div>
             </div>
           </div>
-        </ng-template>
-      </ngx-datatable-column>
-    </ngx-datatable>
-  </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    
+    <!-- Columna para acciones (Leer Noticia y Eliminar de Lista) -->
+    <ngx-datatable-column [name]="'::Actions'" [maxWidth]="250"> <!-- Ajusta el ancho mínimo según tus preferencias -->
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <div class="text-center">
+          <!-- Botones de acciones para cada noticia -->
+          <div class="d-flex flex-column align-items-center">
+            <button class="btn btn-secondary mb-2 w-100" (click)="leerNoticia(row)">
+              <i class="fa fa-newspaper-o me-1"></i>Leer Noticia
+            </button>
+            <button class="btn btn-danger w-100" (click)="eliminarNoticiaDeLista(row)">
+              <i class="fa fa-trash me-1"></i>Eliminar de Lista
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
