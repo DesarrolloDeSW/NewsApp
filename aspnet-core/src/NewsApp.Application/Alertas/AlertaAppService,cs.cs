@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Emailing;
 using Volo.Abp.Identity;
 
 namespace NewsApp.Alertas
@@ -19,13 +20,17 @@ namespace NewsApp.Alertas
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AlertaManager _alertaManager;
         private readonly IArticulosAppService _articulosAppService;
+        private readonly IEmailSender _emailSender;
+        private readonly IIdentityUserRepository _identityUserRepository;
 
         public AlertaAppService(
             IAlertaRepository alertaRepository,
             AlertaManager alertaManager,
-            UserManager<IdentityUser> userManager, 
-            IRepository<Notificacion,int> notificacionRepository,
-            IArticulosAppService articulosAppService
+            UserManager<IdentityUser> userManager,
+            IRepository<Notificacion, int> notificacionRepository,
+            IArticulosAppService articulosAppService,
+            IEmailSender emailSender,
+            IIdentityUserRepository identityUserRepository
             )
 
         {
@@ -34,6 +39,8 @@ namespace NewsApp.Alertas
             _alertaManager = alertaManager;
             _notificacionRepository = notificacionRepository;
             _articulosAppService = articulosAppService;
+            _emailSender = emailSender;
+            _identityUserRepository = identityUserRepository;
         }
 
         public async Task<AlertaDto> PostAlertaAsync(string cadenaBusqueda)
@@ -85,8 +92,43 @@ namespace NewsApp.Alertas
             {
                 alerta.Desactivar();
                 await PostNotificacionAsync(alertaId);
+                await EnviarMailAsync(alerta.UsuarioId, alerta.CadenaBusqueda);
             }
         }
 
+        public async Task EnviarMailAsync(Guid usuarioId, string cadenaBusqueda)
+        {
+            try
+            {
+                var usuario = await _identityUserRepository.GetAsync(usuarioId);
+                var direccion = await _userManager.GetEmailAsync(usuario);
+
+                if (!string.IsNullOrWhiteSpace(direccion))
+                {
+                    Console.WriteLine($"Intentando enviar correo electrónico a: {direccion}");
+
+                    await _emailSender.SendAsync(
+                        direccion,     // target email address
+                        "Nuevos resultados sobre " + cadenaBusqueda,         // subject
+                        $@"
+                Se han encontrado resultados sobre tu búsqueda de {cadenaBusqueda}.
+                Entrá a la aplicación y realizá la búsqueda para consultarlos!
+                "  // email body
+                    );
+
+                    Console.WriteLine("Correo electrónico enviado exitosamente.");
+                }
+                else
+                {
+                    Console.WriteLine("La dirección de correo electrónico es nula o está en blanco.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al enviar el correo electrónico: {ex.Message}");
+                // También puedes imprimir la pila de llamadas para obtener más detalles
+                Console.WriteLine(ex.StackTrace);
+            }
+        }
     }
 }

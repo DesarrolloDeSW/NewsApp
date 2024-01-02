@@ -18,7 +18,7 @@ namespace NewsApp.BackgroundWorkers
         public BusquedaWorker (
             AbpAsyncTimer timer, IServiceScopeFactory serviceScopeFactory) : base ( timer, serviceScopeFactory)
         {
-            Timer.Period = 600000;
+            Timer.Period = 300000;
         }
 
         protected async override Task DoWorkAsync (
