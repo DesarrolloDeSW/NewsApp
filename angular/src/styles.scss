@@ -8,6 +8,13 @@
   //background-color: #f0f0f0; /* Fondo para notificaciones leídas */
 }
 
+.lpx-nav-menu .lpx-menu-item-link.selected .lpx-menu-item-icon {
+  color: #FE8500;
+}
+
+.lpx-nav-menu .lpx-menu-item-link:hover .lpx-menu-item-icon {
+  color: #FE8500; /* Color naranja */
+}
 
 @keyframes donut-spin {
   0% {
