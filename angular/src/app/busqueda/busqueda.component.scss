@@ -1,0 +1,28 @@
+.btn-primary {
+    background-color: #FE8500;
+    border-color: #FE8500;
+  }
+
+  .btn-primary:hover {
+    transform: scale(1.05); 
+  }
+
+  .btn-secondary {
+    background-color:rgb(104,107,110);
+    border-color:rgb(104,107,110);
+  }
+
+  .btn-secondary:hover {
+    transform: scale(1.05); 
+  }
+
+  .d-flex.flex-column.align-items-end button {
+    background-color:rgb(104,107,110);
+    border-color:rgb(104,107,110);
+  }
+
+  .d-flex.flex-column.align-items-end button:hover {
+    background-color: #FE8500;
+    border-color: #FE8500;
+  }
+

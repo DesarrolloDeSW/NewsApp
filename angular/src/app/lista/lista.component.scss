@@ -1,0 +1,46 @@
+.btn:active,
+  .btn.btn-secondary.btn-sm:focus {
+    background-color: orange; 
+    border-color: orange; 
+  }
+
+  .btn-primary {
+    background-color: #FE8500;
+    border-color: #FE8500;
+  }
+
+  .btn-primary:hover {
+    transform: scale(1.05); 
+  }
+
+  .btn-secondary {
+      background-color:rgb(104,107,110);
+      border-color:rgb(104,107,110);
+    }
+
+    .btn-secondary:hover {
+      transform: scale(1.05); 
+    }
+
+  .btn.btn-secondary.btn-sm { 
+    background-color:rgb(104,107,110);
+    border-color:rgb(104,107,110);
+    width: 500px;
+    margin: 0 auto;
+  }
+
+  .btn.btn-secondary.btn-sm:hover {
+    transform: scale(1.05); 
+  }
+
+  .btn.btn-secondary.btn-sm:active,
+  .btn.btn-secondary.btn-sm:focus {
+    background-color:rgb(104,107,110);
+    border-color:rgb(104,107,110);
+  }
+
+  .dropdown-item:active,
+  .dropdown-item:focus {
+    background-color: #FE8500;
+    border-color: #FE8500;
+  }

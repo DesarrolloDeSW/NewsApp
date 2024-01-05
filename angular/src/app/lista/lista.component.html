@@ -56,17 +56,24 @@
               </div>
             </ng-template>
           </ngx-datatable-column>
-        <ngx-datatable-column [name]="'::Nombre' | abpLocalization" prop="nombre"></ngx-datatable-column>
-        <ngx-datatable-column [name]="'::FechaCreacion' | abpLocalization" prop="fechaCreacion">
+        <ngx-datatable-column 
+          [name]="'::Nombre' | abpLocalization" prop="nombre"
+          [sortable]="false">
+        </ngx-datatable-column>
+        <ngx-datatable-column 
+          [name]="'::FechaCreacion' | abpLocalization" prop="fechaCreacion"
+          [sortable]="false">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{ row.fechaCreacion | date }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column [name]="'::Descripcion' | abpLocalization" prop="descripcion"></ngx-datatable-column>
+        <ngx-datatable-column 
+          [name]="'::Descripcion' | abpLocalization" prop="descripcion"
+          [sortable]="false">
+        </ngx-datatable-column>
       </ngx-datatable>
     </div>
 </div>
-
 
 
 
@@ -96,22 +103,9 @@
       
         <!--added save button-->
         <button class="btn btn-primary" (click)="save()" [disabled]="form.invalid">
-              <i class="fa fa-check mr-1"></i>
               {{ '::Save' | abpLocalization }}
         </button>
     </ng-template>
     
 </abp-modal> 
 
-
-<style>
-  .btn-primary {
-    background-color: #FE8500;
-    border-color: #FE8500;
-  }
-
-  .btn-secondary {
-    background-color: #FE8500;
-    border-color: #FE8500;
-  }
-</style>

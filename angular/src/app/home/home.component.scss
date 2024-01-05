@@ -1,1 +1,49 @@
-/* Styles for the home component */
+a,
+a:hover {
+  color: #FE8500;
+}
+
+.btn-primary,
+.btn-primary:hover {
+  background-color: #FE8500;
+  border-color: #FE8500;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.25rem rgba(254, 133, 0, 0.5);
+}
+
+/* Para asegurar que las tarjetas tengan la misma altura */
+.card {
+  height: 100%;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Ajusta el valor según tu preferencia */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la sección 'En MicroNews podrás:' */
+.row.text-center>p {
+  color: #FE8500;
+  font-weight: bold;
+}
+
+/* Ajustes para el espacio y alineación del texto */
+.mt-4 {
+  margin-top: 2rem !important;
+}
+
+.ml-4 {
+  margin-left: 1rem !important;
+}
+
+.card-title {
+  text-align: center;
+  font-size: large;
+}
+
+.card-text {
+  text-align: center;
+  font-size:medium;
+}
